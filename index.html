@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MEKA — Ropa urbana</title>
+  <meta name="description" content="MEKA: marca de ropa urbana. Colecciones, lookbook y comunidad." />
+  <!-- 🧠 Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <!-- 🎨 Font Awesome (íconos) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+  /* ========================================
+   VARIABLES Y RESET
+   ======================================== */
+  :root {
+    --bg: #0b0b0b;
+    --panel: #121212;
+    --card: #121212;
+    --muted: #1a1a1a;
+    --line: #222;
+    --border: #2a2a2a;
+    --fg: #f5f5f5;
+    --sub: #f5f5f5;
+    --brand: #fff;
+    --accent: #e8ff4a;
+    --ok: #d1ffd6;
+    --warn: #ffe8a3;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* ========================================
+   UTILIDADES
+   ======================================== */
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--accent);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sub {
+    color: var(--sub);
+    text-shadow: 0 0 8px var(--bg);
+  }
+
+  .kicker {
+    font-family: "Dela Gothic One";
+    font-size: 12px;
+    letter-spacing: 0.6px;
+  }
+
+  .mark {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0 4px;
+    border-radius: 4px;
+  }
+
+  .note {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed #333;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  /* ========================================
+   BOTONES
+   ======================================== */
+  .btn {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--fg);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: #1a1a1a;
+  }
+
+  .btn.brand {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #111;
+  }
+
+  .btn.brand:hover {
+    background: #d1e642;
+  }
+
+  .close-x {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .close-x:hover {
+    background: #1a1a1a;
+    border-color: #444;
+  }
+
+  /* ========================================
+   NAVEGACIÓN
+   ======================================== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(12, 12, 12, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-family: "Ubuntu", system-ui;
+    letter-spacing: 0.5px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu {
+    display: flex;
+    gap: 22px;
+  }
+
+  .menu a {
+    color: var(--sub);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    transition: color 0.2s ease;
+  }
+
+  .menu a.active,
+  .menu a:hover {
+    color: var(--fg);
+  }
+
+  .cta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .hamb {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .hamb span {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  /* ========================================
+   MARQUEE
+   ======================================== */
+  .marquee {
+    background: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-block;
+    padding: 12px 0;
+    animation: scroll 24s linear infinite;
+  }
+
+  .marquee b {
+    font-family: "Dela Gothic One";
+    letter-spacing: 1px;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ========================================
+   SECCIONES
+   ======================================== */
+  section {
+    padding: 80px 0;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .section-head h2 {
+    font-family: "Dela Gothic One";
+    font-size: 44px;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========================================
+   GRID DE PRODUCTOS
+   ======================================== */
+  .grid {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 8px;
+    margin-inline: -20px;
+    padding-inline: 20px;
+    cursor: grab;
+  }
+
+  .grid:active {
+    cursor: grabbing;
+  }
+
+  .grid::before,
+  .grid::after {
+    content: "";
+    flex: 0 0 6px;
+  }
+
+  .grid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .grid::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 8px;
+  }
+
+  /* ========================================
+   CARDS
+   ======================================== */
+  .card {
+    flex: 0 0 clamp(220px, 30vw, 360px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card .tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  .card img {
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .card .cap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+  }
+
+  .price {
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .quick {
+    position: absolute;
+    inset: auto 12px 12px auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+  }
+
+  .card:hover .quick {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================================
+   HISTORIA
+   ======================================== */
+  .historia-container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .historia-text {
+    padding-right: 20px;
+  }
+
+  .historia-text h1 {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: clamp(28px, 8vw, 64px);
+    line-height: 0.9;
+    margin: 0 0 30px;
+    color: var(--accent);
+  }
+
+  h1,
+  h2 {
+    font-size: 45px !important;
+    color: #e8ff4a !important;
+  }
+
+  .xd {
+    font-size: 25px;
+    font-weight: bold !important;
+  }
+
+  .xd+p {
+    margin-top: 4px;
+  }
+
+  .historia-text h2 {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 28px;
+    margin: 40px 0 20px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .historia-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--fg);
+  }
+
+  .imagen-galeria {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .imagen-slot {
+    border-radius: 18px;
+    padding: 0;
+    transition: all 0.3s ease;
+    background: var(--card);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .imagen-slot img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 38px;
+  }
+
+  /* ========================================
+   COMUNIDAD
+   ======================================== */
+  .meka-community {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 50px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .meka-title {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 28px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .meka-sub {
+    color: var(--sub);
+    margin-bottom: 32px;
+  }
+
+  /* Carrusel de Comunidad */
+  .meka-community-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+
+  .c-carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.6s ease;
+  }
+
+  .c-carousel-item {
+    flex: 0 0 auto;
+    width: 220px;
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: transform 0.4s, opacity 0.4s, filter 0.4s;
+    filter: blur(2px);
+  }
+
+  .c-carousel-item.active {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: none;
+  }
+
+  .c-carousel-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+  }
+
+  .c-carousel-item .c-body {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .c-name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .c-role {
+    font-size: 13px;
+    color: var(--sub);
+  }
+
+  .c-quote {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  .c-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s ease;
+  }
+
+  .c-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .c-btn.prev {
+    left: 10px;
+  }
+
+  .c-btn.next {
+    right: 10px;
+  }
+
+  /* ========================================
+   TESTIMONIOS
+   ======================================== */
+  .meka-testimonials {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 30px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .t-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .t-photo {
+    width: 86px;
+    height: 86px;
+    flex: 0 0 86px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #000;
+    border: 1px solid #1e1e1e;
+  }
+
+  .t-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .t-name {
+    font-weight: 700;
+  }
+
+  .t-meta {
+    color: var(--sub);
+    font-size: 13px;
+  }
+
+  .t-quote {
+    line-height: 1.5;
+  }
+
+  .t-stars {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    opacity: 0.9;
+  }
+
+  .t-tag {
+    display: inline-block;
+    border: 1px solid #2a2a2a;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  /* ========================================
+   FEATURES
+   ======================================== */
+  .features {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 20px;
+    display: grid;
+    gap: 56px;
+  }
+
+  .feature {
+    text-align: center;
+  }
+
+  .feature .icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 22px;
+    color: #9a9a9a;
+    opacity: 0.95;
+  }
+
+  .feature h3 {
+    margin: 0 0 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .feature p {
+    margin: 0;
+    color: var(--sub);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  main {
+    flex: 1;
+    /* ocupa todo el espacio restante */
+  }
+
+
+  /* ========================================
+   FOOTER
+   ======================================== */
+  footer {
+    width: 100%;
+    background: var(--muted);
+    border-top: 1px solid var(--border);
+    padding: 36px 20px;
+    margin-top: 60px;
+    box-sizing: border-box;
+  }
+
+  .foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  footer h4 {
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+
+  .input {
+    display: flex;
+    gap: 8px;
+  }
+
+  .input input {
+    flex: 1;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 12px 14px;
+    color: var(--fg);
+  }
+
+  /* ========================================
+   STICKY BAR
+   ======================================== */
+  .sticky {
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.87);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: 999px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .sticky.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+  }
+
+  .sticky a,
+  .sticky button {
+    pointer-events: auto;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  /* ========================================
+   MODALES
+   ======================================== */
+  .modal,
+  .mockups-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+  }
+
+  .modal.open,
+  .mockups-modal.open {
+    display: flex;
+  }
+
+  /* Modal de producto */
+  .modal-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    max-width: 980px;
+    width: 94vw;
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .modal-body img {
+    height: auto;
+    min-height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .modal-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-info h3 {
+    font-family: "Dela Gothic One";
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .modal-info .sub {
+    margin: 0;
+  }
+
+  /* Selector de tallas */
+  .size-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .size-selector label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--sub);
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 8px;
+  }
+
+  .size-opt {
+    border: 1px solid var(--border);
+    background: #141414;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+  }
+
+  .size-opt:hover {
+    border-color: #444;
+    background: #1a1a1a;
+  }
+
+  .size-opt.selected {
+    border-color: var(--accent);
+    background: rgba(232, 255, 74, 0.1);
+  }
+
+  /* Selector de cantidad */
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .qty-btn {
+    border: 1px solid var(--border);
+    background: #141414;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .qty-btn:hover {
+    background: #1a1a1a;
+  }
+
+  .qty-display {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  /* Modal de mockups */
+  .mockups-modal {
+    z-index: 70;
+  }
+
+  .mockups-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    width: min(1100px, 94vw);
+    max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mockups-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #0b0b0b;
+  }
+
+  .mockups-title {
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .mockups-body {
+    padding: 18px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+  }
+
+  .mockups-body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .mockups-body::-webkit-scrollbar-track {
+    background: #0b0b0b;
+  }
+
+  .mockups-body::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+  }
+
+  .mockups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .mock-item {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #121212;
+  }
+
+  .mock-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mock-cap {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mock-cap small {
+    color: var(--sub);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mock-cap .price {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+
+  .mock-btn {
+    border: 1px solid var(--border);
+    background: #141414;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+
+  .mock-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ========================================
+   CARRITO
+   ======================================== */
+  .cart-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: min(400px, 90vw);
+    background: #0f0f0f;
+    border-left: 1px solid var(--border);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .cart-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-header h3 {
+    margin: 0;
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .cart-body {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: #141414;
+  }
+
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cart-item-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .cart-item-meta {
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  .cart-item-price {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .cart-remove {
+    background: transparent;
+    border: 1px solid #333;
+    color: #999;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 4px;
+    align-self: flex-start;
+    transition: all 0.2s ease;
+  }
+
+  .cart-remove:hover {
+    border-color: #555;
+    color: #fff;
+  }
+
+  .cart-footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .cart-total span:first-child {
+    font-weight: 600;
+  }
+
+  .cart-total span:last-child {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 24px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--sub);
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--accent);
+    color: #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  /* ========================================
+   CHATBOT
+   ======================================== */
+  .meka-fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #111, #000);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .meka-fab.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+
+  .meka-fab span {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;
+    background-clip: text;
+  }
+
+  .meka-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 96px;
+    width: 360px;
+    max-width: 95vw;
+    height: 560px;
+    max-height: 80vh;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .meka-panel.show {
+    display: flex;
+    animation: pop 0.15s ease-out;
+  }
+
+  @keyframes pop {
+    from {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  .meka-head {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0e0e0e;
+  }
+
+  .meka-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    background: #000;
+    border: 1px solid #222;
+    font-family: "Ubuntu", monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .meka-title {
+    font-weight: 700;
+  }
+
+  .meka-body {
+    flex: 1;
+    overflow: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+  }
+
+  .meka-body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .meka-body::-webkit-scrollbar-thumb {
+    background: #242424;
+    border-radius: 10px;
+  }
+
+  .msg {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    max-width: 85%;
+    line-height: 1.4;
+  }
+
+  .msg small {
+    display: block;
+    opacity: 0.7;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .bot {
+    background: #0b0b0b;
+  }
+
+  .user {
+    background: #111;
+    border-color: #2a2a2a;
+    margin-left: auto;
+  }
+
+  .meka-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .chip {
+    border: 1px solid #333;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #0d0d0d;
+    transition: background 0.2s ease;
+  }
+
+  .chip:hover {
+    background: #141414;
+  }
+
+  .meka-foot {
+    border-top: 1px solid var(--line);
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    background: #0e0e0e;
+  }
+
+  .meka-input {
+    flex: 1;
+    background: #0b0b0b;
+    color: #fff;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .meka-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ========================================
+   MASONRY (Lookbook) — no usado pero conservado
+   ======================================== */
+  .masonry {
+    column-count: 3;
+    column-gap: 16px;
+  }
+
+  .masonry .tile {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .masonry .tile img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* ========================================
+   HERO HEADER CON ANIMACIONES PRESERVADAS
+   ======================================== */
+  /* HERO */
+.hero {
+  height: auto;
+  display: block !important;
+  overflow: hidden;
+}
+
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+    position: static !important;
+    overflow: hidden;
+}
+
+/* GRADIENTES SUPERIOR E INFERIOR */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.hero::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.hero::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+
+  .hero-copy {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+  }
+
+  /* ========================================
+   MAPA RESPONSIVE
+   ======================================== */
+  .map-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+    margin: 40px 0;
+    margin-left: 120px;
+  }
+
+  .map-iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    border: 4px solid #4e73df;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .contacto {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    margin-right: 180px;
+  }
+
+  .contacto h4 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    /* permite que los íconos pasen a la siguiente fila */
+    justify-content: center;
+    gap: 5px;
+    /* espacio entre íconos */
+    max-width: 200px;
+    /* ajusta el ancho según convenga */
+    margin: 0 auto;
+    /* centra horizontalmente */
+  }
+
+  .social-icons a {
+    flex: 1 0 30%;
+    /* cada ícono ocupa aprox. 30% del ancho */
+    text-align: center;
+    font-size: 24px;
+    /* tamaño de los íconos */
+  }
+
+  .social-icons a:hover {
+    color: #e8ff4a;
+  }
+
+
+  /* ========================================
+   RESPONSIVE — MEDIA QUERIES
+   ======================================== */
+
+  /* TABLET Y PANTALLAS MEDIANAS (hasta 980px) */
+  @media (max-width: 980px) {
+    .menu {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(18, 18, 18, 0.95);
+      flex-direction: column;
+      padding: 20px;
+      gap: 16px;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+
+    .menu.show {
+      display: flex;
+    }
+
+    .hamb {
+      display: flex;
+    }
+
+    .masonry {
+      column-count: 2;
+    }
+
+    /* Historia Grid Responsive */
+    .historia-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .historia-text {
+      padding-right: 0;
+    }
+
+    /* Imágenes de galería más pequeñas en tablet */
+    .side-image.left,
+    .side-image.right {
+      height: 50%;
+    }
+
+    .side-image.left {
+      left: -10%;
+    }
+
+    .side-image.right {
+      right: -45%;
+    }
+
+    .map-container {
+      padding: 20px;
+      gap: 30px;
+    }
+
+    .hero {
+      height: 45vh;
+    }
+
+    /* Títulos aún más pequeños */
+    .section-head h2 {
+      font-size: 24px;
+    }
+
+    .historia-text h1 {
+      font-size: clamp(20px, 6vw, 36px);
+    }
+
+    h1,
+    h2 {
+      font-size: 24px !important;
+    }
+
+    /* Cards de productos más grandes */
+    .card {
+      flex: 0 0 clamp(260px, 85vw, 320px);
+    }
+
+    /* Imágenes de galería más pequeñas */
+    .imagen-slot {
+      min-height: 150px;
+    }
+
+    .imagen-slot img {
+      height: 180px;
+    }
+
+    /* Social icons más pequeños */
+
+
+    /* Input del footer en columna */
+    .input {
+      flex-direction: column;
+    }
+
+    .input input,
+    .input button {
+      width: 100%;
+    }
+  }
+
+  /* ORIENTACIÓN HORIZONTAL EN MÓVILES */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+      height: 100vh;
+    }
+
+    .modal-card,
+    .mockups-card {
+      max-height: 98vh;
+    }
+
+    .cart-sidebar {
+      height: 100vh;
+    }
+  }
+
+  /* Mini hero secundario */
+  .mini-hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+  .iconitos {
+    display: flex;
+    gap: 10px;
+  }
+  .iconitos a {
+    font-size: 24px;
+  }
+</style>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <a href="#Inicio" aria-label="Ir al inicio">
+          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA" style="height:34px">
+        </a>
+      </div>
+      <div class="menu" id="menu">
+        <a href="#Inicio" class="active">Inicio</a>
+        <a href="./blog.html">Blog</a>
+        <a href="#coleccion">Colección</a>
+        <a href="./podcast.html">Podcast</a>
+        <a href="./empaquetado.html">Empaquetado</a>
+      </div>
+      <div class="cta">
+        <button class="btn" id="cartToggle" style="position:relative" aria-label="Abrir carrito">
+          🛒 Carrito
+          <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+        </button>
+      </div>
+      <button class="hamb" id="hamb" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- CARRITO LATERAL -->
+  <aside class="cart-sidebar" id="cartSidebar" role="complementary" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="close-x" id="closeCart" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">Tu carrito está vacío</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn brand" style="width:100%;justify-content:center;display:flex;align-items:center;gap:8px"
+        onclick="window.open('https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20hacer%20un%20pedido', '_blank')">
+        <i class="fa-brands fa-whatsapp"></i> Finalizar compra
+      </button>
+    </div>
+  </aside>
+
+  <!-- Botón flotante chatbot -->
+  <button class="meka-fab" id="mekaFab" aria-label="Abrir chatbot MEKA">
+    <span>MEKA</span>
+  </button>
+
+  <!-- Panel Chat -->
+  <section class="meka-panel" id="mekaPanel" aria-live="polite">
+    <header class="meka-head">
+      <div class="meka-badge">MK</div>
+      <div>
+        <div class="meka-title">MEKA Bot</div>
+        <div class="meka-sub">"La ropa no es cuento, es calle".</div>
+      </div>
+    </header>
+    <main class="meka-body" id="mekaBody">
+      <div class="msg bot">
+        <div class="kicker">Bienvenida/o a MEKA</div>
+        Pregúntame sobre <span class="mark">logo</span>, <span class="mark">colores</span>, <span
+          class="mark">tipografías</span>, <span class="mark">tamaño mínimo</span> y más. Hablo claro, con calle y con
+        respeto.
+        <div class="meka-suggestions" id="mekaSug"></div>
+        <div class="note">Basado en el Manual de Imagen de MEKA. Respuestas fieles al documento.</div>
+      </div>
+    </main>
+    <footer class="meka-foot">
+      <input id="mekaInput" class="meka-input" placeholder="Escribe tu pregunta…" autocomplete="off">
+      <button id="mekaSend" class="meka-btn">Enviar</button>
+    </footer>
+  </section>
+
+  <!-- HERO -->
+  <header class="hero" id="Inicio">
+    <img src="imagenes/meka.jpg" alt="Banner principal">
+    <div class="hero-copy">
+      <a class="btn brand" href="#coleccion">Explorar colección</a>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="wrap">
+        <b>MEKA</b> — Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b> — Cultura — Calle — Combo —
+        Hoodies — Cargos — Oversize -<b>MEKA</b> — Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b>
+        —
+        Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b> — Cultura — Calle — Combo — Hoodies —
+        Cargos
+        — Oversize
+      </span>
+    </div>
+  </div>
+
+  <!-- HISTORIA -->
+  <main class="wrap historia-container">
+    <div class="historia-grid">
+      <div class="historia-text">
+        <span class="eyebrow">Desde las calles · Para la cultura</span>
+        <h1>Quienes somos</h1>
+        <p>Somos un equipo de cinco jóvenes que compartimos una misma convicción: la moda puede ser más que
+          apariencia,
+          puede ser memoria, resistencia y transformación social. Desde diferentes talentos y miradas, nos unimos para
+          crear MEKA, un proyecto nacido en Medellín que busca visibilizar la cultura barrial y darle una segunda vida
+          a
+          las prendas olvidadas.</p>
+        <h1>Nuestra historia</h1>
+        <p>MEKA nació en Medellín como una respuesta creativa a dos realidades que marcan la ciudad: la contaminación
+          generada por la moda rápida y la estigmatización de las comunas 4, 5, 6 y 8. Somos un movimiento que
+          entiende
+          la moda no como simple tendencia, sino como memoria y resistencia.</p>
+        <h1>Nuestra esencia</h1>
+        <p>Autenticidad: Fieles a la cultura urbana.<br>
+          Memoria: Lo que no se borra, florece.<br>
+          Resiliencia: Transformar lo negativo en orgullo.<br>
+          Diversidad: Cada voz, cada estilo, cada identidad cuentan.</p>
+        <h1>Cómo contamos la historia</h1>
+        <span class="xd">Murales</span>
+        <p>Pintamos memoria en las calles. Cada mural nace de talleres comunitarios donde vecinos y jóvenes eligen
+          símbolos que representan su historia: zapatos colgando, ladrillos expuestos, camaleones que cambian de
+          color.
+          Son lienzos colectivos que resisten el olvido.</p>
+        <span class="xd">Escuchaderos</span>
+        <p>Instalamos espacios abiertos donde cualquiera puede sentarse a contar. Relatos de miedo, lucha y esperanza
+          se
+          recogen en grabadoras, convirtiéndose en frases, diseños y guiones. La voz del barrio es el corazón de MEKA.
+        </p>
+        <span class="xd">Podcast</span>
+        <p>Cada colección de ropa tiene su propio episodio. Mezclamos testimonios con sonidos del barrio: motos,
+          dominó,
+          música callejera. Escaneas un código en la prenda y escuchas la historia que la inspiró. La moda se vuelve
+          archivo oral.</p>
+        <span class="xd">Prendas</span>
+        <p>Las colecciones no nacen en vitrinas, nacen en murales y relatos. Cada prenda lleva un símbolo y un código
+          QR
+          que conecta con su historia. Vestir MEKA es vestir memoria, resistencia y comunidad.</p>
+      </div>
+      <div class="imagen-galeria">
+        <div class="imagen-slot"><img src="imagenes/ellas.jpeg" alt="Imagen MEKA"></div>
+        <div class="imagen-slot"><img src="imagenes/ellas2.jpeg" alt="Imagen MEKA 2"></div>
+        <div class="imagen-slot"><img src="imagenes/ellas3.jpeg" alt="Imagen MEKA 3"></div>
+        <div class="imagen-slot"><img src="imagenes/ellas4.jpeg" alt="Imagen MEKA 3"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- COLECCIÓN -->
+  <section id="coleccion" class="wrap">
+    <div class="section-head">
+      <h2>Colección destacada</h2>
+      <button class="btn" id="openMockups" aria-haspopup="dialog" aria-controls="mockupsModal">Ver todo</button>
+    </div>
+    <div class="grid" id="coleccionGrid">
+      <article class="card">
+        <span class="tag">Nuevo</span>
+        <img src="imagenes/modlo2.jpeg" alt="Crew en hoodies negros" />
+        <div class="cap">
+          <div><strong>OVERSIZE MEKA Core</strong>
+            <div class="sub">Negro • XS-XL</div>
+          </div>
+          <div class="price">$179.900</div>
+        </div>
+        <button class="quick" data-quick="1">Vista rápida</button>
+      </article>
+      <article class="card">
+        <span class="tag">Mas vendido</span>
+        <img src="imagenes/mdelo1.jpeg" alt="Grupo con cargos" />
+        <div class="cap">
+          <div><strong>CAMISETAS X3</strong>
+            <div class="sub">Arena • 28-36</div>
+          </div>
+          <div class="price">$199.900</div>
+        </div>
+        <button class="quick" data-quick="2">Vista rápida</button>
+      </article>
+      <article class="card">
+        <span class="tag">Edición limitada</span>
+        <img src="imagenes/modlo3.jpeg" alt="Crew oversize" />
+        <div class="cap">
+          <div><strong>CONJUNTO</strong>
+            <div class="sub">Olivo • S-XL</div>
+          </div>
+          <div class="price">$149.900</div>
+        </div>
+        <button class="quick" data-quick="3">Vista rápida</button>
+      </article>
+    </div>
+    <p class="sub" style="margin-top:10px">
+      En MEKA no seguimos tendencias: las creamos. Cada prenda es exclusiva y diseñada por nosotras mismas con la
+      esencia de la calle y la fuerza de lo auténtico.
+    </p>
+  </section>
+
+  <!-- MINI HERO SECUNDARIO -->
+  <section class="hero" aria-label="Accesorios">
+    <img src="imagenes/zapatos.jpeg" alt="Zapatos urbanos">
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section class="meka-community" aria-labelledby="comunidad-title">
+    <div class="wrap">
+      <header>
+        <h2 id="comunidad-title" class="meka-title">Nuestra Comunidad MEKA</h2>
+        <p class="meka-sub">
+          5 mujeres con estilos distintos pero un mismo sueño: crear ropa urbana con identidad y calle.
+        </p>
+      </header>
+      <div class="meka-community-carousel">
+        <div id="carouselTrack" class="c-carousel-track">
+          <article class="c-carousel-item">
+            <img src="imagenes/andrea.jpeg" alt="Retrato de Andrea">
+            <div class="c-body">
+              <div class="c-name">Andrea</div>
+              <div class="c-role">Desarrolladora de Narrativa</div>
+              <p class="c-quote">Le da forma visual a MEKA con tipografías, colores y texturas urbanas que representan
+                el barrio.</p>
+            </div>
+          </article>
+          <article class="c-carousel-item">
+            <img src="imagenes/sapegu.jpeg" alt="Retrato de Sara">
+            <div class="c-body">
+              <div class="c-name">Sara</div>
+              <div class="c-role">Diseñadora web y experiencias digitales</div>
+              <p class="c-quote">Transformo la esencia de MEKA en diferentes historias digitales.</p>
+            </div>
+          </article>
+          <article class="c-carousel-item active">
+            <img src="imagenes/jana.jpeg" alt="Retrato de Jana">
+            <div class="c-body">
+              <div class="c-name">Jana</div>
+              <div class="c-role">Productora de moda</div>
+              <p class="c-quote">Se asegura de que cada pieza sea funcional, cómoda y fiel al ADN urbano de MEKA.</p>
+            </div>
+          </article>
+          <article class="c-carousel-item">
+            <img src="imagenes/zoe.jpeg" alt="Retrato de Ana Sofía">
+            <div class="c-body">
+              <div class="c-name">Ana Sofía</div>
+              <div class="c-role">Directora creativa</div>
+              <p class="c-quote">Lidero la visión estética y narrativa de MEKA.</p>
+            </div>
+          </article>
+          <article class="c-carousel-item">
+            <img src="imagenes/soso.jpeg" alt="Retrato de Sofia">
+            <div class="c-body">
+              <div class="c-name">Sofía</div>
+              <div class="c-role">Diseñadora gráfica</div>
+              <p class="c-quote">Creo la identidad visual del proyecto.</p>
+            </div>
+          </article>
+        </div>
+        <button id="prevBtn" class="c-btn prev">‹</button>
+        <button id="nextBtn" class="c-btn next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="meka-testimonials" aria-labelledby="testimonios-title">
+    <div class="wrap">
+      <header>
+        <h2 id="testimonios-title" class="meka-title">Lo que dice nuestra comunidad</h2>
+        <p class="meka-sub">Ropa con identidad: hecha en el barrio, para moverse en la calle.</p>
+      </header>
+      <article class="t-card">
+        <img class="t-photo" src="imagenes/man.jpeg" alt="Retrato de Alberto">
+        <div class="t-body">
+          <div class="t-stars" aria-label="5 estrellas">★★★★★</div>
+          <div class="t-name">Alberto</div>
+          <div class="t-meta">Comuna 13 · Bailarina urbana</div>
+          <p class="t-quote">"Con MEKA me siento vista. Las prendas respetan mi movimiento."</p>
+          <span class="t-tag">Colección: Memoria</span>
+        </div>
+      </article>
+      <article class="t-card">
+        <img class="t-photo" src="imagenes/vieja.jpeg" alt="Retrato de Valeria">
+        <div class="t-body">
+          <div class="t-stars" aria-label="5 estrellas">★★★★★</div>
+          <div class="t-name">Valeria P.</div>
+          <div class="t-meta">Fotógrafa · Centro de Medellín</div>
+          <p class="t-quote">"La gráfica de MEKA es auténtica y resistente."</p>
+          <span class="t-tag">Gráfica complementaria</span>
+        </div>
+      </article>
+      <article class="t-card">
+        <img class="t-photo" src="imagenes/otroman.webp" alt="Retrato de Carlos">
+        <div class="t-body">
+          <div class="t-stars" aria-label="4.5 estrellas">★★★★☆</div>
+          <div class="t-name">Carlos del Jesus</div>
+          <div class="t-meta">Emprendedor · Aranjuez</div>
+          <p class="t-quote">"Los básicos en blanco y negro combinan con todo."</p>
+          <span class="t-tag">Paleta: Blanco/Negro</span>
+        </div>
+      </article>
+      <article class="t-card">
+        <img class="t-photo" src="imagenes/otravieja.jpeg" alt="Retrato de Rosa">
+        <div class="t-body">
+          <div class="t-stars" aria-label="5 estrellas">★★★★★</div>
+          <div class="t-name">Rosa Maria</div>
+          <div class="t-meta">MC · Buenos Aires</div>
+          <p class="t-quote">"MEKA entiende el parche."</p>
+          <span class="t-tag">Tono de Voz: Cercano</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" aria-label="Beneficios de compra">
+    <article class="feature">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 12a8 8 0 0 1 13.657-5.657M18 6V2m0 4h-4" />
+        <path d="M21 12a8 8 0 0 1-13.657 5.657M6 18v4m0-4h4" />
+      </svg>
+      <h3>CAMBIOS &amp; DEVOLUCIONES</h3>
+      <p>30 días para cambios</p>
+    </article>
+    <article class="feature">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="6" r="3.5" />
+        <path d="M1 20h13a2 2 0 0 0 2-2v-6H8a5 5 0 0 0-5 5z" />
+        <path d="M16 12h3l3 3v 3a2 2 0 0 1-2 2h-4" />
+        <circle cx="7" cy="20" r="1.6" />
+        <circle cx="16" cy="20" r="1.6" />
+      </svg>
+      <h3>ENVÍOS GRATIS</h3>
+      <p>Disponible a toda Colombia</p>
+    </article>
+    <article class="feature">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+        <path d="M2.5 9h19" />
+        <path d="M13.5 14.5c0-1 .8-1.5 2-1.5s2 .5 2 1.5-.8 1.5-2 1.5-2 .5-2 1.5 1 .5 2 .5 2-.4 2-1.4" />
+      </svg>
+      <h3>PAGOS SEGUROS</h3>
+      <p>A través de Mercado&nbsp;Pago</p>
+    </article>
+  </section>
+
+  <!-- SEGUNDO MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="wrap">
+        <b>MEKA</b> — Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b> — Cultura — Calle — Combo —
+        Hoodies — Cargos — Oversize -<b>MEKA</b> — Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b>
+        —
+        Cultura — Calle — Combo — Hoodies — Cargos — Oversize — <b>MEKA</b> — Cultura — Calle — Combo — Hoodies —
+        Cargos
+        — Oversize
+      </span>
+    </div>
+  </div>
+
+  <!-- MAPA + CONTACTO RESPONSIVE -->
+  <div class="map-container">
+    <iframe class="map-iframe"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.11506414568!2d-75.5622013!3d6.2485653999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44295920612ec9%3A0x40b9acbef422658f!2sMeka!5e0!3m2!1ses!2sco!4v1763407520793!5m2!1ses!2sco"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="contacto">
+      <h4>Contacto</h4>
+      <div class="social-icons">
+        <a href="https://wa.me/573237959787" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/_meka.__?igsh=OXU3MW1iem56YWll" target="_blank" rel="noopener"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/TUUSUARIO" target="_blank" rel="noopener"><i
+            class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/user/315ihr6ndmp4xgt4evqudasvd4dy?si=b52c988c90fd4f9e" target="_blank"
+          rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@meka__" target="_blank" rel="noopener"><i
+            class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@meka__" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap foot">
+      <div>
+        <div class="logo">
+          <span style="font-size:32px">MEKA</span>
+        </div>
+        <p class="sub">Diseñado en Colombia para el mundo urbano.</p>
+        <div class="iconitos">
+        <a href="https://wa.me/573237959787" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/_meka.__?igsh=OXU3MW1iem56YWll" target="_blank" rel="noopener"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/TUUSUARIO" target="_blank" rel="noopener"><i
+            class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/user/315ihr6ndmp4xgt4evqudasvd4dy?si=b52c988c90fd4f9e" target="_blank"
+          rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@meka__" target="_blank" rel="noopener"><i
+            class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@meka__" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      </div>
+
+      <div>
+        <h4>Mas información</h4>
+        <p class="sub">Recibe nuestros drops y novedades</p>
+        <div class="input">
+          <input type="email" placeholder="tu@email.com" aria-label="Correo electrónico">
+          <button class="btn brand">Suscribir</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA -->
+  <div class="sticky">
+    <span class="dot"></span>
+    <span>Comunícate · <a href="https://wa.me/573237959787" style="text-decoration:underline">Compra ahora</a></span>
+  </div>
+
+  <!-- MODAL QUICK VIEW -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-body">
+        <img id="modalImg" src="" alt="" />
+        <div class="modal-info">
+          <h3 id="modalTitle">Vista rápida</h3>
+          <p class="sub" id="modalDesc">Streetwear con identidad MEKA.</p>
+          <div class="size-selector">
+            <label>Selecciona tu talla:</label>
+            <div class="size-grid" id="sizeGrid"></div>
+          </div>
+          <div class="quantity-selector">
+            <label>Cantidad:</label>
+            <button class="qty-btn" id="qtyMinus" aria-label="Reducir cantidad">−</button>
+            <span class="qty-display" id="qtyDisplay">1</span>
+            <button class="qty-btn" id="qtyPlus" aria-label="Aumentar cantidad">+</button>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px">
+            <button class="btn brand" id="addToCartBtn" style="flex:1">
+              🛒 Añadir al carrito
+            </button>
+            <button class="btn" id="closeModal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE MOCKUPS -->
+  <div class="mockups-modal" id="mockupsModal" role="dialog" aria-modal="true" aria-labelledby="mockupsTitle">
+    <div class="mockups-card">
+      <div class="mockups-head">
+        <div class="mockups-title" id="mockupsTitle">Mockups MEKA</div>
+        <button class="close-x" id="closeMockups" aria-label="Cerrar">Cerrar ✕</button>
+      </div>
+      <div class="mockups-body">
+        <div class="mockups-grid">
+          <figure class="mock-item">
+            <img src="imagenes/mockup-gafas-.jpg" alt="Mockup gafas">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Gafas MEKA</small>
+                <div class="price">$89.900</div>
+              </div>
+              <button class="mock-btn" data-quick="4">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/buzo.jpeg" alt="Mockup buzo">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Buzo Negro</small>
+                <div class="price">$159.900</div>
+              </div>
+              <button class="mock-btn" data-quick="5">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/gorros.jpeg" alt="Mockup gorros">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Gorros</small>
+                <div class="price">$49.900</div>
+              </div>
+              <button class="mock-btn" data-quick="6">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/camisasmockups.jpg" alt="Mockup camisas">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Camisas</small>
+                <div class="price">$129.900</div>
+              </div>
+              <button class="mock-btn" data-quick="7">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/23mockups.jpg" alt="Mockup memoria 23">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Memoria 23</small>
+                <div class="price">$169.900</div>
+              </div>
+              <button class="mock-btn" data-quick="8">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/zapatos.jpeg" alt="Mockup zapatos">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Zapatos</small>
+                <div class="price">$249.900</div>
+              </div>
+              <button class="mock-btn" data-quick="9">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/medias.jpeg" alt="Mockup medias">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Medias Urbanas</small>
+                <div class="price">$29.900</div>
+              </div>
+              <button class="mock-btn" data-quick="10">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/conjuntomujer.jpeg" alt="Mockup conjunto mujer">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Ropa Interior Femenina</small>
+                <div class="price">$79.900</div>
+              </div>
+              <button class="mock-btn" data-quick="11">Comprar</button>
+            </figcaption>
+          </figure>
+          <figure class="mock-item">
+            <img src="imagenes/calzones rojos.jpeg" alt="Mockup ropa interior">
+            <figcaption class="mock-cap">
+              <div>
+                <small>Ropa interior masculina</small>
+                <div class="price">$59.900</div>
+              </div>
+              <button class="mock-btn" data-quick="12">Comprar</button>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS COMPLETOS -->
+  <script>
+    // MENÚ HAMBURGUESA
+    document.getElementById('hamb').addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
+    });
+    document.querySelectorAll('#menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 980) {
+          document.getElementById('menu').classList.remove('show');
+        }
+      });
+    });
+
+    // ====== CHATBOT MEKA (igual que original) ======
+    const KB = [
+      { q: ["que es meka", "que significa meka", "sobre meka", "mision", "vision", "quienes son"], a: `MEKA diseña desde el barrio para el mundo: identidad, memoria y resistencia puestas en ropa. <small>Fuente: Introducción del manual.</small>` },
+      { q: ["valores", "cuales son los valores", "principios"], a: `Valores: Autenticidad (identidad barrial), Resiliencia (del dolor al orgullo), Inclusión (todas las voces), Circularidad (ambiental, social y económica) y Memoria (lo que no se borra, florece).` },
+      { q: ["personalidad", "como es la personalidad", "actitud de marca"], a: `Personalidad: Adaptable, Sustentable, Social ("somos parche, no vitrina"), Transparente y Consciente.` },
+      { q: ["tono de voz", "como hablamos", "voz de marca"], a: `Tono de voz: Cercano (hablamos como en el barrio), Honesto (sin adorno), Visual (cada palabra pinta), Resistente (firme, con flow) e Inspirador.` },
+      { q: ["logo", "logotipo", "versiones del logo", "positivo", "negativo"], a: `Versiones: Positivo para fondos claros y Negativo para fondos oscuros o cargados, garantizando contraste y legibilidad.` },
+      { q: ["adaptaciones graficas", "texturas", "graffiti", "pixel", "puedo modificar el logo"], a: `Se permiten adaptaciones gráficas contextuales (ej. trazos tipo graffiti o efecto pixel) **sin alterar** silueta, proporciones ni legibilidad.` },
+      { q: ["planimetria", "construccion del logo", "guías", "proporciones"], a: `Planimetría: define proporciones y guías para conservar equilibrio y legibilidad del logo.` },
+      { q: ["area de seguridad", "margenes de seguridad", "espacio alrededor"], a: `Área de seguridad: mínimo "X" (grosor vertical de la letra "E" del imagotipo) alrededor del logo.` },
+      { q: ["tamano minimo", "tamaño minimo", "dimensiones minimas", "pixeles", "mm"], a: `Tamaño mínimo: **15 mm** de alto en impresión y **108 px** de alto en digital.` },
+      { q: ["usos correctos", "buen uso", "como usar logo bien"], a: `Usos correctos: mantener forma original; proporciones sin distorsión; colores oficiales; buen contraste; respetar márgenes.` },
+      { q: ["usos incorrectos", "mal uso", "errores logo"], a: `Usos incorrectos: cambiar color arbitrariamente; quitar letras; distorsionar; usar sólo contorno; inclinar; alterar proporciones.` },
+      { q: ["colores", "paleta", "colorimetria", "blanco y negro", "paleta principal"], a: `Colorimetría: base **blanco y negro** para versatilidad y coherencia.` },
+      { q: ["tipografia", "tipografias", "fuentes", "font", "delagothic", "ubuntu", "inter"], a: `Tipografías: **Ubuntu Regular** para el logotipo; **Dela Gothic One** para títulos; **Inter Regular** para texto corrido.` },
+      { q: ["grafica complementaria", "sello grafico", "patrones", "fondo"], a: `Gráfica complementaria: refuerza la identidad en piezas/publicaciones; se aplica en B/N, acompaña al logo.` },
+      { q: ["eslogan", "frase", "lema"], a: `Eslogan: **"LA ROPA NO ES CUENTO ES CALLE"**.` },
+      { q: ["contacto", "whatsapp", "vender", "comprar"], a: `Por ahora este bot responde lineamientos de marca. Para compras, escríbenos por WhatsApp o redes oficiales.` }
+    ];
+    const SUGGESTIONS = [
+      "¿Cuáles son los valores de MEKA?",
+      "¿Qué tipografías usa MEKA?",
+      "¿Cómo usar el logo?",
+      "¿Tamaño mínimo?"
+    ];
+    const $fab = document.getElementById('mekaFab');
+    const $panel = document.getElementById('mekaPanel');
+    const $body = document.getElementById('mekaBody');
+    const $input = document.getElementById('mekaInput');
+    const $send = document.getElementById('mekaSend');
+    const $sug = document.getElementById('mekaSug');
+    $fab.addEventListener('click', () => $panel.classList.toggle('show'));
+    $send.addEventListener('click', send);
+    $input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); send(); } });
+    SUGGESTIONS.forEach(txt => {
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.textContent = txt;
+      b.addEventListener('click', () => { $input.value = txt; send(); });
+      $sug.appendChild(b);
+    });
+    function findAnswer(query) {
+      const q = clean(query);
+      let best = { score: 0, ans: null };
+      for (const item of KB) {
+        const keys = item.q;
+        let score = 0;
+        for (const k of keys) {
+          const kk = clean(k);
+          if (q.includes(kk)) score += kk.length;
+          score += overlap(tokens(q), tokens(kk)) * 2;
+        }
+        if (score > best.score) { best = { score, ans: item.a }; }
+      }
+      if (!best.ans) {
+        const t = tokens(q);
+        if (t.includes('logo') && t.includes('minimo')) best.ans = KB[8].a;
+        else if (t.includes('logo') && (t.includes('positivo') || t.includes('negativo'))) best.ans = KB[4].a;
+        else if (t.includes('tipografia') || t.includes('tipografias') || t.includes('fuente')) best.ans = KB[12].a;
+      }
+      return best.ans || `No pillé bien la vuelta. ¿Quieres saber de <span class="mark">logo</span>, <span class="mark">colores</span>, <span class="mark">tipografías</span>?`;
+    }
+    function clean(s) { return (s || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, ''); }
+    function tokens(s) { return clean(s).split(/[^a-z0-9]+/).filter(Boolean); }
+    function overlap(a, b) { const A = new Set(a), B = new Set(b); let c = 0; A.forEach(x => { if (B.has(x)) c++; }); return c; }
+    function pushMsg(text, who = 'bot') {
+      const div = document.createElement('div');
+      div.className = 'msg ' + who;
+      div.innerHTML = text;
+      $body.appendChild(div);
+      $body.scrollTop = $body.scrollHeight;
+    }
+    function send() {
+      const val = $input.value.trim();
+      if (!val) return;
+      pushMsg(escapeHtml(val), 'user');
+      $input.value = '';
+      setTimeout(() => {
+        const ans = findAnswer(val);
+        const src = `<small>MEKA · Manual de Imagen</small>`;
+        pushMsg(`${ans} ${src}`, 'bot');
+      }, 120);
+    }
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+    }
+
+    // ====== CARRITO Y MODALES (igual que original) ======
+    const PRODUCTS = [
+      { id: 1, name: "OVERSIZE MEKA Core", img: "imagenes/modlo2.jpeg", price: 179900, sizes: ["XS", "S", "M", "L", "XL"], desc: "Hoodie oversize negro con logo MEKA" },
+      { id: 2, name: "VERMUDAS", img: "imagenes/mdelo1.jpeg", price: 199900, sizes: ["28", "30", "32", "34", "36"], desc: "Cargo arena con múltiples bolsillos" },
+      { id: 3, name: "CONJUNTO", img: "imagenes/modlo3.jpeg", price: 149900, sizes: ["S", "M", "L", "XL"], desc: "Conjunto oliva edición limitada" },
+      { id: 4, name: "Gafas MEKA", img: "imagenes/mockup-gafas-.jpg", price: 89900, sizes: ["Única"], desc: "Gafas urbanas con estilo MEKA" },
+      { id: 5, name: "Buzo Negro", img: "imagenes/buzo.jpeg", price: 159900, sizes: ["S", "M", "L", "XL"], desc: "Buzo negro básico MEKA" },
+      { id: 6, name: "Gorros", img: "imagenes/gorros.jpeg", price: 49900, sizes: ["Única"], desc: "Gorros urbanos MEKA" },
+      { id: 7, name: "Camisas", img: "imagenes/camisasmockups.jpg", price: 129900, sizes: ["S", "M", "L", "XL", "XXL"], desc: "Camisas urbanas MEKA" },
+      { id: 8, name: "Memoria 23", img: "imagenes/23mockups.jpg", price: 169900, sizes: ["S", "M", "L", "XL"], desc: "Colección Memoria 23" },
+      { id: 9, name: "Zapatos", img: "imagenes/zapatos.jpeg", price: 249900, sizes: ["37", "38", "39", "40", "41", "42", "43"], desc: "Zapatos urbanos MEKA" },
+      { id: 10, name: "Medias Urbanas", img: "imagenes/medias.jpeg", price: 29900, sizes: ["Única"], desc: "Medias urbanas MEKA" },
+      { id: 11, name: "Ropa Interior Femenina", img: "imagenes/conjuntomujer.jpeg", price: 79900, sizes: ["S", "M", "L"], desc: "Conjunto interior femenino" },
+      { id: 12, name: "Ropa Interior Masculina", img: "imagenes/calzones rojos.jpeg", price: 59900, sizes: ["S", "M", "L", "XL"], desc: "Ropa interior masculina" }
+    ];
+    let cart = [];
+    let currentProduct = null;
+    let selectedSize = null;
+    let quantity = 1;
+    const $modal = document.getElementById('modal');
+    const $closeModal = document.getElementById('closeModal');
+    const $modalImg = document.getElementById('modalImg');
+    const $modalTitle = document.getElementById('modalTitle');
+    const $modalDesc = document.getElementById('modalDesc');
+    const $sizeGrid = document.getElementById('sizeGrid');
+    const $qtyDisplay = document.getElementById('qtyDisplay');
+    const $qtyMinus = document.getElementById('qtyMinus');
+    const $qtyPlus = document.getElementById('qtyPlus');
+    const $addToCartBtn = document.getElementById('addToCartBtn');
+    const $cartSidebar = document.getElementById('cartSidebar');
+    const $cartToggle = document.getElementById('cartToggle');
+    const $closeCart = document.getElementById('closeCart');
+    const $cartBody = document.getElementById('cartBody');
+    const $cartFooter = document.getElementById('cartFooter');
+    const $cartTotal = document.getElementById('cartTotal');
+    const $cartBadge = document.getElementById('cartBadge');
+    const $stickyBar = document.querySelector('.sticky');
+    const $fabBtn = document.querySelector('.meka-fab');
+
+    function openProductModal(productId) {
+      currentProduct = PRODUCTS.find(p => p.id === productId);
+      if (!currentProduct) return;
+      selectedSize = null;
+      quantity = 1;
+      $modalImg.src = currentProduct.img;
+      $modalImg.alt = currentProduct.name;
+      $modalTitle.textContent = currentProduct.name;
+      $modalDesc.textContent = currentProduct.desc;
+      $qtyDisplay.textContent = quantity;
+      $sizeGrid.innerHTML = '';
+      currentProduct.sizes.forEach(size => {
+        const opt = document.createElement('div');
+        opt.className = 'size-opt';
+        opt.textContent = size;
+        opt.addEventListener('click', () => {
+          document.querySelectorAll('.size-opt').forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          selectedSize = size;
+        });
+        $sizeGrid.appendChild(opt);
+      });
+      $modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('[data-quick]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt(btn.dataset.quick);
+        openProductModal(id);
+      });
+    });
+
+    $closeModal.addEventListener('click', () => {
+      $modal.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    $modal.addEventListener('click', (e) => {
+      if (e.target === $modal) {
+        $modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    $qtyMinus.addEventListener('click', () => {
+      if (quantity > 1) {
+        quantity--;
+        $qtyDisplay.textContent = quantity;
+      }
+    });
+    $qtyPlus.addEventListener('click', () => {
+      if (quantity < 10) {
+        quantity++;
+        $qtyDisplay.textContent = quantity;
+      }
+    });
+
+    $addToCartBtn.addEventListener('click', () => {
+      if (!selectedSize) {
+        alert('Por favor selecciona una talla');
+        return;
+      }
+      const item = {
+        id: currentProduct.id,
+        name: currentProduct.name,
+        img: currentProduct.img,
+        price: currentProduct.price,
+        size: selectedSize,
+        quantity: quantity
+      };
+      const existing = cart.find(c => c.id === item.id && c.size === item.size);
+      if (existing) {
+        existing.quantity += item.quantity;
+      } else {
+        cart.push(item);
+      }
+      updateCartUI();
+      $modal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        $cartSidebar.classList.add('open');
+        $stickyBar.classList.add('hidden');
+        $fabBtn.classList.add('hidden');
+      }, 300);
+    });
+
+    $cartToggle.addEventListener('click', () => {
+      const isOpening = !$cartSidebar.classList.contains('open');
+      $cartSidebar.classList.toggle('open');
+      if (isOpening) {
+        $stickyBar.classList.add('hidden');
+        $fabBtn.classList.add('hidden');
+      } else {
+        $stickyBar.classList.remove('hidden');
+        $fabBtn.classList.remove('hidden');
+      }
+    });
+
+    $closeCart.addEventListener('click', () => {
+      $cartSidebar.classList.remove('open');
+      $stickyBar.classList.remove('hidden');
+      $fabBtn.classList.remove('hidden');
+    });
+
+    function updateCartUI() {
+      if (cart.length === 0) {
+        $cartBody.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>';
+        $cartFooter.style.display = 'none';
+        $cartBadge.style.display = 'none';
+        return;
+      }
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      $cartBadge.textContent = totalItems;
+      $cartBadge.style.display = 'grid';
+      $cartFooter.style.display = 'block';
+      $cartTotal.textContent = `$${totalPrice.toLocaleString('es-CO')}`;
+      $cartBody.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-meta">Talla: ${item.size} · Cant: ${item.quantity}</div>
+            <div class="cart-item-price">${(item.price * item.quantity).toLocaleString('es-CO')}</div>
+            <button class="cart-remove" onclick="removeFromCart(${idx})">Eliminar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.removeFromCart = function (idx) {
+      cart.splice(idx, 1);
+      updateCartUI();
+    };
+
+    updateCartUI();
+
+    // ====== MODAL MOCKUPS ======
+    const openMockups = document.getElementById('openMockups');
+    const mockupsModal = document.getElementById('mockupsModal');
+    const closeMockups = document.getElementById('closeMockups');
+
+    function showMockups() {
+      mockupsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const mockupButtons = mockupsModal.querySelectorAll('[data-quick]');
+        mockupButtons.forEach(btn => {
+          const newBtn = btn.cloneNode(true);
+          btn.parentNode.replaceChild(newBtn, btn);
+          newBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mockupsModal.classList.remove('open');
+            setTimeout(() => openProductModal(parseInt(newBtn.dataset.quick)), 300);
+          });
+        });
+      }, 100);
+    }
+
+    function hideMockups() {
+      mockupsModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openMockups.addEventListener('click', showMockups);
+    closeMockups.addEventListener('click', hideMockups);
+    mockupsModal.addEventListener('click', (e) => {
+      if (e.target === mockupsModal) hideMockups();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mockupsModal.classList.contains('open')) hideMockups();
+    });
+
+    // ====== CARRUSEL COMUNIDAD ======
+    document.addEventListener("DOMContentLoaded", () => {
+      const track = document.getElementById("carouselTrack");
+      const cards = Array.from(track.children);
+      const nextBtn = document.querySelector(".c-btn.next");
+      const prevBtn = document.querySelector(".c-btn.prev");
+      let currentIndex = 2;
+      let autoplay;
+
+      function updateActiveCard() {
+        cards.forEach(card => card.classList.remove("active"));
+        cards[currentIndex].classList.add("active");
+        const offset = -cards[currentIndex].offsetLeft + track.clientWidth / 2 - cards[currentIndex].clientWidth / 2;
+        track.style.transform = `translateX(${offset}px)`;
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateActiveCard();
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateActiveCard();
+      }
+
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+
+      function startAutoplay() {
+        autoplay = setInterval(nextSlide, 2800);
+      }
+
+      function stopAutoplay() {
+        clearInterval(autoplay);
+      }
+
+      track.addEventListener("mouseenter", stopAutoplay);
+      track.addEventListener("mouseleave", startAutoplay);
+
+      updateActiveCard();
+      startAutoplay();
+      window.addEventListener("resize", updateActiveCard);
+    });
+
+    // ACTIVAR ENLACES DEL MENÚ
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("#menu a");
+      links.forEach(link => {
+        link.addEventListener("click", function () {
+          links.forEach(l => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

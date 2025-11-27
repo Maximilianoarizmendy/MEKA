@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog de Moda Urbana | MEKA</title>
+  <meta name="description" content="MEKA: marca de ropa urbana. Colecciones, lookbook y comunidad." />
+
+  <!-- 🧠 Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 🎨 Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .mobile-menu {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 18, 0.95);
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0c;
+      color: #fff;
+      min-height: 100vh;
+      padding: 110px 20px 60px;
+    }
+
+    span,
+    h4,
+    h5,
+    h6,
+    li {
+      color: #e8ff4a !important;
+      filter: none;
+    }
+
+
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    h1 {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 3.5em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .underline {
+      width: 100px;
+      height: 4px;
+      background-color: #e8ff4a !important;
+      margin: 0 auto;
+    }
+
+    /* ====================== BLOG ====================== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .blog-card {
+      background: #2d2d2d;
+      border-radius: 18px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .blog-image {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+
+    .blog-content {
+      padding: 24px;
+    }
+
+    .category {
+      font-size: 0.75em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e8ffa4;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .blog-title {
+      font-size: 1.2em;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .section-title {
+      font-size: 1.4em;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 800;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #e8ff4a;
+      padding-bottom: 10px;
+    }
+
+    /* ====================== NAVBAR ====================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(14, 14, 14, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .wrap.nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 5;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      cursor: pointer;
+    }
+
+    .menu {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .menu a {
+      color: #bdbdbd;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s ease, font-weight 0.2s ease;
+      position: relative;
+    }
+
+    .menu a:hover {
+      color: #fff;
+    }
+
+    /* 🔥 Enlace activo */
+    .menu a.active {
+      color: #fff;
+      font-weight: 700;
+    }
+
+
+
+    .hamb {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 6;
+    }
+
+    .hamb span {
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .nav.scrolled {
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: blur(20px);
+    }
+
+    @media (max-width: 980px) {
+      .menu {
+        position: static;
+        transform: none;
+        flex-direction: column;
+        gap: 20px;
+        display: none;
+      }
+
+      .hamb {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.3em;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">
+        <a href="./index.html">
+          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA">
+        </a>
+      </div>
+
+      <div class="menu" id="menu">
+        <a href="./index.html">Inicio</a>
+        <a href="./blog.html" class="active">Blog</a>
+        <a href="./index.html#coleccion">Colección</a>
+        <a href="./podcast.html">Podcast</a>
+        <a href="./empaquetado.html">Empaquetado</a>
+      </div>
+
+      <button class="hamb" id="hamb" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Blog MEKA</h1>
+      <div class="underline"></div>
+    </header>
+
+    <!-- Sostenibilidad -->
+    <div class="author-section">
+      <h2 class="section-title">Sostenibilidad & Moda Consciente</h2>
+      <div class="blog-grid">
+        <a href="./Pages/medellin-beyond-stigma.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/ingles1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Culture</span>
+            <h3 class="blog-title">Medellín Beyond the Stigma: A City Reinventing Itself</h3>
+          </div>
+        </a>
+        <a href="./Pages/segunda-vida-ropa.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/vida3.jpg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Moda</span>
+            <h3 class="blog-title">Cómo darle una segunda vida a tu ropa de manera fácil</h3>
+          </div>
+        </a>
+        <a href="./Pages/vestir-medio-ambiente.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/vestir1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Moda</span>
+            <h3 class="blog-title">¿Cómo tu outfit afecta al planeta?</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cultura Urbana -->
+    <div class="author-section">
+      <h2 class="section-title">Cultura & Estilo Urbano</h2>
+      <div class="blog-grid">
+        <a href="./Pages/historia-moda-urbana.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/urbana1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Historia</span>
+            <h3 class="blog-title">Moda Urbana: El Lenguaje Silencioso de las Calles</h3>
+          </div>
+        </a>
+        <a href="./Pages/vocabulario-parlache.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/parlache1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Cultura</span>
+            <h3 class="blog-title">Guía de vocabulario parlache (cómo entender al loco de la esquina)</h3>
+          </div>
+        </a>
+        <a href="./Pages/test-ropa-urbana.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/test1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Test</span>
+            <h3 class="blog-title">Qué tipo de ropa urbana eres</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Historia & Estilo -->
+    <div class="author-section">
+      <h2 class="section-title">Historia & Estilo</h2>
+      <div class="blog-grid">
+        <a href="./Pages/violencia-medellin-moda.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/violencia1.jpg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Historia</span>
+            <h3 class="blog-title">La historia de la violencia en Medellín y cómo afectó la forma de vestir</h3>
+          </div>
+        </a>
+        <a href="./Pages/colorimetria.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/colorimetria1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Estilo</span>
+            <h3 class="blog-title">Colorimetría</h3>
+          </div>
+        </a>
+        <a href="./Pages/guia-verse-bien.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/guia1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Tips</span>
+            <h3 class="blog-title">Guía definitiva para verse bien</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Medellín -->
+    <div class="author-section">
+      <h2 class="section-title">Medellín & Identidad</h2>
+      <div class="blog-grid">
+        <a href="./Pages/medellin-icono-moda.html" class="blog-card">
+          <div class="blog-image">
+            <img src="imagenes/memoria1.jpg" alt="">
+          </div>
+          <div class="blog-content">
+            <span class="category">Moda</span>
+            <h3 class="blog-title">Medellín: donde la moda tiene memoria</h3>
+          </div>
+        </a>
+        <a href="./Pages/historia-coltejer.html" class="blog-card">
+          <div class="blog-image">
+            <img src="imagenes/colteger1.jpg" alt="Fotografía urbana de Medellín">
+          </div>
+
+          <div class="blog-content">
+            <span class="category">Historia</span>
+            <h3 class="blog-title">La historia del Coltejer</h3>
+          </div>
+        </a>
+        <a href="./Pages/ser-de-barrio.html" class="blog-card">
+          <div class="blog-image"><img src="imagenes/ser1.jpeg" alt=""></div>
+          <div class="blog-content">
+            <span class="category">Cultura</span>
+            <h3 class="blog-title">Qué significa ser de barrio</h3>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+ <script>// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 10) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Enlace activo según URL
+const links = document.querySelectorAll('#menu a');
+const current = location.pathname.split('/').pop();
+links.forEach(link => {
+  if (link.getAttribute('href').includes(current)) {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  }
+});
+
+// Menú hamburguesa
+const hamb = document.getElementById('hamb');
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamb.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open'); // ✅ Aquí debe ser mobileMenu
+  hamb.classList.toggle('active');
+});
+
+// Cerrar menú al hacer clic en un enlace
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamb.classList.remove('active');
+  });
+});
+
+  </script>
+</body>
+
+</html>

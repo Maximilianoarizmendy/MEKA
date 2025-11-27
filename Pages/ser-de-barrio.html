@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ser De Barrio | MEKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">
+        <a href="../index.html"><img src="../imagenes/mekalogo-removebg-preview.png" alt="MEKA Logo"></a>
+      </div>
+
+      <div class="menu" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+
+      <button class="hamb" id="hamb">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="blog-image">
+      <img src="../imagenes/ser1.jpeg" alt="Fotografía urbana de Medellín">
+    </div>
+    <br>
+    <h1>Ser De Barrio</h1>
+    <p><b>Por: Jana Aparicio Múnera | Cultura</b></p>
+    <br>
+    <article>
+
+      <p>Ser de barrio en Medellín no es solo decir “soy del 8”, “vengo del Popular”, “me crié en la 13”. Es mucho más que una dirección. Es una forma de pararse en la vida. De mirar de frente. De hablar con sabor. De cargar historia en los hombros y orgullo en el pecho.</p>
+
+      <p>Es saber que la cuadra es tu mundo. Que la tienda de la esquina es tu punto de encuentro. Que el parque es tu sala de juntas. Que el mural que está en la pared no es decoración: es memoria. Es resistencia. Es grito.</p>
+
+      <p>Ser de barrio es crecer entre combos de cultura, entre parches que hacen música, que pintan, que bailan, que sueñan. Es ver cómo los pelados convierten una patineta en libertad. Cómo las parceras hacen de la moda una forma de decir “aquí estoy, y soy poderosa”. Cómo las mamás levantan hogares con creatividad, con arepas, con amor.</p>
+      <br>
+      <div class="blog-image">
+        <figure>
+          <img src="../imagenes/ser2.jpeg" alt="Fotografía urbana de Medellín">
+          <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+        </figure>
+      </div>
+      <br>
+      <p>También es cargar con el peso del estigma. Que te miren raro cuando decís de dónde sos. Que te pregunten si es peligroso, si hay balaceras, si es “zona caliente”. Pero vos sabés que el barrio es mucho más que eso. Que hay talento, arte, emprendimiento. Que hay vida. Que hay futuro.</p>
+
+      <p>Ser de barrio es vestir con lo que hay, pero hacerlo con estilo. Con flow. Con identidad. Es ponerse una gorra como quien se pone una bandera. Es llevar cadenas que no son de oro, pero sí de historia. Es usar tenis rotos con dignidad.</p>
+
+      <p>Es saber que el barrio te enseña cosas que no están en ningún libro. Te enseña a sobrevivir. A compartir. A crear. A resistir.</p>
+
+      <p>Y si vos sos de barrio, sabés que eso no se compra. No se finge. No se disfraza. Se vive. Se defiende. Se celebra.</p>
+
+      <br>
+        <div class="blog-image">
+      <img src="../imagenes/ser3.jpg" alt="Fotografía urbana de Medellín">
+      <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://www.pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+    </div>
+      <h2>Referencias</h2>
+      <ul>
+        <li><a href="https://comunasdemedellin.com/la-cultura-alma-y-corazon-de-las-comunas-y-corregimientos-de-medellin/" target="_blank">La cultura, alma y corazón de las comunas de Medellín</a></li>
+        <li><a href="http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S1692-25222009000100009" target="_blank">Artículo de SciELO sobre cultura barrial</a></li>
+        <li><a href="https://repositorio.pascualbravo.edu.co/server/api/core/bitstreams/d087f73e-3c3a-4874-9f66-5752e7e58d4d/content" target="_blank">Repositorio Pascual Bravo</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>© 2025 MEKA — Todos los derechos reservados.</footer>
+  <script>// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 10) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Enlace activo según URL
+const links = document.querySelectorAll('#menu a');
+const current = location.pathname.split('/').pop();
+links.forEach(link => {
+  if (link.getAttribute('href').includes(current)) {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  }
+});
+
+// Menú hamburguesa
+const hamb = document.getElementById('hamb');
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamb.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open'); // ✅ Aquí debe ser mobileMenu
+  hamb.classList.toggle('active');
+});
+
+// Cerrar menú al hacer clic en un enlace
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamb.classList.remove('active');
+  });
+});
+
+  </script>
+</body>
+</html>
