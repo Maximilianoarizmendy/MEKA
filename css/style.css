@@ -1,0 +1,1048 @@
+/* ========================================
+   VARIABLES Y RESET
+   ======================================== */
+:root {
+  --bg: #0b0b0b;
+  --panel: #121212;
+  --card: #121212;
+  --muted: #1a1a1a;
+  --line: #222;
+  --border: #2a2a2a;
+  --fg: #f5f5f5;
+  --sub: #bfbfbf;
+  --brand: #fff;
+  --accent: #e8ff4a;
+  --ok: #d1ffd6;
+  --warn: #ffe8a3;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+}
+
+a {
+  color: #e8ff4a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px; /* opcional */
+    object-fit: cover;  /* opcional para recorte elegante */
+}
+
+
+
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.eyebrow {
+  display: inline-block;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--accent);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.sub {
+  color: var(--sub);
+}
+
+.kicker {
+  font-family: "Dela Gothic One";
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+.mark {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.note {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed #333;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* ========================================
+   BOTONES
+   ======================================== */
+.btn {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: #1a1a1a;
+}
+
+.btn.brand {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #111;
+}
+
+.btn.brand:hover {
+  background: #d1e642;
+}
+
+.close-x {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-x:hover {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+/* ========================================
+   NAVEGACIÓN
+   ======================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(12, 12, 12, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(12, 12, 12, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav.scrolled {
+  background: rgba(12, 12, 12, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ← Esto pone logo a la izq y menu a la der */
+  height: 64px;
+  padding: 0 20px;
+  position: relative;
+}
+
+
+  .en-negrita {
+    font-weight: bold;
+  }
+  .en-negrita a {
+    color: inherit; /* hace que tome el color del texto normal */
+    text-decoration: none; /* opcional: quita el subrayado */
+  }
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 20px; /* espacio entre logo y menu */
+}
+
+.logo img {
+  height: 34px;
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 22px;
+  align-items: center; /* ← ¡ESTO ES CLAVE! */
+}
+.menu {
+  display: flex;
+  gap: 22px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu a {
+  color: var(--sub);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.menu a.active,
+.menu a:hover {
+  color: var(--fg);
+}
+
+.menu a.active::after,
+.menu a:hover::after {
+  width: 100%;
+}
+
+.cta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.hamb {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 8px;
+}
+
+.hamb span {
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamb.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+
+.hamb.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamb.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+.hero {
+  position: relative;
+  padding-top: 64px;
+}
+
+.slides {
+  position: relative;
+  height: 86vh;
+  min-height: 640px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.02) saturate(1.05);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 80%),
+              linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15) 40%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: min(92vw, 900px);
+}
+
+h1 {
+  font-family: "Dela Gothic One";
+  font-size: clamp(40px, 8vw, 84px);
+  line-height: 0.9;
+  margin: 0 0 14px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ========================================
+   MARQUEE
+   ======================================== */
+.marquee {
+  background: var(--muted);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-block;
+  padding: 12px 0;
+  animation: scroll 24s linear infinite;
+}
+
+.marquee b {
+  font-family: "Dela Gothic One";
+  letter-spacing: 1px;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================================
+   SECCIONES
+   ======================================== */
+section {
+  padding: 64px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.section-head h2 {
+  font-family: "Dela Gothic One";
+  font-size: 44px;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   CONTENIDO DE BLOG
+   ======================================== */
+body {
+  min-height: 100vh;
+  padding-top: 90px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+main h1 {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: clamp(2em, 5vw, 3em);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+main h2 {
+  font-family: 'Dela Gothic One', sans-serif;
+  color: var(--accent);
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: clamp(1.5em, 3vw, 2em);
+  letter-spacing: 0.5px;
+}
+
+article p {
+  line-height: 1.8;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: var(--fg);
+}
+
+article p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+article ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  list-style-type: disc;
+}
+
+article li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+article li strong {
+  color: var(--accent);
+}
+
+.referencias {
+  margin-top: 30px;
+}
+
+.referencias a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.referencias a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* ========================================
+   CONTENIDO DE BLOG
+   ======================================== */
+body {
+  min-height: 100vh;
+  padding-top: 90px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+main h1 {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: clamp(2em, 5vw, 3em);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+main h2 {
+  font-family: 'Dela Gothic One', sans-serif;
+  color: var(--accent);
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: clamp(1.5em, 3vw, 2em);
+  letter-spacing: 0.5px;
+}
+
+article p {
+  line-height: 1.8;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: var(--fg);
+}
+
+article p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+article ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  list-style-type: disc;
+}
+
+article li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+article li strong {
+  color: var(--accent);
+}
+
+.referencias {
+  margin-top: 30px;
+}
+
+.referencias a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.referencias a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* ========================================
+   GRID DE PRODUCTOS
+   ======================================== */
+.grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-bottom: 8px;
+  margin-inline: -20px;
+  padding-inline: 20px;
+  cursor: grab;
+}
+
+.grid:active {
+  cursor: grabbing;
+}
+
+.grid::before,
+.grid::after {
+  content: "";
+  flex: 0 0 6px;
+}
+
+.grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.grid::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 8px;
+}
+
+/* ========================================
+   CARDS
+   ======================================== */
+.card {
+  flex: 0 0 clamp(260px, 30vw, 360px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card .tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.card img {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card .cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.price {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.quick {
+  position: absolute;
+  inset: auto 12px 12px auto;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.2s ease;
+}
+
+.card:hover .quick {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   HISTORIA
+   ======================================== */
+.historia-container {
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.historia-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 100px;
+  align-items: start;
+}
+
+.historia-text {
+  padding-right: 20px;
+}
+
+.historia-text h1 {
+  font-family: "Dela Gothic One", system-ui;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 0.9;
+  margin: 0 0 30px;
+  color: var(--accent);
+}
+
+.historia-text h2 {
+  font-family: "Dela Gothic One", system-ui;
+  font-size: 28px;
+  margin: 40px 0 20px;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.historia-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  color: var(--fg);
+}
+
+.imagen-galeria {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.imagen-slot {
+  border-radius: 18px;
+  padding: 0;
+  transition: all 0.3s ease;
+  background: var(--card);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imagen-slot img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 38px;
+}
+
+/* ========================================
+   COMUNIDAD
+   ======================================== */
+.meka-community {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 50px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.meka-title {
+  font-family: "Dela Gothic One", system-ui;
+  font-size: 28px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.meka-sub {
+  color: var(--sub);
+  margin-bottom: 32px;
+}
+
+/* Carrusel de Comunidad */
+.meka-community-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.c-carousel-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.6s ease;
+}
+
+.c-carousel-item {
+  flex: 0 0 auto;
+  width: 260px;
+  opacity: 0.5;
+  transform: scale(0.9);
+  transition: transform 0.4s, opacity 0.4s, filter 0.4s;
+  filter: blur(2px);
+}
+
+.c-carousel-item.active {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: none;
+}
+
+.c-carousel-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+.c-carousel-item .c-body {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.c-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.c-role {
+  font-size: 13px;
+  color: var(--sub);
+}
+
+.c-quote {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.c-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+
+.c-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.c-btn.prev {
+  left: 10px;
+}
+
+.c-btn.next {
+  right: 10px;
+}
+
+/* ========================================
+   TESTIMONIOS
+   ======================================== */
+.meka-testimonials {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 30px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.t-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.t-photo {
+  width: 86px;
+  height: 86px;
+  flex: 0 0 86px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #000;
+  border: 1px solid #1e1e1e;
+}
+
+.t-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.t-name {
+  font-weight: 700;
+}
+
+.t-meta {
+  color: var(--sub);
+  font-size: 13px;
+}
+
+.t-quote {
+  line-height: 1.5;
+}
+
+.t-stars {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.t-tag {
+  display: inline-block;
+  border: 1px solid #2a2a2a;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--sub);
+}
+
+/* ========================================
+   FEATURES
+   ======================================== */
+.features {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  display: grid;
+  gap: 56px;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 22px;
+  color: #9a9a9a;
+  opacity: 0.95;
+}
+.titulo-secundario {
+  filter: brightness(1);
+  color: #e8ff4a;
+}
+article p + h2 {
+  margin-top: 0.5rem;
+}
+
+.feature h3 {
+  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+footer {
+  background: var(--muted);
+  border-top: 1px solid var(--border);
+  padding: 36px 0 96px;
+  margin-top: 36px;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #aaa;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: left;
+}
+    figcaption {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #d9d9d9;
+      margin-top: 0.8em;
+      padding-left: 12px;
+      border-left: 2px solid #a2a2a2;
+      text-align: justify;
+    }
+    figcaption strong {
+      color: #fff;
+    }
+    figcaption .credit {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #b8b8b8;
+      margin-top: 0.3em;
+    }
+    figcaption .credit u {
+      text-decoration: underline;
+      text-decoration-color: #e8ffa4;
+      text-underline-offset: 3px;
+    }
+    u{text-decoration: none;
+    }
+    .blog-image video {
+    width: 100%;             /* Ocupa todo el ancho del contenedor */
+    max-width: 1200px;       /* Ancho máximo opcional */
+    height: 800px;           /* Altura deseada */
+    object-fit: cover;       /* Recorta el video sin deformarlo */
+    border-radius: 10px;     /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Sombra suave */
+    display: block;
+    margin: 0 auto;          /* Centrado horizontal */
+}
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* ← oculta el menú de escritorio en móvil */
+  }
+
+  .hamb {
+    display: flex; /* ← muestra el botón hamburguesa */
+  }
+
+  /* Asegúrate de que el logo no sea demasiado grande */
+  .logo img {
+    height: 30px; /* reduce un poco el tamaño en móvil */
+  }
+}
+/* ===== MENÚ MÓVIL ===== */
+
+.mobile-menu {
+  position: fixed;
+  top: 64px; /* debajo de la navbar */
+  right: 0;
+  width: 70%;
+  height: calc(100vh - 64px);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid var(--border);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 40;
+}
+
+.mobile-menu a {
+  color: var(--fg);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Mostrar hamburguesa solo en móvil */
+@media (max-width: 900px) {
+  .hamb {
+    display: flex;
+    z-index: 60;
+  }
+
+  .menu {
+    display: none !important; /* oculta menú desktop */
+  }
+}

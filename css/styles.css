@@ -1,0 +1,1615 @@
+
+  /* ========================================
+   VARIABLES Y RESET
+   ======================================== */
+  :root {
+    --bg: #0b0b0b;
+    --panel: #121212;
+    --card: #121212;
+    --muted: #1a1a1a;
+    --line: #222;
+    --border: #2a2a2a;
+    --fg: #f5f5f5;
+    --sub: #f5f5f5;
+    --brand: #fff;
+    --accent: #e8ff4a;
+    --ok: #d1ffd6;
+    --warn: #ffe8a3;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+ html, body {
+      padding-top: 64px;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, sans-serif;
+
+  overflow-x: hidden !important;
+
+}
+
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* ========================================
+   UTILIDADES
+   ======================================== */
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--accent);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .sub {
+    color: var(--sub);
+    text-shadow: 0 0 8px var(--bg);
+  }
+
+  .kicker {
+    font-family: "Dela Gothic One";
+    font-size: 12px;
+    letter-spacing: 0.6px;
+  }
+
+  .mark {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0 4px;
+    border-radius: 4px;
+  }
+
+  .note {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed #333;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  /* ========================================
+   BOTONES
+   ======================================== */
+  .btn {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--fg);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: #1a1a1a;
+  }
+
+  .btn.brand {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #111;
+  }
+
+  .btn.brand:hover {
+    background: #d1e642;
+  }
+
+  .close-x {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .close-x:hover {
+    background: #1a1a1a;
+    border-color: #444;
+  }
+
+  /* ========================================
+   NAVEGACIÓN
+   ======================================== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(12, 12, 12, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-family: "Ubuntu", system-ui;
+    letter-spacing: 0.5px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu {
+    display: flex;
+    gap: 22px;
+  }
+
+  .menu a {
+    color: var(--sub);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    transition: color 0.2s ease;
+  }
+
+  .menu a.active,
+  .menu a:hover {
+    color: var(--fg);
+  }
+
+  .cta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .hamb {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .hamb span {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  /* ========================================
+   MARQUEE
+   ======================================== */
+  .marquee {
+    background: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-block;
+    padding: 12px 0;
+    animation: scroll 24s linear infinite;
+  }
+
+  .marquee b {
+    font-family: "Dela Gothic One";
+    letter-spacing: 1px;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ========================================
+   SECCIONES
+   ======================================== */
+  section {
+    padding: 64px 0;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .section-head h2 {
+    font-family: "Dela Gothic One";
+    font-size: 44px;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========================================
+   GRID DE PRODUCTOS
+   ======================================== */
+  .grid {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 8px;
+    margin-inline: -20px;
+    padding-inline: 20px;
+    cursor: grab;
+  }
+
+  .grid:active {
+    cursor: grabbing;
+  }
+
+  .grid::before,
+  .grid::after {
+    content: "";
+    flex: 0 0 6px;
+  }
+
+  .grid::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .grid::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 8px;
+  }
+
+  /* ========================================
+   CARDS
+   ======================================== */
+  .card {
+    flex: 0 0 clamp(220px, 30vw, 360px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card .tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  .card img {
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .card .cap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+  }
+
+  .price {
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .quick {
+    position: absolute;
+    inset: auto 12px 12px auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+  }
+
+  .card:hover .quick {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================================
+   HISTORIA
+   ======================================== */
+  .historia-container {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .historia-text {
+    padding-right: 20px;
+  }
+
+  .historia-text h1 {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: clamp(28px, 8vw, 64px);
+    line-height: 0.9;
+    margin: 0 0 30px;
+    color: var(--accent);
+  }
+
+  h1,
+  h2 {
+    font-size: 45px !important;
+    color: #e8ff4a !important;
+  }
+
+  .xd {
+    font-size: 25px;
+    font-weight: bold !important;
+  }
+
+  .xd+p {
+    margin-top: 4px;
+  }
+
+  .historia-text h2 {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 28px;
+    margin: 40px 0 20px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .historia-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--fg);
+  }
+
+  .imagen-galeria {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .imagen-slot {
+    border-radius: 18px;
+    padding: 0;
+    transition: all 0.3s ease;
+    background: var(--card);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .imagen-slot img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 38px;
+  }
+
+  /* ========================================
+   COMUNIDAD
+   ======================================== */
+  .meka-community {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 50px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .meka-title {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 28px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .meka-sub {
+    color: var(--sub);
+    margin-bottom: 32px;
+  }
+
+  /* Carrusel de Comunidad */
+  .meka-community-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+
+  .c-carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.6s ease;
+  }
+
+  .c-carousel-item {
+    flex: 0 0 auto;
+    width: 220px;
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: transform 0.4s, opacity 0.4s, filter 0.4s;
+    filter: blur(2px);
+  }
+
+  .c-carousel-item.active {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: none;
+  }
+
+  .c-carousel-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+  }
+
+  .c-carousel-item .c-body {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .c-name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .c-role {
+    font-size: 13px;
+    color: var(--sub);
+  }
+
+  .c-quote {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  .c-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s ease;
+  }
+
+  .c-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .c-btn.prev {
+    left: 10px;
+  }
+
+  .c-btn.next {
+    right: 10px;
+  }
+
+  /* ========================================
+   TESTIMONIOS
+   ======================================== */
+  .meka-testimonials {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 30px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .t-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .t-photo {
+    width: 86px;
+    height: 86px;
+    flex: 0 0 86px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #000;
+    border: 1px solid #1e1e1e;
+  }
+
+  .t-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .t-name {
+    font-weight: 700;
+  }
+
+  .t-meta {
+    color: var(--sub);
+    font-size: 13px;
+  }
+
+  .t-quote {
+    line-height: 1.5;
+  }
+
+  .t-stars {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    opacity: 0.9;
+  }
+
+  .t-tag {
+    display: inline-block;
+    border: 1px solid #2a2a2a;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  /* ========================================
+   FEATURES
+   ======================================== */
+  .features {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 20px;
+    display: grid;
+    gap: 56px;
+  }
+
+  .feature {
+    text-align: center;
+  }
+
+  .feature .icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 22px;
+    color: #9a9a9a;
+    opacity: 0.95;
+  }
+
+  .feature h3 {
+    margin: 0 0 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .feature p {
+    margin: 0;
+    color: var(--sub);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  main {
+  min-height: 100vh;
+}
+
+
+
+  /* ========================================
+   FOOTER
+   ======================================== */
+footer {
+  width: 100%;
+  background: var(--muted);
+  border-top: 1px solid var(--border);
+  padding: 36px 20px;
+  margin-top: 60px;
+  box-sizing: border-box;
+}
+
+  .foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  footer h4 {
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+
+  .input {
+    display: flex;
+    gap: 8px;
+  }
+
+  .input input {
+    flex: 1;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 12px 14px;
+    color: var(--fg);
+  }
+
+  /* ========================================
+   STICKY BAR
+   ======================================== */
+  .sticky {
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.87);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: 999px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .sticky.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+  }
+
+  .sticky a,
+  .sticky button {
+    pointer-events: auto;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  /* ========================================
+   MODALES
+   ======================================== */
+  .modal,
+  .mockups-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+  }
+
+  .modal.open,
+  .mockups-modal.open {
+    display: flex;
+  }
+
+  /* Modal de producto */
+  .modal-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    max-width: 980px;
+    width: 94vw;
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .modal-body img {
+    height: auto;
+    min-height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .modal-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-info h3 {
+    font-family: "Dela Gothic One";
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .modal-info .sub {
+    margin: 0;
+  }
+
+  /* Selector de tallas */
+  .size-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .size-selector label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--sub);
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 8px;
+  }
+
+  .size-opt {
+    border: 1px solid var(--border);
+    background: #141414;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+  }
+
+  .size-opt:hover {
+    border-color: #444;
+    background: #1a1a1a;
+  }
+
+  .size-opt.selected {
+    border-color: var(--accent);
+    background: rgba(232, 255, 74, 0.1);
+  }
+
+  /* Selector de cantidad */
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 0 4px var(--bg);
+  }
+
+  .qty-btn {
+    border: 1px solid var(--border);
+    background: #141414;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .qty-btn:hover {
+    background: #1a1a1a;
+  }
+
+  .qty-display {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  /* Modal de mockups */
+  .mockups-modal {
+    z-index: 70;
+  }
+
+  .mockups-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    width: min(1100px, 94vw);
+    max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mockups-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #0b0b0b;
+  }
+
+  .mockups-title {
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .mockups-body {
+    padding: 18px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+  }
+
+  .mockups-body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .mockups-body::-webkit-scrollbar-track {
+    background: #0b0b0b;
+  }
+
+  .mockups-body::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+  }
+
+  .mockups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .mock-item {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #121212;
+  }
+
+  .mock-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mock-cap {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mock-cap small {
+    color: var(--sub);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mock-cap .price {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+
+  .mock-btn {
+    border: 1px solid var(--border);
+    background: #141414;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+
+  .mock-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ========================================
+   CARRITO
+   ======================================== */
+  .cart-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: min(400px, 90vw);
+    background: #0f0f0f;
+    border-left: 1px solid var(--border);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .cart-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cart-header h3 {
+    margin: 0;
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .cart-body {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: #141414;
+  }
+
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cart-item-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .cart-item-meta {
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  .cart-item-price {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .cart-remove {
+    background: transparent;
+    border: 1px solid #333;
+    color: #999;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 4px;
+    align-self: flex-start;
+    transition: all 0.2s ease;
+  }
+
+  .cart-remove:hover {
+    border-color: #555;
+    color: #fff;
+  }
+
+  .cart-footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .cart-total span:first-child {
+    font-weight: 600;
+  }
+
+  .cart-total span:last-child {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 24px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--sub);
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--accent);
+    color: #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  /* ========================================
+   CHATBOT
+   ======================================== */
+  .meka-fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #111, #000);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .meka-fab.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+
+  .meka-fab span {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;
+    background-clip: text;
+  }
+
+  .meka-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 96px;
+    width: 360px;
+    max-width: 95vw;
+    height: 560px;
+    max-height: 80vh;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .meka-panel.show {
+    display: flex;
+    animation: pop 0.15s ease-out;
+  }
+
+  @keyframes pop {
+    from {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  .meka-head {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0e0e0e;
+  }
+
+  .meka-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    background: #000;
+    border: 1px solid #222;
+    font-family: "Ubuntu", monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .meka-title {
+    font-weight: 700;
+  }
+
+  .meka-body {
+    flex: 1;
+    overflow: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+  }
+
+  .meka-body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .meka-body::-webkit-scrollbar-thumb {
+    background: #242424;
+    border-radius: 10px;
+  }
+
+  .msg {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    max-width: 85%;
+    line-height: 1.4;
+  }
+
+  .msg small {
+    display: block;
+    opacity: 0.7;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .bot {
+    background: #0b0b0b;
+  }
+
+  .user {
+    background: #111;
+    border-color: #2a2a2a;
+    margin-left: auto;
+  }
+
+  .meka-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .chip {
+    border: 1px solid #333;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #0d0d0d;
+    transition: background 0.2s ease;
+  }
+
+  .chip:hover {
+    background: #141414;
+  }
+
+  .meka-foot {
+    border-top: 1px solid var(--line);
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    background: #0e0e0e;
+  }
+
+  .meka-input {
+    flex: 1;
+    background: #0b0b0b;
+    color: #fff;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .meka-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ========================================
+   MASONRY (Lookbook) — no usado pero conservado
+   ======================================== */
+  .masonry {
+    column-count: 3;
+    column-gap: 16px;
+  }
+
+  .masonry .tile {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .masonry .tile img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* ========================================
+   HERO HEADER CON ANIMACIONES PRESERVADAS
+   ======================================== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .hero::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  }
+
+  .hero::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  }
+
+  .side-image {
+    position: absolute;
+    bottom: 0;
+    height: 80%;
+    z-index: 7;
+  }
+
+  .side-image img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .side-image.left {
+    left: -5%;
+    animation: slideInLeft 1.2s ease forwards;
+  }
+
+  .side-image.right {
+    right: -40%;
+    animation: slideInRight 1.2s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-60%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(10%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(60%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(-66%);
+      opacity: 1;
+    }
+  }
+
+  .hero-copy {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+  }
+
+  /* ========================================
+   MAPA RESPONSIVE
+   ======================================== */
+  .map-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+    margin: 40px 0;
+    margin-left: 120px;
+  }
+
+  .map-iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    border: 4px solid #4e73df;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .contacto {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    margin-right: 180px;
+  }
+
+  .contacto h4 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    /* permite que los íconos pasen a la siguiente fila */
+    justify-content: center;
+    gap: 5px;
+    /* espacio entre íconos */
+    max-width: 200px;
+    /* ajusta el ancho según convenga */
+    margin: 0 auto;
+    /* centra horizontalmente */
+  }
+
+  .social-icons a {
+    flex: 1 0 30%;
+    /* cada ícono ocupa aprox. 30% del ancho */
+    text-align: center;
+    font-size: 24px;
+    /* tamaño de los íconos */
+  }
+
+  .social-icons a:hover {
+    color: #e8ff4a;
+  }
+
+
+  /* ========================================
+   RESPONSIVE — MEDIA QUERIES
+   ======================================== */
+
+  /* TABLET Y PANTALLAS MEDIANAS (hasta 980px) */
+  @media (max-width: 980px) {
+    .menu {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(18, 18, 18, 0.95);
+      flex-direction: column;
+      padding: 20px;
+      gap: 16px;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+
+    .menu.show {
+      display: flex;
+    }
+
+    .hamb {
+      display: flex;
+    }
+
+    .masonry {
+      column-count: 2;
+    }
+
+    /* Historia Grid Responsive */
+    .historia-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .historia-text {
+      padding-right: 0;
+    }
+
+    /* Imágenes de galería más pequeñas en tablet */
+    .side-image.left,
+    .side-image.right {
+      height: 60%;
+    }
+
+    .hero {
+      height: 45vh;
+    }
+
+    /* Títulos aún más pequeños */
+    .section-head h2 {
+      font-size: 24px;
+    }
+
+    .historia-text h1 {
+      font-size: clamp(20px, 6vw, 36px);
+    }
+
+    h1,
+    h2 {
+      font-size: 24px !important;
+    }
+
+    /* Cards de productos más grandes */
+    .card {
+      flex: 0 0 clamp(260px, 85vw, 320px);
+    }
+
+    /* Imágenes de galería más pequeñas */
+    .imagen-slot {
+      min-height: 150px;
+    }
+
+    .imagen-slot img {
+      height: 180px;
+    }
+
+    /* Social icons más pequeños */
+
+
+    /* Input del footer en columna */
+    .input {
+      flex-direction: column;
+    }
+
+    .input input,
+    .input button {
+      width: 100%;
+    }
+  }
+
+  /* ORIENTACIÓN HORIZONTAL EN MÓVILES */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+      height: 100vh;
+    }
+
+    .modal-card,
+    .mockups-card {
+      max-height: 98vh;
+    }
+
+    .cart-sidebar {
+      height: 100vh;
+    }
+  }

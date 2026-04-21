@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medellín Ícono Moda | MEKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">
+        <a href="../index.html"><img src="../imagenes/mekalogo-removebg-preview.png" alt="MEKA Logo"></a>
+      </div>
+
+      <div class="menu" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+
+      <button class="hamb" id="hamb">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="blog-image">
+      <img src="../imagenes/memoria1.jpg" alt="Fotografía urbana de Medellín">
+    </div>
+    <br>
+    <h1>Medellín: donde la moda tiene memoria</h1>
+    <p><b>Por: Jana Aparicio Múnera | Moda</b></p>
+    <br>
+    <article>
+      <p>Cuando hablamos de moda, muchas veces pensamos en vitrinas, pasarelas, tendencias que cambian cada mes. Pero en Medellín, la moda es otra cosa. Es historia. Es resistencia. Es comunidad.</p>
+
+      <p>Esta ciudad —la de la eterna primavera, la de las montañas que abrazan— se ha convertido en el corazón textil de Colombia. No por casualidad. Desde mediados del siglo XX, Medellín fue epicentro de la industria textil nacional. Las fábricas eran parte del paisaje urbano, y el hilo corría como sangre por las venas del barrio.</p>
+
+      <p>Pero también fue una ciudad marcada por el estigma, por la violencia, por las cicatrices que no se ven. Y ahí es donde la moda empezó a transformarse en memoria.</p>
+
+      <p>Hoy Medellín brilla en eventos como Colombiamoda, que en 2025 reunió a más de 60 mil asistentes de 50 países y generó una derrama económica de 17,7 millones de dólares. Pero también brilla en los talleres comunitarios, en los diseñadores que usan retazos para contar historias, en las marcas que apuestan por la sostenibilidad y la inclusión.</p>
+      <div class="blog-image">
+        <figure>
+          <img src="../imagenes/memoria2.jpg" alt="Fotografía urbana de Medellín">
+          <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://www.pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+        </figure>
+      </div>
+      <br>
+      <p>La estrategia Origen Medellín, impulsada por la Alcaldía, conecta a visitantes con diseñadores, artesanos, joyeros y textileros locales. Es una forma de mostrar que aquí la moda nace del territorio y se teje con identidad.</p>
+
+      <p>Porque aquí, vestirse es resistir. Es decir “yo soy de aquí” con orgullo. Es tomar lo que otros desechan y convertirlo en arte. Es usar el cuerpo como lienzo para hablar de identidad, de memoria, de futuro.</p>
+
+      <p>Medellín es ícono de la moda porque no se conforma con seguir tendencias. Las reinventa. Las cuestiona. Las aterriza en lo cotidiano. Y tú, que caminas sus calles, que ves los murales, que sientes el pulso de sus ferias, sabes que la moda aquí no es superficial. Es profunda. Es viva.</p>
+
+      <p>Así que la próxima vez que te pongas algo, piensa en esto: ¿qué historia estás contando? ¿Qué memoria estás vistiendo?</p>
+      <br>
+      <div class="blog-image">
+        <figure>
+          <img src="../imagenes/memoria3.jpg" alt="Fotografía urbana de Medellín">
+          <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://www.pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+        </figure>
+      </div>
+      <h2>Referencias</h2>
+      <ul>
+        <li><a href="https://m.elcolombiano.com/negocios/colombiamoda-2025-balance-medellin-impacto-economico-BP28413031" target="_blank">El Colombiano – Historia textil de Medellín</a></li>
+        <li><a href="https://www.portafolio.co/negocios/empresas/colombiamoda-2025-dejo-un-impacto-economico-de-us-17-7-millones-en-medellin-636662" target="_blank">Inexmoda – Informe Colombiamoda 2025</a></li>
+        <li><a href="http://revistacienciasyhumanidades.com/index.php/inicio/article/download/59/67/226" target="_blank">Revista Ciencias y Humanidades</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>© 2025 MEKA — Todos los derechos reservados.</footer>
+  <script>
+    // Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 10) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Enlace activo según URL
+const links = document.querySelectorAll('#menu a');
+const current = location.pathname.split('/').pop();
+links.forEach(link => {
+  if (link.getAttribute('href').includes(current)) {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  }
+});
+
+// Menú hamburguesa
+const hamb = document.getElementById('hamb');
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamb.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open'); // ✅ Aquí debe ser mobileMenu
+  hamb.classList.toggle('active');
+});
+
+// Cerrar menú al hacer clic en un enlace
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamb.classList.remove('active');
+  });
+});
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vestir Medio Ambiente | MEKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">
+        <a href="../index.html"><img src="../imagenes/mekalogo-removebg-preview.png" alt="MEKA Logo"></a>
+      </div>
+
+      <div class="menu" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+
+      <button class="hamb" id="hamb">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Inicio</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#coleccion">Colección</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="blog-image">
+      <img src="../imagenes/vestir1.jpeg" alt="Fotografía urbana de Medellín">
+    </div>
+    <br>
+    <h1>¿Cómo tu outfit afecta al planeta?</h1>
+    <p><b>Por: Jana Aparicio Múnera | Moda</b></p>
+    <br>
+    <article>
+      <p>Cada vez que eliges qué ponerte, estás contando una historia. No solo sobre quién eres, sino también sobre cómo te relacionas con el mundo. Lo que muchas veces no vemos es que esa camiseta que compraste por impulso, ese pantalón que usaste dos veces, esa camisa que no sabes con qué combinar, o esa falda que pasó de moda en una sola temporada… puede terminar en el desierto de Atacama.</p>
+
+      <p>Y tú dirás: ¿el desierto de qué?</p>
+
+      <p>Te explico. En Chile, donde no debería haber nada más que viento, tierra y sol, ahora hay montañas de ropa. Toneladas y toneladas. Prendas que vienen de Estados Unidos, Europa, Asia. Ropa que simplemente desechamos sin más. Que no se vendió, que no se usó, que se tiró porque “ya no está en tendencia”.</p>
+
+      <p>Lo más duro es que muchas de esas prendas están hechas de poliéster, nylon, acrílico… materiales que no se degradan fácilmente. Se quedan ahí, soltando microplásticos al aire, contaminando el suelo, quemándose en fogatas improvisadas que liberan gases tóxicos. Todo porque alguien, en algún lugar, pensó que esa prenda ya no servía. O que le gustó más otra.</p>
+      <div class="blog-image">
+        <figure>
+          <img src="../imagenes/vestir2.jpeg" alt="Fotografía urbana de Medellín">
+          <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+        </figure>
+      </div>
+      <br>
+      <p>Y tú dirás: “¿Pero qué tiene que ver mi forma de vestir con eso?” Mucho. Demasiado, realmente.</p>
+
+      <p>Cada vez que eliges moda de temporada, estás ayudando —sin querer— a la explotación de recursos, personas, territorios. Estás alimentando una industria que te vende la idea de que necesitas renovar tu clóset cada mes, cada estación, cada tendencia. Pero no lo necesitas. Lo que sí necesitas es reconectar con tu ropa. Con su historia. Con su impacto.</p>
+
+      <p>La forma en que te vistes puede ser la mayor ayuda que le das al planeta. Puedes elegir marcas que apuestan por el cambio. Puedes intercambiar ropa con tus amigas. Reparar. Transformar. Reutilizar. Vestirte con memoria, con intención, con resistencia.</p>
+
+      <p>Porque sí, tu outfit habla. Y puede hablar de cuidado, de comunidad, de sostenibilidad. Solo tienes que decidir qué historia quieres contar.</p>
+      <br><br><br>
+      <div class="blog-image">
+      <img src="../imagenes/vestir3.jpg" alt="Fotografía urbana de Medellín">
+      <figcaption>
+            <strong>Imagen tomada de:</strong>
+            <a href="https://pin.it/1bzqwFZxe" target="_blank" ><u>Pinterest</u></a>
+          </figcaption>
+    </div>
+
+      <h2>Referencias</h2>
+      <ul>
+        <li><a href="https://gtaambiental.com/desierto-de-atacama-residuos-textiles/" target="_blank">GTA Ambiental – Desierto de Atacama y residuos textiles</a></li>
+        <li><a href="https://www.nationalgeographicla.com/medio-ambiente/2023/04/atacama-de-majestuoso-desierto-a-enorme-basural-de-moda-fast-fashion" target="_blank">National Geographic – De majestuoso desierto a basural de moda</a></li>
+        <li><a href="https://es.wri.org/insights/los-impactos-economicos-sociales-y-ambientales-de-la-moda-rapida" target="_blank">WRI – Impactos económicos, sociales y ambientales de la moda rápida</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>© 2025 MEKA — Todos los derechos reservados.</footer>
+  <script>// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 10) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Enlace activo según URL
+const links = document.querySelectorAll('#menu a');
+const current = location.pathname.split('/').pop();
+links.forEach(link => {
+  if (link.getAttribute('href').includes(current)) {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  }
+});
+
+// Menú hamburguesa
+const hamb = document.getElementById('hamb');
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamb.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open'); // ✅ Aquí debe ser mobileMenu
+  hamb.classList.toggle('active');
+});
+
+// Cerrar menú al hacer clic en un enlace
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamb.classList.remove('active');
+  });
+});
+
+  </script>
+</body>
+</html>
