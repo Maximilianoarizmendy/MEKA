@@ -429,8 +429,9 @@
 
     .video-divider video {
       width: 100%;
-      max-height: 75vh;
-      object-fit: cover;
+      height: auto;
+      max-height: 85vh;
+      object-fit: contain;
     }
 
     /* Big BG label */
@@ -2422,7 +2423,7 @@
       }
 
       .quienes-right {
-        display: none;
+        height: 450px;
       }
 
       .features-section {
@@ -2904,8 +2905,8 @@
      VIDEO DIVIDER
      ============================================ -->
   <section class="video-divider">
-    <video autoplay muted loop playsinline>
-      <source src="imagenes/vida2.mp4" type="video/mp4">
+    <video autoplay loop playsinline controls>
+      <source src="imagenes/Primero1.mp4" type="video/mp4">
     </video>
   </section>
 
