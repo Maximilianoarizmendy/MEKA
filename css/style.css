@@ -58,7 +58,7 @@ img {
    UTILIDADES
    ======================================== */
 .wrap {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -983,7 +983,7 @@ footer {
     }
     .blog-image video {
     width: 100%;             /* Ocupa todo el ancho del contenedor */
-    max-width: 1200px;       /* Ancho máximo opcional */
+    max-width: 1600px;       /* Ancho máximo opcional */
     height: 800px;           /* Altura deseada */
     object-fit: cover;       /* Recorta el video sin deformarlo */
     border-radius: 10px;     /* Bordes redondeados */
