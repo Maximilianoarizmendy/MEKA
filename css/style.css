@@ -1046,3 +1046,45 @@ footer {
     display: none !important; /* oculta menú desktop */
   }
 }
+
+/* ========================================
+   LANGUAGE SYSTEM
+   ======================================== */
+/* Initial state — JS will hide the inactive one immediately.
+   Setting display:block as default so content shows before JS runs */
+.lang-es,
+.lang-en {
+  display: block;
+}
+
+/* Lang toggle button in Pages nav */
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.lang-btn:hover {
+  background: var(--muted);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Right side of Pages nav */
+.nav-right-pages {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

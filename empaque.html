@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MEKA — Empaque Sustentable</title>
+  <meta name="description" content="Nuestro empaque cuenta historias y respeta el planeta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .iconitos {
+      display: flex;
+      gap: 10px;
+    }
+
+    .iconitos a {
+      font-size: 24px;
+    }
+
+    :root {
+      --bg: #0b0b0b;
+      --panel: #121212;
+      --card: #121212;
+      --muted: #1a1a1a;
+      --line: #222;
+      --border: #2a2a2a;
+      --fg: #f5f5f5;
+      --sub-c: rgba(245, 245, 245, 0.55);
+      --sub: rgba(245, 245, 245, 0.55);
+      --accent: #e8ff4a;
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+    }
+
+    .btn.brand {
+      background: var(--accent);
+      color: #111;
+      border-color: var(--accent);
+    }
+
+    .foot-logo {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 24px;
+      color: var(--fg);
+      margin-bottom: 12px;
+    }
+
+    .foot {
+      padding: 60px 0;
+      border-top: 1px solid var(--line);
+    }
+
+  /* ============================================================
+     RESTO DE ESTILOS (antes estaban fuera del head — CORREGIDO)
+     ============================================================ */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* PILLS */
+  .pill-border {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sub-c);
+    padding: 5px 14px;
+    border-radius: 999px;
+  }
+
+  .pill-border .dot-live {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .btn {
+    border: 1px solid var(--border);
+    padding: 11px 22px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn:hover {
+    background: var(--muted);
+    border-color: #444;
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #111;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000;
+    background: rgba(11, 11, 11, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* CART SIDEBAR */
+  .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    z-index: 2000;
+    transition: right .4s cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-sidebar.open {
+    right: 0;
+  }
+
+  .cart-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-header h3 {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .cart-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    color: var(--sub-c);
+    margin-top: 40px;
+  }
+
+  .cart-footer {
+    padding: 24px;
+    border-top: 1px solid var(--line);
+    background: var(--muted);
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cart-item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .cart-item-info {
+    flex: 1;
+  }
+
+  .cart-item-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .cart-item-meta {
+    font-size: 12px;
+    color: var(--sub-c);
+    margin-bottom: 8px;
+  }
+
+  .cart-remove {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0;
+  }
+
+  .close-x {
+    background: none;
+    border: none;
+    color: var(--fg);
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sub-c);
+    transition: color .2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--fg);
+  }
+
+  .hamb {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamb span {
+    width: 22px;
+    height: 2px;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+
+  /* PAGE HERO */
+  .page-hero {
+    margin-top: 70px;
+    padding: 120px 0 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-hero h1 {
+    font-family: "Dela Gothic One", system-ui;
+    font-size: clamp(40px, 8vw, 90px);
+    margin: 20px 0;
+    color: var(--accent);
+    line-height: .9;
+    text-transform: uppercase;
+  }
+
+  .page-hero p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--sub-c);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* EMPAQUE SECTIONS */
+  .empaque-section {
+    padding: 80px 0;
+  }
+
+  .empaque-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .empaque-grid.reverse {
+    direction: rtl;
+  }
+
+  .empaque-grid.reverse>* {
+    direction: ltr;
+  }
+
+  .empaque-text h2 {
+    font-family: "Dela Gothic One";
+    font-size: 36px;
+    margin: 0 0 20px;
+    color: var(--accent);
+  }
+
+  .empaque-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: var(--fg);
+  }
+
+  .empaque-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  .empaque-text ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .empaque-text ul li i {
+    color: var(--accent);
+    font-size: 20px;
+  }
+
+  .empaque-image {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .empaque-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  /* PROCESS CARDS */
+  .process-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .process-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .process-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .process-card .number {
+    font-family: "Dela Gothic One";
+    font-size: 48px;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .process-card h3 {
+    font-family: "Ubuntu";
+    font-size: 20px;
+    margin: 0 0 12px;
+  }
+
+  .process-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--sub);
+    margin: 0;
+  }
+
+  /* STATS */
+  .stats-section {
+    background: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+  }
+
+  .stat-item .stat-number {
+    font-family: "Dela Gothic One";
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-item .stat-label {
+    font-size: 14px;
+    color: var(--sub);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* VIDEOS SECTION */
+  .videos-section {
+    padding: 80px 0;
+    background: var(--bg);
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .video-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .video-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: #0b0b0b;
+  }
+
+  .video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .video-card:hover .video-play {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .video-duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .video-body {
+    padding: 20px;
+  }
+
+  .video-title {
+    font-family: "Ubuntu";
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  .video-desc {
+    font-size: 14px;
+    color: var(--sub);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* RECYCLING BANNER */
+  .recycling-banner {
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(232, 255, 74, 0.05);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .recycling-banner h3 {
+    font-family: "Ubuntu";
+    font-size: 22px;
+    margin: 0 0 12px;
+    color: var(--accent);
+  }
+
+  .recycling-banner p {
+    color: var(--sub);
+    margin: 0 0 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .recycling-banner strong {
+    color: var(--accent);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    .menu {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(18, 18, 18, 0.95);
+      flex-direction: column;
+      padding: 20px;
+      gap: 16px;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+
+    .menu.show {
+      display: flex;
+    }
+
+    /* Mostrar hamburguesa solo en móvil */
+    .hamb {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .empaque-grid,
+    .empaque-grid.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+
+    .videos-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .recycling-banner {
+      grid-template-columns: 1fr !important;
+    }
+
+    .recycling-banner>div:nth-child(2) {
+      display: none;
+    }
+  }
+
+  /* VIDEOS RESPONSIVE */
+  .video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* Relación 16:9 */
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-thumbnail iframe,
+  .video-thumbnail video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border: none;
+  }
+
+  /* CSS */
+  .mobile-menu {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(18, 18, 18, 0.95);
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+</style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="index.html" aria-label="Ir al inicio">
+          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA" style="height:34px">
+        </a>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="blog.html" data-es="Blog" data-en="Blog">Blog</a>
+        <a href="index.html#coleccion-orion" data-es="Colección" data-en="Collection">Colección</a>
+        <a href="podcast.html" data-es="Podcast" data-en="Podcast">Podcast</a>
+        <a href="empaque.html" class="active" data-es="Empaque" data-en="Packaging">Empaque</a>
+      </div>
+      <div class="nav-right">
+        <button class="btn" id="langToggle" style="margin-right: 8px;">
+          <span id="langText">ES</span>
+        </button>
+        <div class="cart-wrap">
+          <button class="btn" id="cartToggle" style="position:relative">
+            🛒 <span data-es="Carrito" data-en="Cart">Carrito</span>
+            <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+          </button>
+        </div>
+      </div>
+      <button class="hamb" id="hamb" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- CART SIDEBAR -->
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3 data-es="Tu Carrito" data-en="Your Cart">Tu Carrito</h3>
+      <button class="close-x" id="closeCart">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span data-es="Total:" data-en="Total:">Total:</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn-accent" style="width:100%"
+        onclick="window.open('https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20hacer%20un%20pedido','_blank')">
+        <i class="fa-brands fa-whatsapp"></i> <span data-es="Finalizar compra vía WhatsApp" data-en="Checkout via WhatsApp">Finalizar compra vía WhatsApp</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <header class="page-hero">
+    <div class="wrap">
+      <div class="pill-border" style="margin-bottom: 24px" data-es="Sustentabilidad · Memoria · Calle" data-en="Sustainability · Memory · Street">
+        <span class="dot-live"></span> Sustentabilidad · Memoria · Calle
+      </div>
+      <h1 data-es="Empaque con Propósito" data-en="Purposeful Packaging">Empaque<br>con Propósito</h1>
+      <p data-es="Cada paquete cuenta una historia. Usamos materiales reciclados y diseños que reflejan la cultura barrial de Medellín." data-en="Every package tells a story. We use recycled materials and designs that reflect Medellín's neighborhood culture.">Cada paquete cuenta una historia. Usamos materiales reciclados y diseños que reflejan la cultura barrial de Medellín.</p>
+    </div>
+  </header>
+
+  <!-- FILOSOFÍA -->
+  <section class="empaque-section">
+    <div class="wrap">
+      <div class="empaque-grid">
+        <div class="empaque-text">
+          <div class="pill-border" style="margin-bottom: 16px" data-es="Nuestra filosofía" data-en="Our philosophy">Nuestra filosofía</div>
+          <h2 data-es="Más que una caja" data-en="More than a box">Más que una caja</h2>
+          <p data-es="En MEKA, el empaque no es solo protección: es parte de la experiencia. Cada caja lleva memoria, arte y compromiso ambiental." data-en="At MEKA, packaging is not just protection: it's part of the experience. Each box carries memory, art and environmental commitment.">En MEKA, el empaque no es solo protección: es parte de la experiencia. Cada caja lleva memoria, arte y
+            compromiso ambiental.</p>
+          <p data-es="Trabajamos con materiales reciclados y diseños impresos por artistas del barrio. Tu pedido llega con historia." data-en="We work with recycled materials and designs printed by neighborhood artists. Your order arrives with history.">Trabajamos con materiales reciclados y diseños impresos por artistas del barrio. Tu pedido llega con
+            historia.</p>
+          <ul>
+            <li data-es="<i class='fas fa-recycle'></i> <strong>100% materiales reciclados</strong>" data-en="<i class='fas fa-recycle'></i> <strong>100% recycled materials</strong>"><i class="fas fa-recycle"></i> <strong>100% materiales reciclados</strong></li>
+            <li data-es="<i class='fas fa-palette'></i> <strong>Diseños de artistas locales</strong>" data-en="<i class='fas fa-palette'></i> <strong>Designs by local artists</strong>"><i class="fas fa-palette"></i> <strong>Diseños de artistas locales</strong></li>
+            <li data-es="<i class='fas fa-leaf'></i> <strong>Biodegradable y reutilizable</strong>" data-en="<i class='fas fa-leaf'></i> <strong>Biodegradable and reusable</strong>"><i class="fas fa-leaf"></i> <strong>Biodegradable y reutilizable</strong></li>
+            <li data-es="<i class='fas fa-heart'></i> <strong>Hecho con amor en Medellín</strong>" data-en="<i class='fas fa-heart'></i> <strong>Made with love in Medellín</strong>"><i class="fas fa-heart"></i> <strong>Hecho con amor en Medellín</strong></li>
+          </ul>
+        </div>
+        <div class="empaque-image">
+          <img src="imagenes/caja1.jpg" alt="Empaque MEKA">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="empaque-section" style="background: var(--muted)">
+    <div class="wrap">
+      <div class="empaque-grid reverse">
+
+        <div class="empaque-text">
+          <span class="eyebrow" data-es="Nuestro proceso" data-en="Our process">Nuestro proceso</span>
+          <h2 data-es="De la calle al paquete" data-en="From the street to the package">De la calle al paquete</h2>
+          <p data-es="Cada diseño nace en los murales del barrio. Digitalizamos el arte, lo adaptamos y lo imprimimos en cajas de cartón reciclado." data-en="Every design is born in neighborhood murals. We digitize the art, adapt it, and print it on recycled cardboard boxes.">Cada diseño nace en los murales del barrio. Digitalizamos el arte, lo adaptamos y lo imprimimos en cajas de
+            cartón reciclado.</p>
+          <p data-es="El resultado: un empaque único que conecta tu compra con la comunidad que lo inspira." data-en="The result: a unique package that connects your purchase with the community that inspires it.">El resultado: un empaque único que conecta tu compra con la comunidad que lo inspira.</p>
+        </div>
+        <div class="empaque-image">
+          <img src="imagenes/caja2.jpeg" alt="Proceso de empaque">
+        </div>
+      </div>
+
+      <div class="process-cards">
+        <div class="process-card">
+          <div class="number">01</div>
+          <h3 data-es="Recolección" data-en="Collection">Recolección</h3>
+          <p data-es="Recuperamos cartón de negocios locales y lo preparamos para nueva vida." data-en="We recover cardboard from local businesses and prepare it for a new life.">Recuperamos cartón de negocios locales y lo preparamos para nueva vida.</p>
+        </div>
+        <div class="process-card">
+          <div class="number">02</div>
+          <h3 data-es="Diseño" data-en="Design">Diseño</h3>
+          <p data-es="Artistas del barrio crean gráficas únicas inspiradas en murales y cultura urbana." data-en="Neighborhood artists create unique graphics inspired by murals and urban culture.">Artistas del barrio crean gráficas únicas inspiradas en murales y cultura urbana.</p>
+        </div>
+        <div class="process-card">
+          <div class="number">03</div>
+          <h3 data-es="Impresión" data-en="Printing">Impresión</h3>
+          <p data-es="Usamos tintas ecológicas y procesos de bajo impacto ambiental." data-en="We use ecological inks and low environmental impact processes.">Usamos tintas ecológicas y procesos de bajo impacto ambiental.</p>
+        </div>
+        <div class="process-card">
+          <div class="number">04</div>
+          <h3 data-es="Empaque" data-en="Packaging">Empaque</h3>
+          <p data-es="Cada pedido se prepara con cuidado, incluyendo códigos QR que cuentan la historia." data-en="Each order is carefully prepared, including QR codes that tell the story.">Cada pedido se prepara con cuidado, incluyendo códigos QR que cuentan la historia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--VIDEOS TUTORIALES-->
+  <section class="videos-section">
+    <div class="wrap">
+      <div style="text-align: center; margin-bottom: 20px">
+        <span class="eyebrow" data-es="Aprende con nosotros" data-en="Learn with us">Aprende con nosotros</span>
+        <h2
+          style="font-family: 'Dela Gothic One'; font-size: clamp(24px, 6vw, 36px); margin: 16px 0 12px; color: var(--accent)"
+          data-es="¿Qué hacer con tu empaque?" data-en="What to do with your packaging?">
+          ¿Qué hacer con tu empaque?</h2>
+        <p style="color: var(--sub); max-width: 700px; margin: 0 auto;" data-es="Dale una segunda vida a tu caja MEKA. Te enseñamos ideas creativas para reutilizar tu empaque de forma sostenible." data-en="Give your MEKA box a second life. We teach you creative ideas to reuse your packaging sustainably.">Dale una segunda vida a tu caja MEKA. Te
+          enseñamos ideas creativas para reutilizar tu empaque de forma sostenible.</p>
+      </div>
+
+      <div class="videos-grid">
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <iframe src="https://www.youtube.com/embed/85_WB314H2Q?origin=https://localhost"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Organiza tu Espacio" data-en="Organize Your Space">Organiza tu Espacio</h3>
+            <p class="video-desc" data-es="Convierte tu caja en organizador de accesorios, cables o material de arte." data-en="Turn your box into an organizer for accessories, cables, or art supplies.">Convierte tu caja en organizador de accesorios, cables o material de arte.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <iframe src="https://www.youtube.com/embed/PYwBOJhZuZk?origin=https://localhost"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Maceta Urbana" data-en="Urban Planter">Maceta Urbana</h3>
+            <p class="video-desc" data-es="Crea una maceta única para tus plantas con el cartón reciclado." data-en="Create a unique planter for your plants with the recycled cardboard.">Crea una maceta única para tus plantas con el cartón reciclado.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <iframe src="https://www.youtube.com/embed/PYwBOJhZuZk?origin=https://localhost"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Marco Decorativo" data-en="Decorative Frame">Marco Decorativo</h3>
+            <p class="video-desc" data-es="Usa la gráfica de la caja como arte mural para tu habitación." data-en="Use the box's graphic as wall art for your room.">Usa la gráfica de la caja como arte mural para tu habitación.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <iframe src="https://www.youtube.com/embed/e9Rljzqd5N0?origin=https://localhost"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Caja de Regalo" data-en="Gift Box">Caja de Regalo</h3>
+            <p class="video-desc" data-es="Transforma tu empaque MEKA en un regalo especial para alguien más." data-en="Transform your MEKA packaging into a special gift for someone else.">Transforma tu empaque MEKA en un regalo especial para alguien más.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <iframe src="https://www.youtube.com/embed/7B6X3c7BjpI?origin=https://localhost"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Portarretrato DIY" data-en="DIY Photo Frame">Portarretrato DIY</h3>
+            <p class="video-desc" data-es="Haz un portarretrato creativo con el diseño original de MEKA." data-en="Make a creative photo frame with MEKA's original design.">Haz un portarretrato creativo con el diseño original de MEKA.</p>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumbnail">
+            <video width="100%" height="240" controls>
+              <source src="imagenes/tito.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-body">
+            <h3 class="video-title" data-es="Devuélvelo y Recibe Descuento" data-en="Return it and Get a Discount">Devuélvelo y Recibe Descuento</h3>
+            <p class="video-desc" data-es="Aprende cómo devolvernos tu caja para obtener 10% off en tu próxima compra." data-en="Learn how to return your box to get 10% off your next purchase.">Aprende cómo devolvernos tu caja para obtener 10% off en tu próxima compra.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="recycling-banner"
+        style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 30px; align-items: start;">
+        <div>
+          <h3 data-es="Programa de Reciclaje MEKA" data-en="MEKA Recycling Program"> Programa de Reciclaje MEKA</h3>
+          <p data-es="Trae tu caja usada a nuestro punto de recolección en Medellín y recibe <strong>10% de descuento</strong> en tu próxima compra. Juntos cerramos el círculo." data-en="Bring your used box to our collection point in Medellín and receive a <strong>10% discount</strong> on your next purchase. Together we close the circle.">Trae tu caja usada a nuestro punto de recolección en Medellín y recibe <strong>10% de descuento</strong> en
+            tu próxima compra. Juntos cerramos el círculo.</p>
+          <a href="https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20devolver%20mi%20caja%20para%20el%20descuento"
+            target="_blank" class="btn brand" data-es="<i class='fab fa-whatsapp'></i> Contactar para devolución" data-en="<i class='fab fa-whatsapp'></i> Contact for return">
+            <i class="fab fa-whatsapp"></i> Contactar para devolución
+          </a>
+        </div>
+
+        <div style="width: 1px; height: 100%; background: var(--border); opacity: 0.5;"></div>
+
+        <div>
+          <h3 data-es="Moda Circular MEKA" data-en="MEKA Circular Fashion"> Moda Circular MEKA</h3>
+          <p data-es="¿Tienes ropa que ya no usas? Tráela a nuestro punto de recolección y recibe <strong>5% de descuento</strong> en tu próxima compra. Transformamos prendas olvidadas en nuevas historias. La moda circular no es tendencia, es responsabilidad." data-en="Do you have clothes you no longer wear? Bring them to our collection point and receive a <strong>5% discount</strong> on your next purchase. We transform forgotten garments into new stories. Circular fashion is not a trend, it's a responsibility.">¿Tienes ropa que ya no usas? Tráela a nuestro punto de recolección y recibe <strong>5% de
+              descuento</strong> en tu próxima compra. Transformamos prendas olvidadas en nuevas historias. La moda
+            circular no es tendencia, es responsabilidad.</p>
+          <a href="https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20llevar%20ropa%20usada%20para%20el%20programa%20de%20moda%20circular"
+            target="_blank" class="btn brand" data-es="<i class='fab fa-whatsapp'></i> Participar en moda circular" data-en="<i class='fab fa-whatsapp'></i> Participate in circular fashion">
+            <i class="fab fa-whatsapp"></i> Participar en moda circular
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLES -->
+  <section class="empaque-section">
+    <div class="wrap">
+      <div class="empaque-grid">
+        <div class="empaque-text">
+          <span class="eyebrow" data-es="Los detalles" data-en="The details">Los detalles</span>
+          <h2 data-es="Qué incluye tu pedido" data-en="What's in your order">Qué incluye tu pedido</h2>
+          <p data-es="Además de tu ropa, cada paquete MEKA incluye:" data-en="Besides your clothes, every MEKA package includes:">Además de tu ropa, cada paquete MEKA incluye:</p>
+          <ul>
+            <li data-es="<i class='fas fa-box'></i> Caja de cartón reciclado" data-en="<i class='fas fa-box'></i> Recycled cardboard box"><i class="fas fa-box"></i> Caja de cartón reciclado </li>
+            <li data-es="<i class='fas fa-qrcode'></i> Código QR que cuenta la historia de tu prenda" data-en="<i class='fas fa-qrcode'></i> QR code that tells the story of your garment"><i class="fas fa-qrcode"></i> Código QR que cuenta la historia de tu prenda</li>
+            <li data-es="<i class='fas fa-gift'></i> Sticker coleccionable de la colección" data-en="<i class='fas fa-gift'></i> Collectible sticker from the collection"><i class="fas fa-gift"></i> Sticker coleccionable de la colección</li>
+            <li data-es="<i class='fas fa-book'></i> Mini-guía sobre el barrio que inspiró el diseño" data-en="<i class='fas fa-book'></i> Mini-guide about the neighborhood that inspired the design"><i class="fas fa-book"></i> Mini-guide about the neighborhood that inspired the design</li>
+          </ul>
+          <p style="margin-top: 20px; color: var(--sub); font-size: 14px;" data-es="<strong>Nota:</strong> Puedes reutilizar la caja o devolverla en nuestro punto de recolección para recibir un descuento en tu próxima compra." data-en="<strong>Note:</strong> You can reuse the box or return it to our collection point to receive a discount on your next purchase.">
+            <strong>Nota:</strong> Puedes reutilizar la caja o devolverla en nuestro punto de recolección para recibir
+            un descuento en tu próxima compra.
+          </p>
+        </div>
+        <div class="empaque-image">
+          <img src="imagenes/caja3.jpeg" alt="Contenido del paquete">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="logo">
+          <span style="font-size:32px">MEKA</span>
+        </div>
+        <p style="color: var(--sub)" data-es="Diseñado en Colombia para el mundo urbano." data-en="Designed in Colombia for the urban world.">Diseñado en Colombia para el mundo urbano.</p>
+      </div>
+
+      <div>
+        <h4 data-es="Más información" data-en="More information">Mas información</h4>
+        <p style="color: var(--sub)" data-es="Recibe nuestros drops y novedades" data-en="Receive our drops and news">Recibe nuestros drops y novedades</p>
+        <div class="input">
+          <input type="email" placeholder="tu@email.com" aria-label="Correo electrónico">
+          <button class="btn brand" data-es="Suscribir" data-en="Subscribe">Suscribir</button>
+        </div>
+        <div style="color: var(--accent); font-size: 11px; margin-top: 20px; font-style: italic;" data-es="*Está página web es de carácter académico y no genera rendimientos económicos" data-en="*This website is for academic purposes and does not generate economic profit">
+          *Está página web es de carácter académico y no genera rendimientos económicos
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>    /* ---- CARRITO ---- */
+    let cart = JSON.parse(localStorage.getItem('mekaCart')) || [];
+    const $cartSidebar = document.getElementById('cartSidebar');
+    const $cartBadge = document.getElementById('cartBadge');
+    const $cartBody = document.getElementById('cartBody');
+    const $cartFooter = document.getElementById('cartFooter');
+    const $cartTotal = document.getElementById('cartTotal');
+
+    document.getElementById('cartToggle').addEventListener('click', () => $cartSidebar.classList.toggle('open'));
+    document.getElementById('closeCart').addEventListener('click', () => $cartSidebar.classList.remove('open'));
+
+    function updateCartUI() {
+      localStorage.setItem('mekaCart', JSON.stringify(cart));
+      if (cart.length === 0) {
+        $cartBody.innerHTML = '<div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>';
+        $cartFooter.style.display = 'none'; $cartBadge.style.display = 'none'; return;
+      }
+      const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+      const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      $cartBadge.textContent = totalItems; $cartBadge.style.display = 'grid';
+      $cartFooter.style.display = 'block';
+      $cartTotal.textContent = '$' + totalPrice.toLocaleString('es-CO');
+      $cartBody.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-meta">Talla: ${item.size} · Cant: ${item.qty}</div>
+            <div class="cart-item-price">$${(item.price * item.qty).toLocaleString('es-CO')}</div>
+            <button class="cart-remove" onclick="removeFromCart(${idx})">Eliminar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+    window.removeFromCart = idx => { cart.splice(idx, 1); updateCartUI(); };
+    updateCartUI();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 10) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+
+
+    // Navbar hamburger logic
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    
+    if(hamb && navLinks) {
+      hamb.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 980) navLinks.classList.remove('show');
+        });
+      });
+    }
+
+    /* ---- LANGUAGE TOGGLE ---- */
+    (function () {
+      const $langToggle = document.getElementById('langToggle');
+      const $langText = document.getElementById('langText');
+      let currentLang = localStorage.getItem('mekaLang') || 'es';
+
+      function updateLanguage() {
+        document.querySelectorAll('[data-es]').forEach(el => {
+          const text = el.getAttribute('data-' + currentLang);
+          if (text) {
+            if (text.includes('<') && text.includes('>')) {
+              el.innerHTML = text;
+            } else {
+              el.textContent = text;
+            }
+          }
+        });
+        if ($langText) $langText.textContent = currentLang.toUpperCase();
+        localStorage.setItem('mekaLang', currentLang);
+      }
+
+      if ($langToggle) {
+        $langToggle.addEventListener('click', () => {
+          currentLang = currentLang === 'es' ? 'en' : 'es';
+          updateLanguage();
+        });
+      }
+
+      updateLanguage();
+    })();
+  </script>
+</body>
+
+</html>

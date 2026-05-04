@@ -19,323 +19,469 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    .mobile-menu {
-  display: none; /* Oculto por defecto */
-  position: absolute;
-  top: 64px;
-  left: 0;
-  right: 0;
-  background: rgba(18, 18, 18, 0.95);
-  flex-direction: column;
-  padding: 20px;
-  gap: 16px;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  z-index: 999;
-}
+  :root {
+    --bg: #0b0b0b;
+    --panel: #121212;
+    --card: #121212;
+    --muted: #1a1a1a;
+    --line: #222;
+    --border: #2a2a2a;
+    --fg: #f5f5f5;
+    --sub-c: rgba(245, 245, 245, 0.55);
+    --sub: rgba(245, 245, 245, 0.55);
+    --accent: #e8ff4a;
+  }
 
-.mobile-menu.open {
-  display: flex;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    padding-top: 64px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header {
+    text-align: center;
+    padding: 100px 0 60px;
+  }
+
+  h1 {
+    font-family: 'Dela Gothic One', system-ui;
+    font-size: clamp(40px, 8vw, 90px);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    line-height: .9;
+  }
+
+  .underline {
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 0 auto;
+  }
+
+  /* BLOG GRID */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+
+  .blog-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+  }
+
+  .blog-image {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background-color: #111;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 24px;
+  }
+
+  .category {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .blog-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--fg);
+  }
+
+  .section-title {
+    font-family: 'Dela Gothic One', system-ui;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000;
+    background: rgba(11, 11, 11, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sub-c);
+    transition: color .2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--fg);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cart-wrap {
+    position: relative;
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--accent);
+    color: #000;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .2s;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    color: var(--fg);
+  }
+
+  .btn:hover {
+    background: var(--line);
+    border-color: var(--sub-c);
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+
+  /* CART SIDEBAR */
+  .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    z-index: 2000;
+    transition: right .4s cubic-bezier(.4, 0, .2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-sidebar.open {
+    right: 0;
+  }
+
+  .cart-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-header h3 {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .cart-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    color: var(--sub-c);
+    margin-top: 40px;
+  }
+
+  .cart-footer {
+    padding: 24px;
+    border-top: 1px solid var(--line);
+    background: var(--muted);
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .cart-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cart-item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .cart-item-info {
+    flex: 1;
+  }
+
+  .cart-item-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .cart-item-meta {
+    font-size: 12px;
+    color: var(--sub-c);
+    margin-bottom: 8px;
+  }
+
+  .cart-remove {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0;
+  }
+
+  .close-x {
+    background: none;
+    border: none;
+    color: var(--fg);
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .hamb {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamb span {
+    width: 22px;
+    height: 2px;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+
+  @media(max-width:980px) {
+    .nav-links {
+      display: none;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0c0c0c;
-      color: #fff;
-      min-height: 100vh;
-      padding: 110px 20px 60px;
-      overflow-x: hidden;
-    }
-
-    span,
-    h4,
-    h5,
-    h6,
-    li {
-      color: #e8ff4a !important;
-      filter: none;
-    }
-
-
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    h1 {
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .underline {
-      width: 100px;
-      height: 4px;
-      background-color: #e8ff4a !important;
-      margin: 0 auto;
-    }
-
-    /* ====================== BLOG ====================== */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
-    }
-
-    .blog-card {
-      background: #2d2d2d;
-      border-radius: 18px;
-      overflow: hidden;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: block;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .blog-image {
-      width: 100%;
-      height: auto;
-      overflow: hidden;
+    .nav-links.show {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111;
-    }
-
-    .blog-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-
-
-    .blog-content {
-      padding: 24px;
-    }
-
-    .category {
-      font-size: 0.75em;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #e8ffa4;
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .blog-title {
-      font-size: 1.2em;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .section-title {
-      font-size: 1.4em;
-      text-transform: uppercase;
-      color: white;
-      font-weight: 800;
-      margin-bottom: 40px;
-      border-bottom: 2px solid #e8ff4a;
-      padding-bottom: 10px;
-    }
-
-    /* ====================== NAVBAR ====================== */
-    .nav {
-      position: fixed;
-      top: 0;
+      flex-direction: column;
+      gap: 14px;
+      position: absolute;
+      top: 64px;
       left: 0;
       right: 0;
-      z-index: 999;
-      background: rgba(14, 14, 14, 0.9);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(18, 18, 18, .97);
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
       backdrop-filter: blur(10px);
     }
 
-    .wrap.nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      z-index: 5;
-    }
-
-    .logo img {
-      height: 40px;
-      width: auto;
-      cursor: pointer;
-    }
-
-    .menu {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .menu a {
-      color: #bdbdbd;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      transition: color 0.2s ease, font-weight 0.2s ease;
-      position: relative;
-    }
-
-    .menu a:hover {
-      color: #fff;
-    }
-
-    /* 🔥 Enlace activo */
-    .menu a.active {
-      color: #fff;
-      font-weight: 700;
-    }
-
-
-
     .hamb {
-      position: absolute;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 6;
+      display: flex;
     }
+  }
 
-    .hamb span {
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
     }
-
-    .nav.scrolled {
-      background: rgba(20, 20, 20, 0.85);
-      backdrop-filter: blur(20px);
-    }
-
-    @media (max-width: 980px) {
-      .menu {
-        position: static;
-        transform: none;
-        flex-direction: column;
-        gap: 20px;
-        display: none;
-      }
-
-      .hamb {
-        display: flex;
-      }
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.3em;
-      }
-
-      .blog-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+  }
   </style>
 </head>
 
 <body>
   <nav class="nav">
-    <div class="wrap nav-inner">
-      <div class="logo">
-        <a href="./index.html">
-          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA" style="height:34px">
         </a>
       </div>
-
-      <div class="menu" id="menu">
-        <a href="./index.html">Inicio</a>
-        <a href="./blog.html" class="active">Blog</a>
-        <a href="./index.html#coleccion">Colección</a>
-        <a href="./podcast.html">Podcast</a>
-        <a href="./empaquetado.html">Empaquetado</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="blog.html" class="active" data-es="Blog" data-en="Blog">Blog</a>
+        <a href="index.html#coleccion-orion" data-es="Colección" data-en="Collection">Colección</a>
+        <a href="podcast.html" data-es="Podcast" data-en="Podcast">Podcast</a>
+        <a href="empaque.html" data-es="Empaque" data-en="Packaging">Empaque</a>
       </div>
-
-      <button class="hamb" id="hamb" aria-label="Abrir menú">
+      <div class="nav-right">
+        <button class="btn" id="langToggle" style="margin-right: 8px;">
+          <span id="langText">ES</span>
+        </button>
+        <div class="cart-wrap">
+          <button class="btn" id="cartToggle" style="position:relative">
+            🛒 <span data-es="Carrito" data-en="Cart">Carrito</span>
+            <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+          </button>
+        </div>
+      </div>
+      <button class="hamb" id="hamb" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="../index.html">Inicio</a>
-        <a href="../blog.html">Blog</a>
-        <a href="../index.html#coleccion">Colección</a>
-        <a href="../index.html#contacto">Contacto</a>
-      </div>
     </div>
   </nav>
 
+  <!-- CART SIDEBAR -->
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3 data-es="Tu Carrito" data-en="Your Cart">Tu Carrito</h3>
+      <button class="close-x" id="closeCart">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span data-es="Total:" data-en="Total:">Total:</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn-accent" style="width:100%"
+        onclick="window.open('https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20hacer%20un%20pedido','_blank')">
+        <i class="fa-brands fa-whatsapp"></i> <span data-es="Finalizar compra vía WhatsApp" data-en="Checkout via WhatsApp">Finalizar compra vía WhatsApp</span>
+      </button>
+    </div>
+  </aside>
+
   <div class="container">
     <header>
-      <h1>Blog MEKA</h1>
-      <div class="underline"></div>
+      <h1 data-es="Blog" data-en="Blog">Blog </h1>
     </header>
 
     <!-- Sostenibilidad -->
     <div class="author-section">
-      <h2 class="section-title">Sostenibilidad & Moda Consciente</h2>
+      <h2 class="section-title" data-es="Sostenibilidad & Moda Consciente" data-en="Sustainability & Conscious Fashion">Sostenibilidad & Moda Consciente</h2>
       <div class="blog-grid">
         <a href="./Pages/medellin-beyond-stigma.html" class="blog-card">
-          <div class="blog-image"><img src="imagenes/ingles1.jpeg" alt=""></div>
+          <div class="blog-image"><img src="imagenes/ingles1.jpeg" alt="" loading="lazy"></div>
           <div class="blog-content">
-            <span class="category">Culture</span>
-            <h3 class="blog-title">Medellín Beyond the Stigma: A City Reinventing Itself</h3>
+            <span class="category" data-es="Cultura" data-en="Culture">Cultura</span>
+            <h3 class="blog-title" data-es="Medellín más allá del estigma: Una ciudad reinventándose" data-en="Medellín Beyond the Stigma: A City Reinventing Itself">Medellín más allá del estigma: Una ciudad reinventándose</h3>
           </div>
         </a>
         <a href="./Pages/segunda-vida-ropa.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/vida3.jpg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Moda</span>
-            <h3 class="blog-title">Cómo darle una segunda vida a tu ropa de manera fácil</h3>
+            <span class="category" data-es="Sostenibilidad" data-en="Sustainability">Sostenibilidad</span>
+            <h3 class="blog-title" data-es="Cómo darle una segunda vida a tu ropa de manera fácil" data-en="How to easily give your clothes a second life">Cómo darle una segunda vida a tu ropa de manera fácil</h3>
           </div>
         </a>
         <a href="./Pages/vestir-medio-ambiente.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/vestir1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Moda</span>
-            <h3 class="blog-title">¿Cómo tu outfit afecta al planeta?</h3>
+            <span class="category" data-es="Moda" data-en="Fashion">Moda</span>
+            <h3 class="blog-title" data-es="¿Cómo tu outfit afecta al planeta?" data-en="How does your outfit affect the planet?">¿Cómo tu outfit afecta al planeta?</h3>
           </div>
         </a>
       </div>
@@ -343,27 +489,27 @@
 
     <!-- Cultura Urbana -->
     <div class="author-section">
-      <h2 class="section-title">Cultura & Estilo Urbano</h2>
+      <h2 class="section-title" data-es="Cultura & Estilo Urbano" data-en="Culture & Urban Style">Cultura & Estilo Urbano</h2>
       <div class="blog-grid">
         <a href="./Pages/historia-moda-urbana.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/urbana1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Historia</span>
-            <h3 class="blog-title">Moda Urbana: El Lenguaje Silencioso de las Calles</h3>
+            <span class="category" data-es="Historia" data-en="History">Historia</span>
+            <h3 class="blog-title" data-es="Moda Urbana: El Lenguaje Silencioso de las Calles" data-en="Urban Fashion: The Silent Language of the Streets">Moda Urbana: El Lenguaje Silencioso de las Calles</h3>
           </div>
         </a>
         <a href="./Pages/vocabulario-parlache.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/parlache1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Cultura</span>
-            <h3 class="blog-title">Guía de vocabulario parlache (cómo entender al loco de la esquina)</h3>
+            <span class="category" data-es="Cultura" data-en="Culture">Cultura</span>
+            <h3 class="blog-title" data-es="Guía de vocabulario parlache (cómo entender al loco de la esquina)" data-en="Parlache vocabulary guide (how to understand the neighborhood guy)">Guía de vocabulario parlache (cómo entender al loco de la esquina)</h3>
           </div>
         </a>
         <a href="./Pages/test-ropa-urbana.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/test1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Test</span>
-            <h3 class="blog-title">Qué tipo de ropa urbana eres</h3>
+            <span class="category" data-es="Test" data-en="Quiz">Test</span>
+            <h3 class="blog-title" data-es="Qué tipo de ropa urbana eres" data-en="What type of urban style are you">Qué tipo de ropa urbana eres</h3>
           </div>
         </a>
       </div>
@@ -371,27 +517,27 @@
 
     <!-- Historia & Estilo -->
     <div class="author-section">
-      <h2 class="section-title">Historia & Estilo</h2>
+      <h2 class="section-title" data-es="Historia & Estilo" data-en="History & Style">Historia & Estilo</h2>
       <div class="blog-grid">
         <a href="./Pages/violencia-medellin-moda.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/violencia1.jpg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Historia</span>
-            <h3 class="blog-title">La historia de la violencia en Medellín y cómo afectó la forma de vestir</h3>
+            <span class="category" data-es="Historia" data-en="History">Historia</span>
+            <h3 class="blog-title" data-es="La historia de la violencia en Medellín y cómo afectó la forma de vestir" data-en="The history of violence in Medellín and how it affected the way people dressed">La historia de la violencia en Medellín y cómo afectó la forma de vestir</h3>
           </div>
         </a>
         <a href="./Pages/colorimetria.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/colorimetria1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Estilo</span>
-            <h3 class="blog-title">Colorimetría</h3>
+            <span class="category" data-es="Estilo" data-en="Style">Estilo</span>
+            <h3 class="blog-title" data-es="Colorimetría" data-en="Colorimetry">Colorimetría</h3>
           </div>
         </a>
         <a href="./Pages/guia-verse-bien.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/guia1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Tips</span>
-            <h3 class="blog-title">Guía definitiva para verse bien</h3>
+            <span class="category" data-es="Tips" data-en="Tips">Tips</span>
+            <h3 class="blog-title" data-es="Guía definitiva para verse bien" data-en="The ultimate guide to looking good">Guía definitiva para verse bien</h3>
           </div>
         </a>
       </div>
@@ -399,15 +545,15 @@
 
     <!-- Medellín -->
     <div class="author-section">
-      <h2 class="section-title">Medellín & Identidad</h2>
+      <h2 class="section-title" data-es="Medellín & Identidad" data-en="Medellín & Identity">Medellín & Identidad</h2>
       <div class="blog-grid">
         <a href="./Pages/medellin-icono-moda.html" class="blog-card">
           <div class="blog-image">
             <img src="imagenes/memoria1.jpg" alt="">
           </div>
           <div class="blog-content">
-            <span class="category">Moda</span>
-            <h3 class="blog-title">Medellín: donde la moda tiene memoria</h3>
+            <span class="category" data-es="Moda" data-en="Fashion">Moda</span>
+            <h3 class="blog-title" data-es="Medellín: donde la moda tiene memoria" data-en="Medellín: Where Fashion Has Memory">Medellín: donde la moda tiene memoria</h3>
           </div>
         </a>
         <a href="./Pages/historia-coltejer.html" class="blog-card">
@@ -416,58 +562,137 @@
           </div>
 
           <div class="blog-content">
-            <span class="category">Historia</span>
-            <h3 class="blog-title">La historia del Coltejer</h3>
+            <span class="category" data-es="Historia" data-en="History">Historia</span>
+            <h3 class="blog-title" data-es="La historia del Coltejer" data-en="The History of Coltejer">La historia del Coltejer</h3>
           </div>
         </a>
         <a href="./Pages/ser-de-barrio.html" class="blog-card">
           <div class="blog-image"><img src="imagenes/ser1.jpeg" alt=""></div>
           <div class="blog-content">
-            <span class="category">Cultura</span>
-            <h3 class="blog-title">Qué significa ser de barrio</h3>
+            <span class="category" data-es="Cultura" data-en="Culture">Cultura</span>
+            <h3 class="blog-title" data-es="Qué significa ser de barrio" data-en="What It Means to Be from the Neighborhood">Qué significa ser de barrio</h3>
           </div>
         </a>
       </div>
 
     </div>
   </div>
-  </div>
 
- <script>// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav');
-  if (window.scrollY > 10) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+  <!-- FOOTER -->
+  <footer style="background: var(--muted); border-top: 1px solid var(--border); padding: 60px 0; margin-top: 60px;">
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+      <div>
+        <div class="logo">
+          <span style="font-size:32px; font-family:'Dela Gothic One'; color: var(--fg);">MEKA</span>
+        </div>
+        <p style="color: var(--sub-c); margin-top: 10px;" data-es="Diseñado en Colombia para el mundo urbano." data-en="Designed in Colombia for the urban world.">Diseñado en Colombia para el mundo urbano.</p>
+      </div>
 
-// Enlace activo según URL
-const links = document.querySelectorAll('#menu a');
-const current = location.pathname.split('/').pop();
-links.forEach(link => {
-  if (link.getAttribute('href').includes(current)) {
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  }
-});
+      <div>
+        <h4 style="font-family:'Dela Gothic One'; font-size: 20px; color: var(--fg); margin-bottom: 15px;" data-es="Más información" data-en="More information">Mas información</h4>
+        <p style="color: var(--sub-c); margin-bottom: 15px;" data-es="Recibe nuestros drops y novedades" data-en="Receive our drops and news">Recibe nuestros drops y novedades</p>
+        <div style="display: flex; gap: 10px;">
+          <input type="email" placeholder="tu@email.com" style="flex:1; background: var(--panel); border: 1px solid var(--border); padding: 12px; color: var(--fg); border-radius: 8px;">
+          <button class="btn" style="background: var(--accent); color: #111; border: none; padding: 12px 20px; font-weight: 700; border-radius: 8px; cursor: pointer;" data-es="Suscribir" data-en="Subscribe">Suscribir</button>
+        </div>
+        <div style="color: var(--accent); font-size: 11px; margin-top: 20px; font-style: italic;" data-es="*Está página web es de carácter académico y no genera rendimientos económicos" data-en="*This website is for academic purposes and does not generate economic profit">
+          *Está página web es de carácter académico y no genera rendimientos económicos
+        </div>
+      </div>
+    </div>
+  </footer>
 
-// Menú hamburguesa
-const hamb = document.getElementById('hamb');
-const mobileMenu = document.getElementById("mobileMenu");
+  <script>
+    /* ---- CARRITO ---- */
+    let cart = JSON.parse(localStorage.getItem('mekaCart')) || [];
+    const $cartSidebar = document.getElementById('cartSidebar');
+    const $cartBadge = document.getElementById('cartBadge');
+    const $cartBody = document.getElementById('cartBody');
+    const $cartFooter = document.getElementById('cartFooter');
+    const $cartTotal = document.getElementById('cartTotal');
 
-hamb.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open'); // ✅ Aquí debe ser mobileMenu
-  hamb.classList.toggle('active');
-});
+    document.getElementById('cartToggle').addEventListener('click', () => $cartSidebar.classList.toggle('open'));
+    document.getElementById('closeCart').addEventListener('click', () => $cartSidebar.classList.remove('open'));
 
-// Cerrar menú al hacer clic en un enlace
-const mobileLinks = mobileMenu.querySelectorAll('a');
-mobileLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamb.classList.remove('active');
-  });
-});
+    function updateCartUI() {
+      localStorage.setItem('mekaCart', JSON.stringify(cart));
+      if (cart.length === 0) {
+        $cartBody.innerHTML = '<div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>';
+        $cartFooter.style.display = 'none'; $cartBadge.style.display = 'none'; return;
+      }
+      const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+      const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      $cartBadge.textContent = totalItems; $cartBadge.style.display = 'grid';
+      $cartFooter.style.display = 'block';
+      $cartTotal.textContent = '$' + totalPrice.toLocaleString('es-CO');
+      $cartBody.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-meta">Talla: ${item.size} · Cant: ${item.qty}</div>
+            <div class="cart-item-price">$${(item.price * item.qty).toLocaleString('es-CO')}</div>
+            <button class="cart-remove" onclick="removeFromCart(${idx})">Eliminar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+    window.removeFromCart = idx => { cart.splice(idx, 1); updateCartUI(); };
+    updateCartUI();
 
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 10) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // Navbar hamburger logic
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    
+    if(hamb && navLinks) {
+      hamb.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 980) navLinks.classList.remove('show');
+        });
+      });
+    }
+
+    /* ---- LANGUAGE TOGGLE ---- */
+    (function () {
+      const $langToggle = document.getElementById('langToggle');
+      const $langText = document.getElementById('langText');
+      let currentLang = localStorage.getItem('mekaLang') || 'es';
+
+      function updateLanguage() {
+        document.querySelectorAll('[data-es]').forEach(el => {
+          const text = el.getAttribute('data-' + currentLang);
+          if (text) {
+            if (text.includes('<') && text.includes('>')) {
+              el.innerHTML = text;
+            } else {
+              el.textContent = text;
+            }
+          }
+        });
+        if ($langText) $langText.textContent = currentLang.toUpperCase();
+        localStorage.setItem('mekaLang', currentLang);
+      }
+
+      if ($langToggle) {
+        $langToggle.addEventListener('click', () => {
+          currentLang = currentLang === 'es' ? 'en' : 'es';
+          updateLanguage();
+        });
+      }
+
+      updateLanguage();
+    })();
   </script>
 </body>
 
