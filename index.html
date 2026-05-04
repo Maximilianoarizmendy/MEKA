@@ -2319,6 +2319,7 @@
       .col-layout {
         grid-template-columns: 1fr;
         height: auto;
+        max-height: none;
       }
 
       .col-layout-left {
@@ -2328,7 +2329,18 @@
       }
 
       .col-layout-right {
-        height: 600px;
+        height: auto;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+
+      .col-card-cta {
+        position: relative;
+        transform: translateY(0);
+      }
+
+      .cart-sidebar {
+        z-index: 1001;
       }
 
       .quienes-grid {
@@ -2380,7 +2392,7 @@
         padding-bottom: 50px;
       }
 
-      .col-grid,
+      .col-grid-scroll,
       .quienes-grid,
       .t-grid,
       .features-section {
@@ -2391,9 +2403,20 @@
         font-size: clamp(44px, 14vw, 68px);
       }
 
-      .col-grid {
-        grid-template-columns: 1fr;
+
+      .col-layout-left {
+        height: 350px;
       }
+
+      .nav-right .btn {
+        padding: 8px 14px;
+        font-size: 11px;
+      }
+
+      #cartToggle span[data-es] {
+        display: none;
+      }
+
 
       .col-card-main {
         grid-column: span 1;
@@ -2522,7 +2545,6 @@
     <div class="hero-bg" id="heroBg">
       <img src="imagenes/orionportada.jpg" alt="MEKA Ropa Urbana">
     </div>
-    <div class="hero-bg-label"><img src="imagenes/mekalogo-removebg-preview.png" alt="MEKA Logo"></div>
 
     <div class="hero-content">
       <div class="hero-content-inner">
@@ -2919,9 +2941,7 @@
   <section class="comunidad-section" id="comunidad">
     <div class="wrap">
       <div class="comunidad-header">
-        <h2 class="t-h2" data-es="Comunidad <img src='imagenes/mekalogo-removebg-preview.png' class='logo-inline'>"
-          data-en="<img src='imagenes/mekalogo-removebg-preview.png' class='logo-inline'> Community">Comunidad <img
-            src="imagenes/mekalogo-removebg-preview.png" class="logo-inline"></h2>
+        <h2 class="t-h2" data-es="Comunidad MEKA" data-en="MEKA Community">Comunidad MEKA</h2>
       </div>
       <p class="comunidad-sub"
         data-es="5 mujeres con estilos distintos pero un mismo sueño: crear ropa urbana con identidad y calle."
@@ -3098,7 +3118,7 @@
      ============================================ -->
   <section class="contacto-section">
     <div class="wrap">
-      <h2 class="t-h2" style="margin-bottom:40px; padding-left: 15%;" data-es="<span class='line2'>ENCUÉNTRANOS</span>"
+      <h2 class="t-h2" style="margin-bottom:40px; text-align: center;" data-es="<span class='line2'>ENCUÉNTRANOS</span>"
         data-en="<span class='line2'>FIND US</span>">
         <span class="line2">ENCUÉNTRANOS</span>
       </h2>
