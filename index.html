@@ -3298,15 +3298,7 @@
      SCRIPTS
      ============================================ -->
   <script>
-    /* ---- NAV HAMBURGER ---- */
-    document.getElementById('hamb').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('show');
-    });
-    document.querySelectorAll('#navLinks a').forEach(a => {
-      a.addEventListener('click', () => {
-        if (window.innerWidth <= 980) document.getElementById('navLinks').classList.remove('show');
-      });
-    });
+
 
     /* ---- PRODUCTS DATA ---- */
     const PRODUCTS = [

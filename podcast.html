@@ -1128,6 +1128,22 @@
       else nav.classList.remove('scrolled');
     });
 
+    // Navbar hamburger logic
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    
+    if(hamb && navLinks) {
+      hamb.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 980) navLinks.classList.remove('show');
+        });
+      });
+    }
+
     // Spotify redirect functionality
     const spotifyUrl = 'https://open.spotify.com/user/315ihr6ndmp4xgt4evqudasvd4dy?si=b52c988c90fd4f9e';
 
