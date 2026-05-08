@@ -96,7 +96,8 @@
 
   html,
   body {
-    background: var(--bg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('imagenes/fondopodcast.jpeg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--fg);
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
@@ -370,6 +371,7 @@
     color: var(--accent);
     line-height: .9;
     text-transform: uppercase;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
   }
 
   .page-hero p {
@@ -378,6 +380,7 @@
     max-width: 700px;
     margin: 0 auto 40px;
     line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
 
   /* EPISODIOS */
@@ -393,7 +396,8 @@
   }
 
   .episodio-card {
-    background: var(--card);
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 18px;
     overflow: hidden;
@@ -483,8 +487,9 @@
 
   /* FEATURED EPISODE */
   .featured-episode {
-    background: var(--muted);
-    border: 1px solid var(--border);
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
     overflow: hidden;
     margin-bottom: 60px;
@@ -567,7 +572,8 @@
 
   /* ABOUT PODCAST */
   .about-podcast {
-    background: var(--muted);
+    background: rgba(11, 11, 11, 0.5);
+    backdrop-filter: blur(10px);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 80px 0;
@@ -624,7 +630,8 @@
 
   /* FOOTER */
   footer {
-    background: var(--muted);
+    background: rgba(11, 11, 11, 0.8);
+    backdrop-filter: blur(10px);
     border-top: 1px solid var(--border);
     padding: 36px 0 96px;
     margin-top: 36px;
