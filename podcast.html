@@ -96,7 +96,8 @@
 
   html,
   body {
-    background: var(--bg);
+    background: url('imagenes/fondopodcast.jpeg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--fg);
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
@@ -765,7 +766,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 980px) {
-    .menu {
+    .nav-links {
       position: absolute;
       top: 64px;
       left: 0;
@@ -779,7 +780,7 @@
       display: none;
     }
 
-    .menu.show {
+    .nav-links.show {
       display: flex;
     }
 
@@ -793,6 +794,19 @@
 
     .featured-cover {
       min-height: 300px;
+    }
+
+    .page-hero {
+      min-height: 280px;
+      padding-bottom: 30px;
+    }
+
+    .page-hero h1 {
+      font-size: 40px;
+    }
+
+    .page-hero-bg img {
+      object-position: 85% center;
     }
 
     .episodios-grid {

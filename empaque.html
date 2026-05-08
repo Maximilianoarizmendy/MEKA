@@ -27,7 +27,7 @@
       --bg: #0b0b0b;
       --panel: #121212;
       --card: #121212;
-      --muted: #1a1a1a;
+      --muted: rgba(26, 26, 26, 0.7);
       --line: #222;
       --border: #2a2a2a;
       --fg: #f5f5f5;
@@ -56,577 +56,670 @@
       border-color: var(--accent);
     }
 
-    .foot-logo {
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 24px;
-      color: var(--fg);
-      margin-bottom: 12px;
-    }
+  /* FOOTER */
+  footer {
+    background: rgba(11, 11, 11, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    padding: 36px 0 96px;
+    margin-top: 36px;
+  }
 
-    .foot {
-      padding: 60px 0;
-      border-top: 1px solid var(--line);
-    }
+  .foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
 
-  /* ============================================================
+  footer h4 {
+    font-family: "Dela Gothic One";
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+
+  .input {
+    display: flex;
+    gap: 8px;
+  }
+
+  .input input {
+    flex: 1;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--fg);
+  }
+
+    /* ============================================================
      RESTO DE ESTILOS (antes estaban fuera del head — CORREGIDO)
      ============================================================ */
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html,
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: 'Inter', system-ui, sans-serif;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
-
-  .wrap {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* PILLS */
-  .pill-border {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid var(--border);
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--sub-c);
-    padding: 5px 14px;
-    border-radius: 999px;
-  }
-
-  .pill-border .dot-live {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .btn {
-    border: 1px solid var(--border);
-    padding: 11px 22px;
-    border-radius: 999px;
-    background: transparent;
-    color: var(--fg);
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: all .2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn:hover {
-    background: var(--muted);
-    border-color: #444;
-  }
-
-  .btn-accent {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #111;
-  }
-
-  /* NAV */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    z-index: 1000;
-    background: rgba(11, 11, 11, 0.85);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-inner {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  /* CART SIDEBAR */
-  .cart-sidebar {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    max-width: 400px;
-    height: 100vh;
-    background: var(--panel);
-    border-left: 1px solid var(--border);
-    z-index: 2000;
-    transition: right .4s cubic-bezier(.4, 0, .2, 1);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .cart-sidebar.open {
-    right: 0;
-  }
-
-  .cart-header {
-    padding: 24px;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cart-header h3 {
-    font-family: 'Dela Gothic One', sans-serif;
-    font-size: 18px;
-    text-transform: uppercase;
-  }
-
-  .cart-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px;
-  }
-
-  .cart-empty {
-    text-align: center;
-    color: var(--sub-c);
-    margin-top: 40px;
-  }
-
-  .cart-footer {
-    padding: 24px;
-    border-top: 1px solid var(--line);
-    background: var(--muted);
-  }
-
-  .cart-total {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-weight: 700;
-    font-size: 18px;
-  }
-
-  .cart-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .cart-item-img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .cart-item-info {
-    flex: 1;
-  }
-
-  .cart-item-title {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  .cart-item-meta {
-    font-size: 12px;
-    color: var(--sub-c);
-    margin-bottom: 8px;
-  }
-
-  .cart-remove {
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-size: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 0;
-  }
-
-  .close-x {
-    background: none;
-    border: none;
-    color: var(--fg);
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 28px;
-  }
-
-  .nav-links a {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--sub-c);
-    transition: color .2s;
-  }
-
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--fg);
-  }
-
-  .hamb {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .hamb span {
-    width: 22px;
-    height: 2px;
-    background: var(--fg);
-    border-radius: 2px;
-    transition: all .25s;
-  }
-
-  /* PAGE HERO */
-  .page-hero {
-    margin-top: 70px;
-    padding: 120px 0 80px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .page-hero h1 {
-    font-family: "Dela Gothic One", system-ui;
-    font-size: clamp(40px, 8vw, 90px);
-    margin: 20px 0;
-    color: var(--accent);
-    line-height: .9;
-    text-transform: uppercase;
-  }
-
-  .page-hero p {
-    font-size: clamp(16px, 2vw, 20px);
-    color: var(--sub-c);
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  /* EMPAQUE SECTIONS */
-  .empaque-section {
-    padding: 80px 0;
-  }
-
-  .empaque-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  .empaque-grid.reverse {
-    direction: rtl;
-  }
-
-  .empaque-grid.reverse>* {
-    direction: ltr;
-  }
-
-  .empaque-text h2 {
-    font-family: "Dela Gothic One";
-    font-size: 36px;
-    margin: 0 0 20px;
-    color: var(--accent);
-  }
-
-  .empaque-text p {
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 16px;
-    color: var(--fg);
-  }
-
-  .empaque-text ul {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-  }
-
-  .empaque-text ul li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .empaque-text ul li i {
-    color: var(--accent);
-    font-size: 20px;
-  }
-
-  .empaque-image {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card);
-  }
-
-  .empaque-image img,
-  .empaque-image video {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-  }
-
-  /* PROCESS CARDS */
-  .process-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .process-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-
-  .process-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-
-  .process-card .number {
-    font-family: "Dela Gothic One";
-    font-size: 48px;
-    color: var(--accent);
-    opacity: 0.3;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-
-  .process-card h3 {
-    font-family: "Ubuntu";
-    font-size: 20px;
-    margin: 0 0 12px;
-  }
-
-  .process-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--sub);
-    margin: 0;
-  }
-
-  /* STATS */
-  .stats-section {
-    background: var(--muted);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 60px 0;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    text-align: center;
-  }
-
-  .stat-item .stat-number {
-    font-family: "Dela Gothic One";
-    font-size: 56px;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .stat-item .stat-label {
-    font-size: 14px;
-    color: var(--sub);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  /* VIDEOS SECTION */
-  .videos-section {
-    padding: 80px 0;
-    background: var(--bg);
-  }
-
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .video-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-
-  .video-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-
-  .video-thumbnail {
-    position: relative;
-    width: 100%;
-    height: 240px;
-    background: #0b0b0b;
-  }
-
-  .video-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .video-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: #000;
-    font-size: 24px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .video-card:hover .video-play {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-
-  .video-duration {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(0, 0, 0, 0.85);
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--accent);
-  }
-
-  .video-body {
-    padding: 20px;
-  }
-
-  .video-title {
-    font-family: "Ubuntu";
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0 0 10px;
-    line-height: 1.3;
-  }
-
-  .video-desc {
-    font-size: 14px;
-    color: var(--sub);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* RECYCLING BANNER */
-  .recycling-banner {
-    margin-top: 50px;
-    padding: 30px;
-    background: rgba(232, 255, 74, 0.05);
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-    text-align: center;
-  }
-
-  .recycling-banner h3 {
-    font-family: "Ubuntu";
-    font-size: 22px;
-    margin: 0 0 12px;
-    color: var(--accent);
-  }
-
-  .recycling-banner p {
-    color: var(--sub);
-    margin: 0 0 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-
-  .recycling-banner strong {
-    color: var(--accent);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 980px) {
-    .menu {
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: url('imagenes/fondopodcast.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--fg);
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .wrap {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* PILLS */
+    .pill-border {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sub-c);
+      padding: 5px 14px;
+      border-radius: 999px;
+    }
+
+    .pill-border .dot-live {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: var(--muted);
+      border-color: #444;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #111;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      z-index: 1000;
+      background: rgba(11, 11, 11, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* CART SIDEBAR */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: var(--panel);
+      border-left: 1px solid var(--border);
+      z-index: 2000;
+      transition: right .4s cubic-bezier(.4, 0, .2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--sub-c);
+      margin-top: 40px;
+    }
+
+    .cart-footer {
+      padding: 24px;
+      border-top: 1px solid var(--line);
+      background: var(--muted);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-item-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .cart-item-meta {
+      font-size: 12px;
+      color: var(--sub-c);
+      margin-bottom: 8px;
+    }
+
+    .cart-remove {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0;
+    }
+
+    .close-x {
+      background: none;
+      border: none;
+      color: var(--fg);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--sub-c);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--fg);
+    }
+
+    .hamb {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamb span {
+      width: 22px;
+      height: 2px;
+      background: var(--fg);
+      border-radius: 2px;
+      transition: all .25s;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      margin-top: 70px;
+      padding: 120px 0 80px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero h1 {
+      font-family: "Dela Gothic One", system-ui;
+      font-size: clamp(40px, 8vw, 90px);
+      margin: 20px 0;
+      color: var(--accent);
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .page-hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--sub-c);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* EMPAQUE SECTIONS */
+    .empaque-section {
+      padding: 80px 0;
+    }
+
+    .empaque-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .empaque-grid.reverse {
+      direction: rtl;
+    }
+
+    .empaque-grid.reverse>* {
+      direction: ltr;
+    }
+
+    .empaque-text h2 {
+      font-family: "Dela Gothic One";
+      font-size: 36px;
+      margin: 0 0 20px;
+      color: var(--accent);
+    }
+
+    .empaque-text p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      color: var(--fg);
+    }
+
+    .empaque-text ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .empaque-text ul li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .empaque-text ul li i {
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    .empaque-image {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .empaque-image img,
+    .empaque-image video {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* PROCESS CARDS */
+    .process-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .process-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .process-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .process-card .number {
+      font-family: "Dela Gothic One";
+      font-size: 48px;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .process-card h3 {
+      font-family: "Ubuntu";
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+
+    .process-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--sub);
+      margin: 0;
+    }
+
+    /* STATS */
+    .stats-section {
+      background: var(--muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-family: "Dela Gothic One";
+      font-size: 56px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-item .stat-label {
+      font-size: 14px;
+      color: var(--sub);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* VIDEOS SECTION */
+    .videos-section {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .video-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background: #0b0b0b;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #000;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover .video-play {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .video-duration {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .video-body {
+      padding: 20px;
+    }
+
+    .video-title {
+      font-family: "Ubuntu";
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+
+    .video-desc {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* RECYCLING BANNER */
+    .recycling-banner {
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(232, 255, 74, 0.05);
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .recycling-banner h3 {
+      font-family: "Ubuntu";
+      font-size: 22px;
+      margin: 0 0 12px;
+      color: var(--accent);
+    }
+
+    .recycling-banner p {
+      color: var(--sub);
+      margin: 0 0 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .recycling-banner strong {
+      color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(18, 18, 18, 0.95);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      /* Mostrar hamburguesa solo en móvil */
+      .hamb {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+      }
+
+      .empaque-grid,
+      .empaque-grid.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recycling-banner {
+        grid-template-columns: 1fr !important;
+      }
+
+      .recycling-banner>div:nth-child(2) {
+        display: none;
+      }
+    }
+
+    /* VIDEOS RESPONSIVE */
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-thumbnail iframe,
+    .video-thumbnail video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      border: none;
+    }
+
+    /* CSS */
+    .mobile-menu {
+      display: none;
+      /* Oculto por defecto */
       position: absolute;
       top: 64px;
       left: 0;
@@ -637,82 +730,13 @@
       gap: 16px;
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      display: none;
+      z-index: 999;
     }
 
-    .menu.show {
+    .mobile-menu.open {
       display: flex;
     }
-
-    /* Mostrar hamburguesa solo en móvil */
-    .hamb {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
-
-    .empaque-grid,
-    .empaque-grid.reverse {
-      grid-template-columns: 1fr;
-      direction: ltr;
-    }
-
-    .videos-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .recycling-banner {
-      grid-template-columns: 1fr !important;
-    }
-
-    .recycling-banner>div:nth-child(2) {
-      display: none;
-    }
-  }
-
-  /* VIDEOS RESPONSIVE */
-  .video-thumbnail {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    /* Relación 16:9 */
-    height: 0;
-    overflow: hidden;
-  }
-
-  .video-thumbnail iframe,
-  .video-thumbnail video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-    border: none;
-  }
-
-  /* CSS */
-  .mobile-menu {
-    display: none;
-    /* Oculto por defecto */
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: rgba(18, 18, 18, 0.95);
-    flex-direction: column;
-    padding: 20px;
-    gap: 16px;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    z-index: 999;
-  }
-
-  .mobile-menu.open {
-    display: flex;
-  }
-</style>
+  </style>
 </head>
 
 <body>
@@ -764,7 +788,8 @@
       </div>
       <button class="btn-accent" style="width:100%"
         onclick="window.open('https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20hacer%20un%20pedido','_blank')">
-        <i class="fa-brands fa-whatsapp"></i> <span data-es="Finalizar compra vía WhatsApp" data-en="Checkout via WhatsApp">Finalizar compra vía WhatsApp</span>
+        <i class="fa-brands fa-whatsapp"></i> <span data-es="Finalizar compra vía WhatsApp"
+          data-en="Checkout via WhatsApp">Finalizar compra vía WhatsApp</span>
       </button>
     </div>
   </aside>
@@ -772,11 +797,7 @@
   <!-- HERO -->
   <header class="page-hero">
     <div class="wrap">
-      <div class="pill-border" style="margin-bottom: 24px" data-es="Sustentabilidad · Memoria · Calle" data-en="Sustainability · Memory · Street">
-        <span class="dot-live"></span> Sustentabilidad · Memoria · Calle
-      </div>
-      <h1 data-es="documentos" data-en="documentos">documentos<br></h1>
-      <p data-es="documentos" data-en="documentos">documentos</p>
+      <h1 data-es="Documentos" data-en="Documents">Documentos<br></h1>
     </div>
   </header>
 
@@ -790,13 +811,18 @@
         <div class="empaque-text">
           <span class="eyebrow" data-es="Estrategia" data-en="Strategy">Estrategia</span>
           <h2 data-es="Brief Creativo" data-en="Creative Brief">Brief Creativo</h2>
-          <p data-es="Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia que buscamos transmitir en cada pieza de empaque." data-en="Learn about MEKA's strategic foundation. Our brief details the objectives, target audience, and the essence we seek to convey in every piece of packaging.">Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia que buscamos transmitir en cada pieza de empaque.</p>
-          <a href="documentos/brief_meka.pdf" target="_blank" class="btn brand" data-es="<i class='fas fa-file-pdf'></i> Ver Brief Completo" data-en="<i class='fas fa-file-pdf'></i> View Full Brief">
+          <p data-es="Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia que buscamos transmitir en cada pieza de empaque."
+            data-en="Learn about MEKA's strategic foundation. Our brief details the objectives, target audience, and the essence we seek to convey in every piece of packaging.">
+            Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia
+            que buscamos transmitir en cada pieza de empaque.</p>
+          <a href="documentos/brief_meka.pdf" target="_blank" class="btn brand"
+            data-es="<i class='fas fa-file-pdf'></i> Ver Brief Completo"
+            data-en="<i class='fas fa-file-pdf'></i> View Full Brief">
             <i class="fas fa-file-pdf"></i> Ver Brief Completo
           </a>
         </div>
         <div class="empaque-image">
-          <img src="imagenes/23mockups.jpg" alt="Brief Creativo">
+          <img src="imagenes/brief.jpg" alt="Brief Creativo">
         </div>
       </div>
     </div>
@@ -809,13 +835,18 @@
         <div class="empaque-text">
           <span class="eyebrow" data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span>
           <h2 data-es="Manual de Marca" data-en="Brand Manual">Manual de Marca</h2>
-          <p data-es="Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y la paleta de colores que define a MEKA." data-en="Our identity is street and resistance. In this manual we explore the use of the logo, urban typographies, and the color palette that defines MEKA.">Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y la paleta de colores que define a MEKA.</p>
-          <a href="documentos/manual_marca_meka.pdf" target="_blank" class="btn brand" data-es="<i class='fas fa-book'></i> Ver Manual de Marca" data-en="<i class='fas fa-book'></i> View Brand Manual">
+          <p data-es="Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y la paleta de colores que define a MEKA."
+            data-en="Our identity is street and resistance. In this manual we explore the use of the logo, urban typographies, and the color palette that defines MEKA.">
+            Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y
+            la paleta de colores que define a MEKA.</p>
+          <a href="documentos/manual_marca_meka.pdf" target="_blank" class="btn brand"
+            data-es="<i class='fas fa-book'></i> Ver Manual de Marca"
+            data-en="<i class='fas fa-book'></i> View Brand Manual">
             <i class="fas fa-book"></i> Ver Manual de Marca
           </a>
         </div>
         <div class="empaque-image">
-          <img src="imagenes/camisasmockups.jpg" alt="Manual de Marca">
+          <img src="imagenes/manual.jpg" alt="Manual de Marca">
         </div>
       </div>
     </div>
@@ -828,7 +859,10 @@
         <div class="empaque-text">
           <span class="eyebrow" data-es="Movimiento" data-en="Motion">Movimiento</span>
           <h2 data-es="Animación 2D" data-en="2D Animation">Animación 2D</h2>
-          <p data-es="Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los diseños que plasmamos en cada empaque." data-en="Explore how our urban graphics come to life. 2D animation shows the dynamism and energy of the designs we put on every package.">Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los diseños que plasmamos en cada empaque.</p>
+          <p data-es="Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los diseños que plasmamos en cada empaque."
+            data-en="Explore how our urban graphics come to life. 2D animation shows the dynamism and energy of the designs we put on every package.">
+            Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los
+            diseños que plasmamos en cada empaque.</p>
         </div>
         <div class="empaque-image">
           <video width="100%" height="400" controls>
@@ -847,7 +881,10 @@
         <div class="empaque-text">
           <span class="eyebrow" data-es="Inmersión" data-en="Immersion">Inmersión</span>
           <h2 data-es="Animación 3D" data-en="3D Animation">Animación 3D</h2>
-          <p data-es="Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras cajas en este render animado tridimensional." data-en="A volumetric view of our sustainable packaging. Discover the structure and resistance of our boxes in this three-dimensional animated render.">Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras cajas en este render animado tridimensional.</p>
+          <p data-es="Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras cajas en este render animado tridimensional."
+            data-en="A volumetric view of our sustainable packaging. Discover the structure and resistance of our boxes in this three-dimensional animated render.">
+            Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras
+            cajas en este render animado tridimensional.</p>
         </div>
         <div class="empaque-image">
           <video width="100%" height="400" controls>
@@ -932,8 +969,8 @@
     // Navbar hamburger logic
     const hamb = document.getElementById('hamb');
     const navLinks = document.getElementById('navLinks');
-    
-    if(hamb && navLinks) {
+
+    if (hamb && navLinks) {
       hamb.addEventListener('click', () => {
         navLinks.classList.toggle('show');
       });

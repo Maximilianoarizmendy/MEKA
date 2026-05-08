@@ -913,7 +913,7 @@
     }
 
     /* ============================================
-   QUIENES SOMOS
+   QUIÉNES SOMOS
    ============================================ */
     .quienes-section {
       padding: 80px 0;
@@ -2571,7 +2571,7 @@
               data-es="Ver colecciones" data-en="View collections">Ver
               colecciones</button>
             <button class="btn" onclick="document.getElementById('quienes-somos').scrollIntoView({behavior:'smooth'})"
-              data-es="Qué es MEKA" data-en="About us">Qué es MEKA</button>
+              data-es="¿Qué es MEKA?" data-en="What is MEKA?">¿Qué es MEKA?</button>
           </div>
           <div class="hero-stats">
             <div class="stat-item">
@@ -3191,7 +3191,7 @@
           <li data-es="Accesorios" data-en="Accessories">Accesorios</li>
         </ul>
         <div style="color: var(--accent); font-size: 11px; margin-top: 20px; font-style: italic;"
-          data-es="*Está página web es de carácter académico y no genera rendimientos económicos"
+          data-es="*Esta página web es de carácter académico y no genera rendimientos económicos"
           data-en="*This website is for academic purposes and does not generate economic profit">
           *Esta página web es de carácter académico y no genera rendimientos económicos
         </div>
@@ -3563,6 +3563,22 @@
 
       updateLanguage();
     })();
+
+    // Navbar hamburger logic
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    
+    if(hamb && navLinks) {
+      hamb.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 980) navLinks.classList.remove('show');
+        });
+      });
+    }
   </script>
 </body>
 
