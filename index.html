@@ -405,6 +405,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 15%;
       opacity: .65;
     }
 
@@ -2294,6 +2295,15 @@
         display: flex;
       }
 
+      .hero {
+        min-height: 650px;
+        align-items: flex-end;
+      }
+
+      .hero-bg img {
+        object-position: center 15%;
+      }
+
       .hero-content-inner {
         grid-template-columns: 1fr;
       }
@@ -2400,7 +2410,15 @@
       }
 
       .hero-main-title {
-        font-size: clamp(44px, 14vw, 68px);
+        font-size: clamp(38px, 12vw, 60px);
+      }
+
+      .hero {
+        min-height: 580px;
+      }
+
+      .hero-bg img {
+        object-position: center 10%;
       }
 
 
