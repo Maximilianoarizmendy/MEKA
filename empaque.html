@@ -1,1018 +1,716 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MEKA — Documentos</title>
-  <meta name="description" content="Nuestros documentos, brief y manuales" />
+  <meta name="description" content="Brief, manual de marca, animaciones y recursos de MEKA." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;800&family=Ubuntu:wght@400;500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
   <style>
-    .iconitos {
-      display: flex;
-      gap: 10px;
-    }
-
-    .iconitos a {
-      font-size: 24px;
-    }
-
     :root {
       --bg: #0b0b0b;
       --panel: #121212;
-      --card: #121212;
-      --muted: rgba(26, 26, 26, 0.7);
+      --card: #141414;
+      --muted: #1a1a1a;
       --line: #222;
       --border: #2a2a2a;
       --fg: #f5f5f5;
-      --sub-c: rgba(245, 245, 245, 0.55);
-      --sub: rgba(245, 245, 245, 0.55);
+      --sub: rgba(245,245,245,0.55);
       --accent: #e8ff4a;
     }
 
-    .eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      display: inline-block;
-      padding: 4px 12px;
-      border: 1px solid var(--accent);
-      border-radius: 20px;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .btn.brand {
-      background: var(--accent);
-      color: #111;
-      border-color: var(--accent);
-    }
-
-  /* FOOTER */
-  footer {
-    background: rgba(11, 11, 11, 0.8);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border);
-    padding: 36px 0 96px;
-    margin-top: 36px;
-  }
-
-  .foot {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-  }
-
-  footer h4 {
-    font-family: "Dela Gothic One";
-    font-size: 22px;
-    margin: 0 0 8px;
-  }
-
-  .input {
-    display: flex;
-    gap: 8px;
-  }
-
-  .input input {
-    flex: 1;
-    background: #0f0f0f;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    color: var(--fg);
-  }
-
-    /* ============================================================
-     RESTO DE ESTILOS (antes estaban fuera del head — CORREGIDO)
-     ============================================================ */
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      background: url('imagenes/fondopodcast.jpeg') no-repeat center center fixed;
-      background-size: cover;
+    html, body {
+      background: var(--bg);
       color: var(--fg);
       font-family: 'Inter', system-ui, sans-serif;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    .wrap {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* PILLS */
-    .pill-border {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--border);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sub-c);
-      padding: 5px 14px;
-      border-radius: 999px;
-    }
-
-    .pill-border .dot-live {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .btn {
-      border: 1px solid var(--border);
-      padding: 11px 22px;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--fg);
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-      transition: all .2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn:hover {
-      background: var(--muted);
-      border-color: #444;
-    }
-
-    .btn-accent {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #111;
-    }
-
-    /* NAV */
+    /* ── NAV ── */
     .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
+      position: fixed; top: 0; left: 0; right: 0; height: 70px;
       z-index: 1000;
-      background: rgba(11, 11, 11, 0.85);
+      background: rgba(11,11,11,0.85);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
     }
-
     .nav-inner {
-      width: 100%;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    /* CART SIDEBAR */
-    .cart-sidebar {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      max-width: 400px;
-      height: 100vh;
-      background: var(--panel);
-      border-left: 1px solid var(--border);
-      z-index: 2000;
-      transition: right .4s cubic-bezier(.4, 0, .2, 1);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-sidebar.open {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 24px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cart-header h3 {
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 18px;
-      text-transform: uppercase;
-    }
-
-    .cart-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px;
-    }
-
-    .cart-empty {
-      text-align: center;
-      color: var(--sub-c);
-      margin-top: 40px;
-    }
-
-    .cart-footer {
-      padding: 24px;
-      border-top: 1px solid var(--line);
-      background: var(--muted);
-    }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .cart-item-img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .cart-item-info {
-      flex: 1;
-    }
-
-    .cart-item-title {
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .cart-item-meta {
-      font-size: 12px;
-      color: var(--sub-c);
-      margin-bottom: 8px;
-    }
-
-    .cart-remove {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      padding: 0;
-    }
-
-    .close-x {
-      background: none;
-      border: none;
-      color: var(--fg);
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-    }
-
+    .nav-links { display: flex; gap: 28px; }
     .nav-links a {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--sub-c);
-      transition: color .2s;
+      font-weight: 600; font-size: 13px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--sub); transition: color .2s;
     }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--fg);
+    .nav-links a:hover, .nav-links a.active { color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      border: 1px solid var(--border); padding: 10px 20px; border-radius: 999px;
+      background: transparent; color: var(--fg); font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.04em;
+      cursor: pointer; transition: all .2s;
     }
-
+    .btn:hover { background: var(--muted); border-color: #444; }
+    .btn.brand { background: var(--accent); color: #111; border-color: var(--accent); }
     .hamb {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
     }
+    .hamb span { width: 22px; height: 2px; background: var(--fg); border-radius: 2px; display: block; }
+    .nav-links.show { display: flex; }
 
-    .hamb span {
-      width: 22px;
-      height: 2px;
-      background: var(--fg);
-      border-radius: 2px;
-      transition: all .25s;
+    /* ── CART ── */
+    .cart-sidebar {
+      position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px;
+      height: 100vh; background: var(--panel); border-left: 1px solid var(--border);
+      z-index: 2000; transition: right .4s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
     }
+    .cart-sidebar.open { right: 0; }
+    .cart-header {
+      padding: 24px; border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cart-header h3 { font-family: 'Dela Gothic One'; font-size: 18px; text-transform: uppercase; }
+    .cart-body { flex: 1; overflow-y: auto; padding: 24px; }
+    .cart-empty { text-align: center; color: var(--sub); margin-top: 40px; }
+    .cart-footer { padding: 24px; border-top: 1px solid var(--line); background: var(--muted); }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700; font-size: 18px; }
+    .close-x { background: none; border: none; color: var(--fg); font-size: 20px; cursor: pointer; }
+    .cart-badge {
+      position: absolute; top: -6px; right: -6px;
+      background: var(--accent); color: #000;
+      width: 18px; height: 18px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 10px; font-weight: 900;
+    }
+    .cart-wrap { position: relative; }
 
-    /* PAGE HERO */
+    /* ── HERO ── */
     .page-hero {
       margin-top: 70px;
-      padding: 120px 0 80px;
-      text-align: center;
+      min-height: 360px;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
       border-bottom: 1px solid var(--border);
+      padding-bottom: 60px;
+    }
+    .hero-noise {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(-55deg,
+          rgba(255,255,255,.018) 0, rgba(255,255,255,.018) 1px,
+          transparent 1px, transparent 28px),
+        repeating-linear-gradient(35deg,
+          rgba(232,255,74,.03) 0, rgba(232,255,74,.03) 1px,
+          transparent 1px, transparent 40px);
+    }
+    .hero-glow {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(232,255,74,.07) 0%, transparent 70%);
+    }
+    .hero-bg-word {
+      position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+      font-family: 'Dela Gothic One'; font-size: clamp(80px, 18vw, 200px);
+      color: rgba(245,245,245,.025); white-space: nowrap; user-select: none;
+      pointer-events: none; letter-spacing: -0.02em; text-transform: uppercase;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative; z-index: 2; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #0b0b0b;
+      font-weight: 700; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Dela Gothic One'; font-size: clamp(48px, 9vw, 110px);
+      line-height: .88; letter-spacing: -0.03em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-title em {
+      font-style: normal;
+      -webkit-text-stroke: 1.5px var(--fg); color: transparent;
+    }
+    .hero-sub {
+      font-size: 16px; line-height: 1.7; color: var(--sub); max-width: 520px;
     }
 
-    .page-hero h1 {
-      font-family: "Dela Gothic One", system-ui;
-      font-size: clamp(40px, 8vw, 90px);
-      margin: 20px 0;
-      color: var(--accent);
-      line-height: .9;
-      text-transform: uppercase;
-    }
-
-    .page-hero p {
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--sub-c);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* EMPAQUE SECTIONS */
-    .empaque-section {
-      padding: 80px 0;
-    }
-
-    .empaque-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .empaque-grid.reverse {
-      direction: rtl;
-    }
-
-    .empaque-grid.reverse>* {
-      direction: ltr;
-    }
-
-    .empaque-text h2 {
-      font-family: "Dela Gothic One";
-      font-size: 36px;
-      margin: 0 0 20px;
-      color: var(--accent);
-    }
-
-    .empaque-text p {
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 16px;
-      color: var(--fg);
-    }
-
-    .empaque-text ul {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-    }
-
-    .empaque-text ul li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .empaque-text ul li i {
-      color: var(--accent);
-      font-size: 20px;
-    }
-
-    .empaque-image {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card);
-    }
-
-    .empaque-image img,
-    .empaque-image video {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
-
-    /* PROCESS CARDS */
-    .process-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .process-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .process-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .process-card .number {
-      font-family: "Dela Gothic One";
-      font-size: 48px;
-      color: var(--accent);
-      opacity: 0.3;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .process-card h3 {
-      font-family: "Ubuntu";
-      font-size: 20px;
-      margin: 0 0 12px;
-    }
-
-    .process-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--sub);
-      margin: 0;
-    }
-
-    /* STATS */
-    .stats-section {
+    /* ── TICKER ── */
+    .ticker {
       background: var(--muted);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 60px 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      overflow: hidden; white-space: nowrap;
     }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      text-align: center;
+    .ticker-track {
+      display: inline-block; padding: 12px 0;
+      animation: ticker 20s linear infinite;
     }
+    .ticker-item {
+      font-family: 'Dela Gothic One'; font-size: 12px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--sub); padding: 0 24px;
+    }
+    .ticker-item .dot { color: var(--accent); margin-right: 24px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    .stat-item .stat-number {
-      font-family: "Dela Gothic One";
-      font-size: 56px;
-      color: var(--accent);
+    /* ── DOCS SECTION ── */
+    .docs-section { padding: 80px 0; }
+
+    .section-label {
+      font-weight: 700; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Dela Gothic One'; font-size: clamp(28px, 4vw, 48px);
+      text-transform: uppercase; color: var(--fg); margin-bottom: 48px;
       line-height: 1;
-      margin-bottom: 8px;
     }
 
-    .stat-item .stat-label {
-      font-size: 14px;
-      color: var(--sub);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    /* PDF Cards */
+    .pdf-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+      margin-bottom: 80px;
     }
-
-    /* VIDEOS SECTION */
-    .videos-section {
-      padding: 80px 0;
-      background: var(--bg);
+    .pdf-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      transition: border-color .3s, transform .3s;
+      min-height: 280px;
     }
-
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
+    .pdf-card:hover {
+      border-color: var(--accent); transform: translateY(-4px);
     }
+    .pdf-card-img {
+      position: relative; overflow: hidden; background: var(--muted);
+    }
+    .pdf-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .pdf-card:hover .pdf-card-img img { transform: scale(1.06); }
+    .pdf-card-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(11,11,11,.3) 0%, transparent 60%);
+    }
+    .pdf-card-tag {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--accent); color: #0b0b0b;
+      font-weight: 700; font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+    }
+    .pdf-card-body {
+      padding: 32px 28px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .pdf-card-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .pdf-card-title {
+      font-family: 'Dela Gothic One'; font-size: 22px;
+      text-transform: uppercase; color: var(--fg);
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .pdf-card-desc {
+      font-size: 13px; line-height: 1.7; color: var(--sub);
+      margin-bottom: 24px; flex: 1;
+    }
+    .pdf-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pdf-meta {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--sub);
+    }
+    .pdf-meta i { color: var(--accent); font-size: 14px; }
+    .btn-doc {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #111;
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 10px 18px; border-radius: 999px; border: none;
+      cursor: pointer; transition: all .2s; text-decoration: none;
+    }
+    .btn-doc:hover { background: #d1e642; transform: scale(1.03); }
+    .btn-doc-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--sub);
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 10px 18px; border-radius: 999px; background: transparent;
+      cursor: pointer; transition: all .2s; text-decoration: none;
+    }
+    .btn-doc-ghost:hover { border-color: #555; color: var(--fg); }
 
+    /* VIDEO Cards */
+    .video-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
     .video-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      transition: border-color .3s, transform .3s;
     }
-
     .video-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
+      border-color: var(--accent); transform: translateY(-4px);
     }
-
-    .video-thumbnail {
-      position: relative;
-      width: 100%;
-      height: 240px;
-      background: #0b0b0b;
+    .video-wrap {
+      position: relative; background: #000;
+      aspect-ratio: 16/9;
     }
-
-    .video-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .video-wrap video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
-
-    .video-play {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #000;
-      font-size: 24px;
+    .video-play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.35);
+      transition: background .25s;
       cursor: pointer;
-      transition: transform 0.2s ease;
     }
-
-    .video-card:hover .video-play {
-      transform: translate(-50%, -50%) scale(1.1);
+    .video-card:hover .video-play-overlay { background: rgba(0,0,0,.15); }
+    .video-play-btn {
+      width: 64px; height: 64px;
+      background: var(--accent); border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 22px; color: #000;
+      transition: transform .2s;
+      pointer-events: none;
     }
-
-    .video-duration {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.85);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
+    .video-card:hover .video-play-btn { transform: scale(1.1); }
+    .video-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(11,11,11,.8); backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      font-weight: 700; font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      padding: 4px 12px; border-radius: 999px;
     }
-
-    .video-body {
-      padding: 20px;
+    .video-card-body { padding: 28px; }
+    .video-card-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
     }
-
-    .video-title {
-      font-family: "Ubuntu";
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0 0 10px;
-      line-height: 1.3;
+    .video-card-title {
+      font-family: 'Dela Gothic One'; font-size: 22px;
+      text-transform: uppercase; line-height: 1.1; margin-bottom: 10px;
     }
-
-    .video-desc {
-      font-size: 14px;
-      color: var(--sub);
-      line-height: 1.6;
-      margin: 0;
+    .video-card-desc {
+      font-size: 13px; line-height: 1.7; color: var(--sub); margin-bottom: 20px;
     }
+    .video-card-meta {
+      display: flex; gap: 20px; font-size: 12px; color: var(--sub);
+    }
+    .video-card-meta i { color: var(--accent); margin-right: 6px; }
 
-    /* RECYCLING BANNER */
-    .recycling-banner {
-      margin-top: 50px;
-      padding: 30px;
-      background: rgba(232, 255, 74, 0.05);
-      border: 1px dashed var(--border);
-      border-radius: 16px;
+    /* ── DIVIDER CTA ── */
+    .cta-strip {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--muted); padding: 48px 0; margin: 80px 0 0;
       text-align: center;
     }
-
-    .recycling-banner h3 {
-      font-family: "Ubuntu";
-      font-size: 22px;
-      margin: 0 0 12px;
-      color: var(--accent);
+    .cta-strip h2 {
+      font-family: 'Dela Gothic One'; font-size: clamp(28px, 5vw, 56px);
+      text-transform: uppercase; margin-bottom: 12px; color: var(--accent);
     }
+    .cta-strip p { color: var(--sub); font-size: 15px; margin-bottom: 28px; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-    .recycling-banner p {
-      color: var(--sub);
-      margin: 0 0 20px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(11,11,11,.9);
+      border-top: 1px solid var(--border);
+      padding: 40px 0 60px;
     }
-
-    .recycling-banner strong {
-      color: var(--accent);
+    .foot {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
     }
+    .foot-logo { font-family: 'Dela Gothic One'; font-size: 28px; margin-bottom: 8px; }
+    footer h4 { font-family: 'Dela Gothic One'; font-size: 18px; margin-bottom: 16px; }
+    footer p { color: var(--sub); font-size: 14px; line-height: 1.6; }
+    .foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .foot-links a { color: var(--sub); font-size: 13px; transition: color .2s; }
+    .foot-links a:hover { color: var(--fg); }
+    .foot-note {
+      color: var(--accent); font-size: 11px; font-style: italic; margin-top: 20px;
+    }
+    .input-row { display: flex; gap: 8px; margin-top: 12px; }
+    .input-row input {
+      flex: 1; background: #0f0f0f; border: 1px solid var(--border);
+      border-radius: 999px; padding: 11px 16px; color: var(--fg);
+      font-family: 'Inter'; font-size: 13px;
+    }
+    .input-row input:focus { outline: 1px solid var(--accent); }
 
-    /* RESPONSIVE */
-    @media (max-width: 980px) {
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .pdf-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .pdf-card { grid-template-columns: 1fr; }
+      .pdf-card-img { height: 220px; }
       .nav-links {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: rgba(18, 18, 18, 0.95);
-        flex-direction: column;
-        padding: 20px;
-        gap: 16px;
+        position: absolute; top: 70px; left: 0; right: 0;
+        background: rgba(18,18,18,.97); flex-direction: column;
+        padding: 20px; gap: 16px;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
         display: none;
       }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      /* Mostrar hamburguesa solo en móvil */
-      .hamb {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
-      }
-
-      .empaque-grid,
-      .empaque-grid.reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-      }
-
-      .videos-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .recycling-banner {
-        grid-template-columns: 1fr !important;
-      }
-
-      .recycling-banner>div:nth-child(2) {
-        display: none;
-      }
-    }
-
-    /* VIDEOS RESPONSIVE */
-    .video-thumbnail {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      /* Relación 16:9 */
-      height: 0;
-      overflow: hidden;
-    }
-
-    .video-thumbnail iframe,
-    .video-thumbnail video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover;
-      border: none;
-    }
-
-    /* CSS */
-    .mobile-menu {
-      display: none;
-      /* Oculto por defecto */
-      position: absolute;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: rgba(18, 18, 18, 0.95);
-      flex-direction: column;
-      padding: 20px;
-      gap: 16px;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 999;
-    }
-
-    .mobile-menu.open {
-      display: flex;
+      .nav-links.show { display: flex; }
+      .hamb { display: flex; }
     }
   </style>
 </head>
-
 <body>
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="nav-logo">
-        <a href="index.html" aria-label="Ir al inicio">
-          <img src="imagenes/mekalogo-removebg-preview.png" alt="Logo MEKA" style="height:34px">
-        </a>
-      </div>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-        <a href="blog.html" data-es="Blog" data-en="Blog">Blog</a>
-        <a href="index.html#coleccion-orion" data-es="Colección" data-en="Collection">Colección</a>
-        <a href="podcast.html" data-es="Podcast" data-en="Podcast">Podcast</a>
-        <a href="empaque.html" class="active" data-es="Documentos" data-en="Documents">Documentos</a>
-      </div>
-      <div class="nav-right">
-        <button class="btn" id="langToggle" style="margin-right: 8px;">
-          <span id="langText">ES</span>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html">
+      <img src="imagenes/mekalogo-removebg-preview.png" alt="MEKA" style="height:34px">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="blog.html" data-es="Blog" data-en="Blog">Blog</a>
+      <a href="index.html#coleccion-orion" data-es="Colección" data-en="Collection">Colección</a>
+      <a href="podcast.html" data-es="Podcast" data-en="Podcast">Podcast</a>
+      <a href="empaque.html" class="active" data-es="Documentos" data-en="Documents">Documentos</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn" id="langToggle"><span id="langText">ES</span></button>
+      <div class="cart-wrap">
+        <button class="btn" id="cartToggle" style="position:relative">
+          🛒 <span data-es="Carrito" data-en="Cart">Carrito</span>
+          <span class="cart-badge" id="cartBadge" style="display:none">0</span>
         </button>
-        <div class="cart-wrap">
-          <button class="btn" id="cartToggle" style="position:relative">
-            🛒 <span data-es="Carrito" data-en="Cart">Carrito</span>
-            <span class="cart-badge" id="cartBadge" style="display:none">0</span>
-          </button>
-        </div>
-      </div>
-      <button class="hamb" id="hamb" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- CART SIDEBAR -->
-  <aside class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h3 data-es="Tu Carrito" data-en="Your Cart">Tu Carrito</h3>
-      <button class="close-x" id="closeCart">✕</button>
-    </div>
-    <div class="cart-body" id="cartBody">
-      <div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>
-    </div>
-    <div class="cart-footer" id="cartFooter" style="display:none">
-      <div class="cart-total">
-        <span data-es="Total:" data-en="Total:">Total:</span>
-        <span id="cartTotal">$0</span>
-      </div>
-      <button class="btn-accent" style="width:100%"
-        onclick="window.open('https://wa.me/573237959787?text=Hola%20MEKA,%20quiero%20hacer%20un%20pedido','_blank')">
-        <i class="fa-brands fa-whatsapp"></i> <span data-es="Finalizar compra vía WhatsApp"
-          data-en="Checkout via WhatsApp">Finalizar compra vía WhatsApp</span>
-      </button>
-    </div>
-  </aside>
-
-  <!-- HERO -->
-  <header class="page-hero">
-    <div class="wrap">
-      <h1 data-es="Documentos" data-en="Documents">Documentos<br></h1>
-    </div>
-  </header>
-
-
-
-
-  <!-- BRIEF -->
-  <section class="empaque-section" style="background: var(--muted)">
-    <div class="wrap">
-      <div class="empaque-grid reverse">
-        <div class="empaque-text">
-          <span class="eyebrow" data-es="Estrategia" data-en="Strategy">Estrategia</span>
-          <h2 data-es="Brief Creativo" data-en="Creative Brief">Brief Creativo</h2>
-          <p data-es="Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia que buscamos transmitir en cada pieza de empaque."
-            data-en="Learn about MEKA's strategic foundation. Our brief details the objectives, target audience, and the essence we seek to convey in every piece of packaging.">
-            Conoce la base estratégica de MEKA. Nuestro brief detalla los objetivos, el público objetivo y la esencia
-            que buscamos transmitir en cada pieza de empaque.</p>
-          <a href="documentos/brief_meka.pdf" target="_blank" class="btn brand"
-            data-es="<i class='fas fa-file-pdf'></i> Ver Brief Completo"
-            data-en="<i class='fas fa-file-pdf'></i> View Full Brief">
-            <i class="fas fa-file-pdf"></i> Ver Brief Completo
-          </a>
-        </div>
-        <div class="empaque-image">
-          <img src="imagenes/brief.jpg" alt="Brief Creativo">
-        </div>
       </div>
     </div>
-  </section>
+    <button class="hamb" id="hamb" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- MANUAL DE MARCA -->
-  <section class="empaque-section">
-    <div class="wrap">
-      <div class="empaque-grid">
-        <div class="empaque-text">
-          <span class="eyebrow" data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span>
-          <h2 data-es="Manual de Marca" data-en="Brand Manual">Manual de Marca</h2>
-          <p data-es="Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y la paleta de colores que define a MEKA."
-            data-en="Our identity is street and resistance. In this manual we explore the use of the logo, urban typographies, and the color palette that defines MEKA.">
-            Nuestra identidad es calle y resistencia. En este manual exploramos el uso del logo, tipografías urbanas y
-            la paleta de colores que define a MEKA.</p>
-          <a href="documentos/manual_marca_meka.pdf" target="_blank" class="btn brand"
-            data-es="<i class='fas fa-book'></i> Ver Manual de Marca"
-            data-en="<i class='fas fa-book'></i> View Brand Manual">
-            <i class="fas fa-book"></i> Ver Manual de Marca
-          </a>
-        </div>
-        <div class="empaque-image">
-          <img src="imagenes/manual.jpg" alt="Manual de Marca">
-        </div>
-      </div>
+<!-- CART SIDEBAR -->
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3 data-es="Tu Carrito" data-en="Your Cart">Tu Carrito</h3>
+    <button class="close-x" id="closeCart">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span data-es="Total:" data-en="Total:">Total:</span><span id="cartTotal">$0</span></div>
+    <button class="btn brand" style="width:100%" onclick="window.open('https://wa.me/573237959787','_blank')" data-es="Finalizar compra vía WhatsApp" data-en="Checkout via WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i> Finalizar compra vía WhatsApp
+    </button>
+  </div>
+</aside>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-bg-word">DOCS</div>
+  <div class="wrap hero-content">
+    <div class="hero-eyebrow" data-es="Recursos MEKA" data-en="MEKA Resources"><i class="fas fa-folder-open"></i> Recursos MEKA</div>
+    <h1 class="hero-title">Docu<br><em>mentos</em></h1>
+    <p class="hero-sub" data-es="Brief estratégico, manual de marca y animaciones. Todo lo que define la identidad visual de MEKA." data-en="Strategic brief, brand manual and animations. Everything that defines MEKA's visual identity.">Brief estratégico, manual de marca y animaciones. Todo lo que define la identidad visual de MEKA.</p>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot">★</span> Brief Creativo</span>
+    <span class="ticker-item"><span class="dot">★</span> Manual de Marca</span>
+    <span class="ticker-item"><span class="dot">★</span> Animación 2D</span>
+    <span class="ticker-item"><span class="dot">★</span> Animación 3D</span>
+    <span class="ticker-item"><span class="dot">★</span> Identidad Visual</span>
+    <span class="ticker-item"><span class="dot">★</span> Estrategia MEKA</span>
+    <span class="ticker-item"><span class="dot">★</span> Brief Creativo</span>
+    <span class="ticker-item"><span class="dot">★</span> Manual de Marca</span>
+    <span class="ticker-item"><span class="dot">★</span> Animación 2D</span>
+    <span class="ticker-item"><span class="dot">★</span> Animación 3D</span>
+    <span class="ticker-item"><span class="dot">★</span> Identidad Visual</span>
+    <span class="ticker-item"><span class="dot">★</span> Estrategia MEKA</span>
+  </div>
+</div>
+
+<!-- MAIN DOCS -->
+<section class="docs-section">
+  <div class="wrap">
+
+    <!-- PDFs -->
+    <div class="reveal">
+      <p class="section-label" data-es="Estrategia & Identidad" data-en="Strategy & Identity">Estrategia & Identidad</p>
+      <h2 class="section-title" data-es="Documentos PDF" data-en="PDF Documents">Documentos PDF</h2>
     </div>
-  </section>
 
-  <!-- ANIMACIÓN 2D -->
-  <section class="empaque-section" style="background: var(--muted)">
-    <div class="wrap">
-      <div class="empaque-grid reverse">
-        <div class="empaque-text">
-          <span class="eyebrow" data-es="Movimiento" data-en="Motion">Movimiento</span>
-          <h2 data-es="Animación 2D" data-en="2D Animation">Animación 2D</h2>
-          <p data-es="Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los diseños que plasmamos en cada empaque."
-            data-en="Explore how our urban graphics come to life. 2D animation shows the dynamism and energy of the designs we put on every package.">
-            Explora cómo cobra vida nuestra gráfica urbana. La animación 2D muestra el dinamismo y la energía de los
-            diseños que plasmamos en cada empaque.</p>
-        </div>
-        <div class="empaque-image">
-          <video width="100%" height="400" controls>
-            <source src="imagenes/animacion_2d.mp4" type="video/mp4">
-            Tu navegador no soporta el video.
-          </video>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="pdf-grid">
 
-  <!-- ANIMACIÓN 3D -->
-  <section class="empaque-section">
-    <div class="wrap">
-      <div class="empaque-grid">
-        <div class="empaque-text">
-          <span class="eyebrow" data-es="Inmersión" data-en="Immersion">Inmersión</span>
-          <h2 data-es="Animación 3D" data-en="3D Animation">Animación 3D</h2>
-          <p data-es="Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras cajas en este render animado tridimensional."
-            data-en="A volumetric view of our sustainable packaging. Discover the structure and resistance of our boxes in this three-dimensional animated render.">
-            Una visión volumétrica de nuestro empaque sustentable. Descubre la estructura y resistencia de nuestras
-            cajas en este render animado tridimensional.</p>
+      <!-- Brief -->
+      <div class="pdf-card reveal">
+        <div class="pdf-card-img">
+          <img src="imagenes/brief.jpg" alt="Brief Creativo MEKA">
+          <div class="pdf-card-img-overlay"></div>
+          <span class="pdf-card-tag" data-es="Estrategia" data-en="Strategy">Estrategia</span>
         </div>
-        <div class="empaque-image">
-          <video width="100%" height="400" controls>
-            <source src="imagenes/animacion_3d.mp4" type="video/mp4">
-            Tu navegador no soporta el video.
-          </video>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <div class="logo">
-          <span style="font-size:32px">MEKA</span>
-        </div>
-        <p style="color: var(--sub)" data-es="Diseñado en Colombia para el mundo urbano." data-en="Designed in Colombia for the urban world.">Diseñado en Colombia para el mundo urbano.</p>
-      </div>
-
-      <div>
-        <h4 data-es="Más información" data-en="More information">Mas información</h4>
-        <p style="color: var(--sub)" data-es="Recibe nuestros drops y novedades" data-en="Receive our drops and news">Recibe nuestros drops y novedades</p>
-        <div class="input">
-          <input type="email" placeholder="tu@email.com" aria-label="Correo electrónico">
-          <button class="btn brand" data-es="Suscribir" data-en="Subscribe">Suscribir</button>
-        </div>
-        <div style="color: var(--accent); font-size: 11px; margin-top: 20px; font-style: italic;" data-es="*Está página web es de carácter académico y no genera rendimientos económicos" data-en="*This website is for academic purposes and does not generate economic profit">
-          *Está página web es de carácter académico y no genera rendimientos económicos
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>    /* ---- CARRITO ---- */
-    let cart = JSON.parse(localStorage.getItem('mekaCart')) || [];
-    const $cartSidebar = document.getElementById('cartSidebar');
-    const $cartBadge = document.getElementById('cartBadge');
-    const $cartBody = document.getElementById('cartBody');
-    const $cartFooter = document.getElementById('cartFooter');
-    const $cartTotal = document.getElementById('cartTotal');
-
-    document.getElementById('cartToggle').addEventListener('click', () => $cartSidebar.classList.toggle('open'));
-    document.getElementById('closeCart').addEventListener('click', () => $cartSidebar.classList.remove('open'));
-
-    function updateCartUI() {
-      localStorage.setItem('mekaCart', JSON.stringify(cart));
-      if (cart.length === 0) {
-        $cartBody.innerHTML = '<div class="cart-empty" data-es="Tu carrito está vacío" data-en="Your cart is empty">Tu carrito está vacío</div>';
-        $cartFooter.style.display = 'none'; $cartBadge.style.display = 'none'; return;
-      }
-      const totalItems = cart.reduce((s, i) => s + i.qty, 0);
-      const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      $cartBadge.textContent = totalItems; $cartBadge.style.display = 'grid';
-      $cartFooter.style.display = 'block';
-      $cartTotal.textContent = '$' + totalPrice.toLocaleString('es-CO');
-      $cartBody.innerHTML = cart.map((item, idx) => `
-        <div class="cart-item">
-          <img class="cart-item-img" src="${item.img}" alt="${item.name}">
-          <div class="cart-item-info">
-            <div class="cart-item-title">${item.name}</div>
-            <div class="cart-item-meta">Talla: ${item.size} · Cant: ${item.qty}</div>
-            <div class="cart-item-price">$${(item.price * item.qty).toLocaleString('es-CO')}</div>
-            <button class="cart-remove" onclick="removeFromCart(${idx})">Eliminar</button>
+        <div class="pdf-card-body">
+          <div>
+            <div class="pdf-card-label" data-es="Brief Creativo" data-en="Creative Brief">Brief Creativo</div>
+            <h3 class="pdf-card-title" data-es="La base de todo" data-en="The foundation">La base de todo</h3>
+            <p class="pdf-card-desc" data-es="Conoce los objetivos, público objetivo y la esencia estratégica que guía cada decisión creativa y comercial de MEKA." data-en="Discover the objectives, target audience and strategic essence that guides every creative and commercial decision at MEKA.">
+              Conoce los objetivos, público objetivo y la esencia estratégica que guía cada decisión creativa y comercial de MEKA.
+            </p>
+          </div>
+          <div class="pdf-card-footer">
+            <div class="pdf-meta">
+              <i class="fas fa-file-pdf"></i>
+              <span data-es="PDF · Brief" data-en="PDF · Brief">PDF · Brief</span>
+            </div>
+            <a href="documentos/brief_meka.pdf" target="_blank" class="btn-doc" data-es="Ver" data-en="View">
+              <i class="fas fa-arrow-up-right-from-square"></i> Ver
+            </a>
           </div>
         </div>
-      `).join('');
-    }
-    window.removeFromCart = idx => { cart.splice(idx, 1); updateCartUI(); };
-    updateCartUI();
+      </div>
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.nav');
-      if (window.scrollY > 10) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+      <!-- Manual -->
+      <div class="pdf-card reveal" style="transition-delay:.1s">
+        <div class="pdf-card-img">
+          <img src="imagenes/manual.jpg" alt="Manual de Marca MEKA">
+          <div class="pdf-card-img-overlay"></div>
+          <span class="pdf-card-tag" data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span>
+        </div>
+        <div class="pdf-card-body">
+          <div>
+            <div class="pdf-card-label" data-es="Manual de Marca" data-en="Brand Manual">Manual de Marca</div>
+            <h3 class="pdf-card-title" data-es="Calle en cada píxel" data-en="Street in every pixel">Calle en cada píxel</h3>
+            <p class="pdf-card-desc" data-es="Logo, tipografías urbanas, paleta de colores y reglas de uso. Todo lo que define visualmente a MEKA en cada soporte." data-en="Logo, urban typography, color palette and usage rules. Everything that visually defines MEKA across all platforms.">
+              Logo, tipografías urbanas, paleta de colores y reglas de uso. Todo lo que define visualmente a MEKA en cada soporte.
+            </p>
+          </div>
+          <div class="pdf-card-footer">
+            <div class="pdf-meta">
+              <i class="fas fa-file-pdf"></i>
+              <span data-es="PDF · Marca" data-en="PDF · Brand">PDF · Marca</span>
+            </div>
+            <a href="documentos/manual_marca_meka.pdf" target="_blank" class="btn-doc" data-es="Ver" data-en="View">
+              <i class="fas fa-arrow-up-right-from-square"></i> Ver
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Videos -->
+    <div class="reveal" style="transition-delay:.05s">
+      <p class="section-label" data-es="Movimiento & Animación" data-en="Motion & Animation">Movimiento & Animación</p>
+      <h2 class="section-title" data-es="Animaciones" data-en="Animations">Animaciones</h2>
+    </div>
+
+    <div class="video-grid">
+
+      <!-- 2D -->
+      <div class="video-card reveal">
+        <div class="video-wrap">
+          <video id="vid2d" src="imagenes/animacion_2d.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="video-play-overlay" onclick="toggleVideo('vid2d', this)">
+            <div class="video-play-btn" id="play2d"><i class="fas fa-play"></i></div>
+          </div>
+          <span class="video-badge" data-es="Animación 2D" data-en="2D Animation">Animación 2D</span>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-label" data-es="Movimiento" data-en="Motion">Movimiento</div>
+          <h3 class="video-card-title" data-es="Gráfica en Movimiento" data-en="Graphics in Motion">Gráfica en Movimiento</h3>
+          <p class="video-card-desc" data-es="La identidad gráfica de MEKA cobra vida. Energía urbana, trazos rápidos y la esencia del barrio animada cuadro a cuadro." data-en="MEKA's graphic identity comes to life. Urban energy, quick strokes and the essence of the neighborhood animated frame by frame.">
+            La identidad gráfica de MEKA cobra vida. Energía urbana, trazos rápidos y la esencia del barrio animada cuadro a cuadro.
+          </p>
+          <div class="video-card-meta">
+            <span><i class="fas fa-film"></i> 2D Motion</span>
+            <span data-es="Identidad visual" data-en="Visual identity"><i class="fas fa-palette"></i> Identidad visual</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D -->
+      <div class="video-card reveal" style="transition-delay:.1s">
+        <div class="video-wrap">
+          <video id="vid3d" src="imagenes/animacion_3d.mp4" loop muted playsinline preload="metadata"></video>
+          <div class="video-play-overlay" onclick="toggleVideo('vid3d', this)">
+            <div class="video-play-btn" id="play3d"><i class="fas fa-play"></i></div>
+          </div>
+          <span class="video-badge" data-es="Animación 3D" data-en="3D Animation">Animación 3D</span>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-label" data-es="Render volumétrico" data-en="Volumetric render">Render volumétrico</div>
+          <h3 class="video-card-title" data-es="Empaque en 3D" data-en="3D Packaging">Empaque en 3D</h3>
+          <p class="video-card-desc" data-es="Visión volumétrica del empaque sustentable de MEKA. Estructura, materiales y resistencia en un render animado tridimensional." data-en="Volumetric vision of MEKA's sustainable packaging. Structure, materials and strength in a three-dimensional animated render.">
+            Visión volumétrica del empaque sustentable de MEKA. Estructura, materiales y resistencia en un render animado tridimensional.
+          </p>
+          <div class="video-card-meta">
+            <span><i class="fas fa-cube"></i> 3D Render</span>
+            <span data-es="Empaque" data-en="Packaging"><i class="fas fa-box"></i> Empaque</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="wrap">
+    <h2 data-es="¿Quieres saber más?" data-en="Want to know more?">¿Quieres saber más?</h2>
+    <p data-es="Escucha las historias detrás de la marca en nuestro podcast." data-en="Listen to the stories behind the brand on our podcast.">Escucha las historias detrás de la marca en nuestro podcast.</p>
+    <div class="cta-btns">
+      <a href="podcast.html" class="btn-doc" data-es="Ir al Podcast" data-en="Go to Podcast"><i class="fas fa-podcast"></i> Ir al Podcast</a>
+      <a href="blog.html" class="btn-doc-ghost" data-es="Ver Blog" data-en="View Blog"><i class="fas fa-newspaper"></i> Ver Blog</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="foot-logo">MEKA</div>
+      <p data-es="Diseñado en Colombia para el mundo urbano." data-en="Designed in Colombia for the urban world.">Diseñado en Colombia para el mundo urbano.</p>
+      <p class="foot-note" data-es="*Esta página es de carácter académico y no genera rendimientos económicos." data-en="*This website is for academic purposes and does not generate economic profit.">*Esta página es de carácter académico y no genera rendimientos económicos.</p>
+    </div>
+    <div>
+      <h4 data-es="Páginas" data-en="Pages">Páginas</h4>
+      <ul class="foot-links">
+        <li><a href="index.html" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="blog.html" data-es="Blog" data-en="Blog">Blog</a></li>
+        <li><a href="podcast.html" data-es="Podcast" data-en="Podcast">Podcast</a></li>
+        <li><a href="empaque.html" data-es="Documentos" data-en="Documents">Documentos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-es="Más información" data-en="More information">Más información</h4>
+      <p data-es="Recibe nuestros drops y novedades." data-en="Get our drops and news.">Recibe nuestros drops y novedades.</p>
+      <div class="input-row">
+        <input type="email" placeholder="tu@email.com">
+        <button class="btn brand" data-es="Suscribir" data-en="Subscribe">Suscribir</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── CART ── */
+  let cart = JSON.parse(localStorage.getItem('mekaCart')) || [];
+  const $sidebar = document.getElementById('cartSidebar');
+  const $badge   = document.getElementById('cartBadge');
+  const $body    = document.getElementById('cartBody');
+  const $footer  = document.getElementById('cartFooter');
+  const $total   = document.getElementById('cartTotal');
+
+  document.getElementById('cartToggle').addEventListener('click', () => $sidebar.classList.toggle('open'));
+  document.getElementById('closeCart').addEventListener('click', () => $sidebar.classList.remove('open'));
+
+  function updateCartUI() {
+    localStorage.setItem('mekaCart', JSON.stringify(cart));
+    if (!cart.length) {
+      $body.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>';
+      $footer.style.display = 'none'; $badge.style.display = 'none'; return;
+    }
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    $badge.textContent = cart.reduce((s,i) => s + i.qty, 0);
+    $badge.style.display = 'grid'; $footer.style.display = 'block';
+    $total.textContent = '$' + total.toLocaleString('es-CO');
+    $body.innerHTML = cart.map((item, idx) => `
+      <div style="display:flex;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #222">
+        <img src="${item.img}" style="width:64px;height:64px;object-fit:cover;border-radius:8px">
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">${item.name}</div>
+          <div style="font-size:12px;color:#888">Talla: ${item.size}</div>
+          <div style="font-size:13px;color:#e8ff4a">$${(item.price*item.qty).toLocaleString('es-CO')}</div>
+          <button onclick="removeFromCart(${idx})" style="background:none;border:none;color:#e8ff4a;font-size:12px;cursor:pointer;font-weight:700;padding:0;margin-top:4px">Eliminar</button>
+        </div>
+      </div>`).join('');
+  }
+  window.removeFromCart = idx => { cart.splice(idx,1); updateCartUI(); };
+  updateCartUI();
+
+  /* ── HAMBURGER ── */
+  const hamb = document.getElementById('hamb');
+  const navLinks = document.getElementById('navLinks');
+  hamb.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+  /* ── LANG TOGGLE ── */
+  const $langToggle = document.getElementById('langToggle');
+  const $langText   = document.getElementById('langText');
+  let lang = localStorage.getItem('mekaLang') || 'es';
+  function applyLang() {
+    document.querySelectorAll('[data-es]').forEach(el => {
+      const t = el.getAttribute('data-' + lang);
+      if (t) el.textContent = t;
     });
+    $langText.textContent = lang.toUpperCase();
+    localStorage.setItem('mekaLang', lang);
+  }
+  $langToggle.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; applyLang(); });
+  applyLang();
 
-
-
-    // Navbar hamburger logic
-    const hamb = document.getElementById('hamb');
-    const navLinks = document.getElementById('navLinks');
-
-    if (hamb && navLinks) {
-      hamb.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-      });
-
-      navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          if (window.innerWidth <= 980) navLinks.classList.remove('show');
-        });
-      });
+  /* ── VIDEO TOGGLE ── */
+  function toggleVideo(id, overlay) {
+    const vid = document.getElementById(id);
+    const btn = overlay.querySelector('.video-play-btn i');
+    if (vid.paused) {
+      vid.play();
+      btn.className = 'fas fa-pause';
+      overlay.style.background = 'transparent';
+    } else {
+      vid.pause();
+      btn.className = 'fas fa-play';
+      overlay.style.background = 'rgba(0,0,0,.35)';
     }
+  }
 
-    /* ---- LANGUAGE TOGGLE ---- */
-    (function () {
-      const $langToggle = document.getElementById('langToggle');
-      const $langText = document.getElementById('langText');
-      let currentLang = localStorage.getItem('mekaLang') || 'es';
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      function updateLanguage() {
-        document.querySelectorAll('[data-es]').forEach(el => {
-          const text = el.getAttribute('data-' + currentLang);
-          if (text) {
-            if (text.includes('<') && text.includes('>')) {
-              el.innerHTML = text;
-            } else {
-              el.textContent = text;
-            }
-          }
-        });
-        if ($langText) $langText.textContent = currentLang.toUpperCase();
-        localStorage.setItem('mekaLang', currentLang);
-      }
-
-      if ($langToggle) {
-        $langToggle.addEventListener('click', () => {
-          currentLang = currentLang === 'es' ? 'en' : 'es';
-          updateLanguage();
-        });
-      }
-
-      updateLanguage();
-    })();
-  </script>
+  /* ── NAV SCROLL ── */
+  window.addEventListener('scroll', () => {
+    document.querySelector('.nav').style.borderBottomColor = window.scrollY > 10 ? '#333' : 'var(--border)';
+  });
+</script>
 </body>
-
 </html>

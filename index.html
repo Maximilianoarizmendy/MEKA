@@ -299,8 +299,8 @@
       right: 0;
       height: 70px;
       z-index: 1000;
-      background: rgba(11, 11, 11, 0.85);
-      backdrop-filter: blur(14px);
+      background: rgba(11, 11, 11, 0.8);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -367,21 +367,22 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .hamb {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
+     .hamb {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 4px;
+}
 
     .hamb span {
-      width: 22px;
+      width: 24px;
       height: 2px;
-      background: var(--fg);
-      border-radius: 2px;
-      transition: all .25s;
+      background: white;
     }
+
 
     /* ============================================
    HERO — IMAGE BACKGROUND
