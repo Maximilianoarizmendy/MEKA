@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MEKA — Documentos</title>
-  <meta name="description" content="Brief, manual de marca, animaciones y recursos de MEKA." />
+  <meta name="description" content="Animaciones y recursos de MEKA." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@300;400;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
@@ -184,65 +184,6 @@
       text-transform: uppercase; color: var(--fg); margin-bottom: 48px;
       line-height: 1;
     }
-
-    /* PDF Cards */
-    .pdf-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
-      margin-bottom: 80px;
-    }
-    .pdf-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 20px; overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
-      transition: border-color .3s, transform .3s;
-      min-height: 280px;
-    }
-    .pdf-card:hover {
-      border-color: var(--accent); transform: translateY(-4px);
-    }
-    .pdf-card-img {
-      position: relative; overflow: hidden; background: var(--muted);
-    }
-    .pdf-card-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .pdf-card:hover .pdf-card-img img { transform: scale(1.06); }
-    .pdf-card-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(11,11,11,.3) 0%, transparent 60%);
-    }
-    .pdf-card-tag {
-      position: absolute; top: 16px; left: 16px;
-      background: var(--accent); color: #0b0b0b;
-      font-weight: 700; font-size: 9px; letter-spacing: 0.14em;
-      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
-    }
-    .pdf-card-body {
-      padding: 32px 28px;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .pdf-card-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
-    }
-    .pdf-card-title {
-      font-family: 'Dela Gothic One'; font-size: 22px;
-      text-transform: uppercase; color: var(--fg);
-      line-height: 1.1; margin-bottom: 12px;
-    }
-    .pdf-card-desc {
-      font-size: 13px; line-height: 1.7; color: var(--sub);
-      margin-bottom: 24px; flex: 1;
-    }
-    .pdf-card-footer {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .pdf-meta {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--sub);
-    }
-    .pdf-meta i { color: var(--accent); font-size: 14px; }
     .btn-doc {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--accent); color: #111;
@@ -372,10 +313,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .pdf-grid { grid-template-columns: 1fr; }
       .video-grid { grid-template-columns: 1fr; }
-      .pdf-card { grid-template-columns: 1fr; }
-      .pdf-card-img { height: 220px; }
       .nav-links {
         position: absolute; top: 70px; left: 0; right: 0;
         background: rgba(18,18,18,.97); flex-direction: column;
@@ -440,25 +378,20 @@
 <header class="page-hero">
   <div class="hero-noise"></div>
   <div class="hero-glow"></div>
-  <div class="hero-bg-word">DOCS</div>
   <div class="wrap hero-content">
     <div class="hero-eyebrow" data-es="Recursos MEKA" data-en="MEKA Resources"><i class="fas fa-folder-open"></i> Recursos MEKA</div>
-    <h1 class="hero-title">Docu<br><em>mentos</em></h1>
-    <p class="hero-sub" data-es="Brief estratégico, manual de marca y animaciones. Todo lo que define la identidad visual de MEKA." data-en="Strategic brief, brand manual and animations. Everything that defines MEKA's visual identity.">Brief estratégico, manual de marca y animaciones. Todo lo que define la identidad visual de MEKA.</p>
+    <h1 class="hero-title"><br><em data-es="Interactivos" data-en="Interactive">Interactivos</em></h1>
+    <p class="hero-sub" data-es="Animaciones y recursos visuales. Todo lo que define la identidad visual de MEKA." data-en="Animations and visual resources. Everything that defines MEKA's visual identity.">Animaciones y recursos visuales. Todo lo que define la identidad visual de MEKA.</p>
   </div>
 </header>
 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span class="ticker-item"><span class="dot">★</span> Brief Creativo</span>
-    <span class="ticker-item"><span class="dot">★</span> Manual de Marca</span>
     <span class="ticker-item"><span class="dot">★</span> Animación 2D</span>
     <span class="ticker-item"><span class="dot">★</span> Animación 3D</span>
     <span class="ticker-item"><span class="dot">★</span> Identidad Visual</span>
     <span class="ticker-item"><span class="dot">★</span> Estrategia MEKA</span>
-    <span class="ticker-item"><span class="dot">★</span> Brief Creativo</span>
-    <span class="ticker-item"><span class="dot">★</span> Manual de Marca</span>
     <span class="ticker-item"><span class="dot">★</span> Animación 2D</span>
     <span class="ticker-item"><span class="dot">★</span> Animación 3D</span>
     <span class="ticker-item"><span class="dot">★</span> Identidad Visual</span>
@@ -470,72 +403,8 @@
 <section class="docs-section">
   <div class="wrap">
 
-    <!-- PDFs -->
-    <div class="reveal">
-      <p class="section-label" data-es="Estrategia & Identidad" data-en="Strategy & Identity">Estrategia & Identidad</p>
-      <h2 class="section-title" data-es="Documentos PDF" data-en="PDF Documents">Documentos PDF</h2>
-    </div>
-
-    <div class="pdf-grid">
-
-      <!-- Brief -->
-      <div class="pdf-card reveal">
-        <div class="pdf-card-img">
-          <img src="imagenes/brief.jpg" alt="Brief Creativo MEKA">
-          <div class="pdf-card-img-overlay"></div>
-          <span class="pdf-card-tag" data-es="Estrategia" data-en="Strategy">Estrategia</span>
-        </div>
-        <div class="pdf-card-body">
-          <div>
-            <div class="pdf-card-label" data-es="Brief Creativo" data-en="Creative Brief">Brief Creativo</div>
-            <h3 class="pdf-card-title" data-es="La base de todo" data-en="The foundation">La base de todo</h3>
-            <p class="pdf-card-desc" data-es="Conoce los objetivos, público objetivo y la esencia estratégica que guía cada decisión creativa y comercial de MEKA." data-en="Discover the objectives, target audience and strategic essence that guides every creative and commercial decision at MEKA.">
-              Conoce los objetivos, público objetivo y la esencia estratégica que guía cada decisión creativa y comercial de MEKA.
-            </p>
-          </div>
-          <div class="pdf-card-footer">
-            <div class="pdf-meta">
-              <i class="fas fa-file-pdf"></i>
-              <span data-es="PDF · Brief" data-en="PDF · Brief">PDF · Brief</span>
-            </div>
-            <a href="documentos/brief_meka.pdf" target="_blank" class="btn-doc" data-es="Ver" data-en="View">
-              <i class="fas fa-arrow-up-right-from-square"></i> Ver
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Manual -->
-      <div class="pdf-card reveal" style="transition-delay:.1s">
-        <div class="pdf-card-img">
-          <img src="imagenes/manual.jpg" alt="Manual de Marca MEKA">
-          <div class="pdf-card-img-overlay"></div>
-          <span class="pdf-card-tag" data-es="Identidad Visual" data-en="Visual Identity">Identidad Visual</span>
-        </div>
-        <div class="pdf-card-body">
-          <div>
-            <div class="pdf-card-label" data-es="Manual de Marca" data-en="Brand Manual">Manual de Marca</div>
-            <h3 class="pdf-card-title" data-es="Calle en cada píxel" data-en="Street in every pixel">Calle en cada píxel</h3>
-            <p class="pdf-card-desc" data-es="Logo, tipografías urbanas, paleta de colores y reglas de uso. Todo lo que define visualmente a MEKA en cada soporte." data-en="Logo, urban typography, color palette and usage rules. Everything that visually defines MEKA across all platforms.">
-              Logo, tipografías urbanas, paleta de colores y reglas de uso. Todo lo que define visualmente a MEKA en cada soporte.
-            </p>
-          </div>
-          <div class="pdf-card-footer">
-            <div class="pdf-meta">
-              <i class="fas fa-file-pdf"></i>
-              <span data-es="PDF · Marca" data-en="PDF · Brand">PDF · Marca</span>
-            </div>
-            <a href="documentos/manual_marca_meka.pdf" target="_blank" class="btn-doc" data-es="Ver" data-en="View">
-              <i class="fas fa-arrow-up-right-from-square"></i> Ver
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
     <!-- Videos -->
-    <div class="reveal" style="transition-delay:.05s">
+    <div class="reveal">
       <p class="section-label" data-es="Movimiento & Animación" data-en="Motion & Animation">Movimiento & Animación</p>
       <h2 class="section-title" data-es="Animaciones" data-en="Animations">Animaciones</h2>
     </div>
